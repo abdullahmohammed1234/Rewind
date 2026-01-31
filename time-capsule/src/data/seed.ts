@@ -1,7 +1,5 @@
-// Seed data for TimeCapsule - Comprehensive trend data from 2012-2024
-import { Year, Month, Category, Item, LeaderboardEntry, AllTimePick } from '@/types';
-
-// ===== YEARS =====
+// Seed data for TimeCapsule - Demo focusing on 2016
+import { Year, Month, Category, Item, LeaderboardEntry, Leaderboard, PersonalCapsule, User } from '@/types';
 
 export const years: Year[] = [
   {
@@ -9,111 +7,102 @@ export const years: Year[] = [
     year: 2012,
     description: 'The year of viral videos and the rise of mobile social media. Gangnam Style took over the world.',
     theme: 'discovery',
-    topTrends: ['Gangnam Style', 'Kony 2012', 'Diamond Grill', 'Twerking'],
-    colorScheme: { primary: '#FF6B6B', secondary: '#4ECDC4', accent: '#FFE66D' }
+    topTrends: ['Gangnam Style', 'Kony 2012', 'Diamond Grill', 'Twerking']
   },
   {
     id: '2013',
     year: 2013,
     description: 'Selfie becomes Word of the Year. Harlem Shake craze and the beginning of the Drake era.',
     theme: 'selfie',
-    topTrends: ['Selfie', 'Harlem Shake', 'Twerking', 'Miley Cyrus'],
-    colorScheme: { primary: '#9B59B6', secondary: '#3498DB', accent: '#E74C3C' }
+    topTrends: ['Selfie', 'Harlem Shake', 'Twerking', 'Miley Cyrus']
   },
   {
     id: '2014',
     year: 2014,
     description: 'Ice Bucket Challenge sweeps the internet. Frozen dominates pop culture. The dress that broke the internet.',
     theme: 'ice-bucket',
-    topTrends: ['Ice Bucket Challenge', 'Frozen', 'The Dress', 'Pharrell Happy'],
-    colorScheme: { primary: '#1ABC9C', secondary: '#3498DB', accent: '#9B59B6' }
+    topTrends: ['Ice Bucket Challenge', 'Frozen', 'The Dress', 'Pharrell Happy']
   },
   {
     id: '2015',
     year: 2015,
     description: 'Rise of the fidget spinner and hotdog arms. Drake takes over streaming. Star Wars returns.',
     theme: 'streaming',
-    topTrends: ['Fidget Spinner', 'Hotdog Arms', 'Drake', 'Star Wars'],
-    colorScheme: { primary: '#E74C3C', secondary: '#F39C12', accent: '#2ECC71' }
+    topTrends: ['Fidget Spinner', 'Hotdog Arms', 'Drake', 'Star Wars']
   },
   {
     id: '2016',
     year: 2016,
     description: 'The peak of viral memes. Pokémon GO craze, Trump election, and the rise of TikTok. A year of internet history.',
     theme: 'pokemon-go',
-    topTrends: ['Pokémon GO', 'Damn Daniel', 'Harambe', 'Cash Me Outside'],
-    colorScheme: { primary: '#2ECC71', secondary: '#9B59B6', accent: '#F1C40F' }
+    topTrends: ['Pokémon GO', 'Damn Daniel', 'Harambe', 'Cash Me Outside']
   },
   {
     id: '2017',
     year: 2017,
     description: 'Despacito summer and the Charlottesville incident. Bitcoin surges. Logan Paul controversy.',
     theme: 'despacito',
-    topTrends: ['Despacito', 'Bitcoin', 'Charlottesville', 'Logan Paul'],
-    colorScheme: { primary: '#E74C3C', secondary: '#F39C12', accent: '#3498DB' }
+    topTrends: ['Despacito', 'Bitcoin', 'Charlottesville', 'Logan Paul']
   },
   {
     id: '2018',
     year: 2018,
     description: 'Kylie Jenner becomes youngest billionaire. Avengers Infinity War. Tide Pod challenge disaster.',
     theme: 'infinity',
-    topTrends: ['Avengers', 'Kylie Jenner', 'Tide Pods', 'In My Feelings'],
-    colorScheme: { primary: '#9B59B6', secondary: '#E74C3C', accent: '#F1C40F' }
+    topTrends: ['Avengers', 'Kylie Jenner', 'Tide Pods', 'In My Feelings']
   },
   {
     id: '2019',
     year: 2019,
-    description: 'The rise of TikTok. Baby Yoda. Brexit chaos. streaming wars begin.',
+    description: 'Area 51 raid, VSCO girls, and the rise of TikTok. Old Town Road breaks records.',
     theme: 'tiktok',
-    topTrends: ['TikTok', 'Baby Yoda', 'Brexit', 'Streamings Wars'],
-    colorScheme: { primary: '#FF6B6B', secondary: '#4ECDC4', accent: '#FFE66D' }
+    topTrends: ['Area 51', 'VSCO Girl', 'Old Town Road', 'Baby Yoda']
   },
   {
     id: '2020',
     year: 2020,
-    description: 'Pandemic year. Tiger King. Zoom becomes essential. BLM movement goes viral.',
+    description: 'The pandemic year. Tiger King, Among Us, and WAP dominate while the world stays home.',
     theme: 'pandemic',
-    topTrends: ['Tiger King', 'Zoom', 'BLM', 'Work From Home'],
-    colorScheme: { primary: '#6366F1', secondary: '#EC4899', accent: '#10B981' }
+    topTrends: ['Tiger King', 'Among Us', 'WAP', 'Zoom']
   },
   {
     id: '2021',
     year: 2021,
-    description: 'GameStop short squeeze. NFTs explode. COVID variants. Squid Game takes over.',
+    description: 'NFTs explode, Squid Game takes over, and the Metaverse becomes mainstream.',
     theme: 'nft',
-    topTrends: ['GameStop', 'NFTs', 'Squid Game', 'COVID Vaccines'],
-    colorScheme: { primary: '#8B5CF6', secondary: '#EC4899', accent: '#F59E0B' }
+    topTrends: ['Squid Game', 'NFTs', 'Metaverse', 'Berries and Cream']
   },
   {
     id: '2022',
     year: 2022,
-    description: 'Roe v. Wade overturned. Elon buys Twitter. War in Ukraine. Barbieheimer.',
-    theme: 'chaos',
-    topTrends: ['Elon Twitter', 'Barbieheimer', 'Ukraine', 'Roe v Wade'],
-    colorScheme: { primary: '#EC4899', secondary: '#6366F1', accent: '#14B8A6' }
+    description: 'Elon buys Twitter, ChatGPT launches, and Wednesday dance goes viral.',
+    theme: 'ai',
+    topTrends: ['Wednesday', 'ChatGPT', 'Corn Kid', 'Goblin Mode']
   },
   {
     id: '2023',
     year: 2023,
-    description: 'AI takes over. Barbenheimer success. Israel-Gaza war. Taylor Swift Eras Tour.',
-    theme: 'ai',
-    topTrends: ['ChatGPT', 'Barbenheimer', 'Taylor Swift', 'AI Art'],
-    colorScheme: { primary: '#6366F1', secondary: '#EC4899', accent: '#F59E0B' }
+    description: 'AI art explosion, Barbenheimer summer, and the rise of Threads.',
+    theme: 'barbie',
+    topTrends: ['Barbie', 'Oppenheimer', 'AI Art', 'Threads']
   },
   {
     id: '2024',
     year: 2024,
-    description: 'AI continues to evolve. Election year. New social platforms emerge.',
-    theme: 'evolution',
-    topTrends: ['AI Video', 'Election 2024', 'New Socials', 'Climate Action'],
-    colorScheme: { primary: '#10B981', secondary: '#6366F1', accent: '#F59E0B' }
+    description: 'The year of AI assistants, viral TikTok sounds, and nostalgic comebacks.',
+    theme: 'nostalgia',
+    topTrends: ['AI Assistants', 'Brat Summer', 'Demure', 'Very Mindful']
+  },
+  {
+    id: '2025',
+    year: 2025,
+    description: 'Current year - still unfolding! What trends will define this year?',
+    theme: 'current',
+    topTrends: ['TBD', 'Emerging', 'New Trends', 'Watch This Space']
   }
 ];
 
-// ===== MONTHS =====
-
 export const months: Month[] = [
-  // 2016 months
   { id: 'jan-2016', name: 'January', yearId: '2016', shortName: 'Jan' },
   { id: 'feb-2016', name: 'February', yearId: '2016', shortName: 'Feb' },
   { id: 'mar-2016', name: 'March', yearId: '2016', shortName: 'Mar' },
@@ -125,415 +114,677 @@ export const months: Month[] = [
   { id: 'sep-2016', name: 'September', yearId: '2016', shortName: 'Sep' },
   { id: 'oct-2016', name: 'October', yearId: '2016', shortName: 'Oct' },
   { id: 'nov-2016', name: 'November', yearId: '2016', shortName: 'Nov' },
-  { id: 'dec-2016', name: 'December', yearId: '2016', shortName: 'Dec' },
-  // 2020 months (for pandemic trends)
-  { id: 'mar-2020', name: 'March', yearId: '2020', shortName: 'Mar' },
-  { id: 'apr-2020', name: 'April', yearId: '2020', shortName: 'Apr' },
-  { id: 'may-2020', name: 'May', yearId: '2020', shortName: 'May' },
-  { id: 'jun-2020', name: 'June', yearId: '2020', shortName: 'Jun' },
-  // 2023 months
-  { id: 'jul-2023', name: 'July', yearId: '2023', shortName: 'Jul' },
-  { id: 'aug-2023', name: 'August', yearId: '2023', shortName: 'Aug' },
+  { id: 'dec-2016', name: 'December', yearId: '2016', shortName: 'Dec' }
 ];
-
-// ===== CATEGORIES =====
 
 export const categories: Category[] = [
-  { id: 'memes', name: 'Memes', type: 'memes', icon: '😂', description: 'Viral memes and internet jokes' },
-  { id: 'music', name: 'Music', type: 'music', icon: '🎵', description: 'Songs, albums, and music trends' },
-  { id: 'dances', name: 'Dances', type: 'dances', icon: '💃', description: 'Viral dances and challenges' },
-  { id: 'style', name: 'Style', type: 'style', icon: '👗', description: 'Fashion and clothing trends' },
-  { id: 'products', name: 'Products', type: 'products', icon: '🛍️', description: 'Popular products and toys' },
-  { id: 'trends', name: 'Trends', type: 'trends', icon: '📈', description: 'General viral trends' },
-  { id: 'tv', name: 'TV & Movies', type: 'tv', icon: '🎬', description: 'TV shows and movies' },
-  { id: 'celebrities', name: 'Celebrities', type: 'celebrities', icon: '⭐', description: 'Celebrity news and gossip' },
-  { id: 'gaming', name: 'Gaming', type: 'gaming', icon: '🎮', description: 'Video games and gaming trends' },
-  { id: 'other', name: 'Other', type: 'other', icon: '📦', description: 'Miscellaneous trends' }
+  { id: 'music', name: 'Music', type: 'music', icon: '🎵', color: '#1DB954' },
+  { id: 'memes', name: 'Memes', type: 'memes', icon: '😂', color: '#FF6B6B' },
+  { id: 'style', name: 'Style', type: 'style', icon: '👗', color: '#E91E63' },
+  { id: 'products', name: 'Products', type: 'products', icon: '🎁', color: '#FF9800' },
+  { id: 'dances', name: 'Dances', type: 'dances', icon: '💃', color: '#9C27B0' },
+  { id: 'tv', name: 'TV Shows', type: 'tv', icon: '📺', color: '#2196F3' },
+  { id: 'celebrities', name: 'Celebrities', type: 'celebrities', icon: '⭐', color: '#FFC107' },
+  { id: 'trends', name: 'Trends', type: 'trends', icon: '📈', color: '#4CAF50' },
+  { id: 'movies', name: 'Movies', type: 'movies', icon: '🎬', color: '#673AB7' },
+  { id: 'other', name: 'Other', type: 'other', icon: '📦', color: '#607D8B' }
 ];
 
-// ===== ITEMS/TRENDS =====
-
 export const items: Item[] = [
-  // ===== 2016 TRENDS =====
-  
-  // January 2016
+  // ===== MUSIC 2016 =====
   {
-    id: 'item-1',
-    title: 'Damn Daniel',
-    description: 'A viral video where two teens record their friend Daniel wearing white Vans constantly. The catchphrase "Damn Daniel! Back at it again with the white Vans!" became a massive meme.',
-    categoryId: 'memes',
-    monthId: 'jan-2016',
-    yearId: '2016',
-    popularityScore: 98,
-    slug: 'damn-daniel',
-    timeline: { start: 'Feb 2016', peak: 'Mar 2016' },
-    impact: 'Spawned countless remixes and became a cultural touchstone for 2016.'
-  },
-  {
-    id: 'item-2',
-    title: 'Stranger Things',
-    description: 'Netflix released this sci-fi horror series that became an instant hit. The 80s nostalgia and compelling story made it one of the most-watched shows of the year.',
-    categoryId: 'tv',
-    monthId: 'jan-2016',
-    yearId: '2016',
-    popularityScore: 97,
-    slug: 'stranger-things',
-    timeline: { start: 'Jul 2016', peak: 'Aug 2016' },
-    impact: 'Revived interest in 80s culture and launched the careers of its young cast.'
-  },
-  
-  // February 2016
-  {
-    id: 'item-3',
-    title: 'Harambe Memorial',
-    description: 'After a gorilla was shot at a zoo, the internet mourned with a flood of memes claiming Harambe died for our sins. Some donated to gorilla conservation in his name.',
-    categoryId: 'memes',
-    monthId: 'feb-2016',
+    id: 'music-1',
+    title: 'Closer - The Chainsmokers ft. Halsey',
+    description: 'The song that defined summer 2016. Spent 12 weeks at #1 on Billboard Hot 100.',
+    categoryId: 'music',
+    monthId: 'jul-2016',
     yearId: '2016',
     popularityScore: 99,
-    slug: 'harambe',
-    timeline: { start: 'May 2016', peak: 'Jun 2016' },
-    impact: 'One of the most viral memes of 2016, combining animal rights with absurdist humor.'
+    engagementScore: 98,
+    userVotes: 15420,
+    slug: 'closer-chainsmokers',
+    rank: 1
   },
   {
-    id: 'item-4',
-    title: 'Kanye West - Life of Pablo',
-    description: 'Kanye released his seventh studio album with massive hype. The tour merchandise and album delays made headlines throughout the year.',
+    id: 'music-2',
+    title: 'One Dance - Drake ft. WizKid',
+    description: 'Drake\'s dancehall-influenced hit that dominated streaming platforms worldwide.',
+    categoryId: 'music',
+    monthId: 'apr-2016',
+    yearId: '2016',
+    popularityScore: 97,
+    engagementScore: 96,
+    userVotes: 14200,
+    slug: 'one-dance-drake',
+    rank: 2
+  },
+  {
+    id: 'music-3',
+    title: 'Work - Rihanna ft. Drake',
+    description: 'Rihanna and Drake\'s collaboration that sparked countless memes and dance videos.',
+    categoryId: 'music',
+    monthId: 'jan-2016',
+    yearId: '2016',
+    popularityScore: 95,
+    engagementScore: 94,
+    userVotes: 13100,
+    slug: 'work-rihanna',
+    rank: 3
+  },
+  {
+    id: 'music-4',
+    title: 'Life of Pablo - Kanye West',
+    description: 'Kanye\'s seventh studio album with massive hype and streaming exclusivity drama.',
     categoryId: 'music',
     monthId: 'feb-2016',
     yearId: '2016',
     popularityScore: 92,
+    engagementScore: 91,
+    userVotes: 11800,
     slug: 'life-of-pablo',
-    timeline: { start: 'Feb 2016', peak: 'Apr 2016' },
-    impact: 'Set streaming records and sparked debates about artistic genius.'
+    rank: 4
   },
-  
-  // March 2016
   {
-    id: 'item-5',
-    title: 'Hamilton',
-    description: 'The Broadway musical about Alexander Hamilton took the world by storm. The cast performed at the Grammys and the cast recording dominated charts.',
-    categoryId: 'tv',
-    monthId: 'mar-2016',
+    id: 'music-5',
+    title: 'Panda - Desiigner',
+    description: 'The viral hit that nobody could understand but everyone loved.',
+    categoryId: 'music',
+    monthId: 'may-2016',
     yearId: '2016',
-    popularityScore: 94,
-    slug: 'hamilton',
-    timeline: { start: 'Feb 2016', peak: 'Jun 2016' },
-    impact: 'Revolutionized Broadway and made Lin-Manuel Miranda a household name.'
+    popularityScore: 90,
+    engagementScore: 89,
+    userVotes: 10500,
+    slug: 'panda-desiigner',
+    rank: 5
   },
-  
-  // May 2016
+
+  // ===== MEMES 2016 =====
   {
-    id: 'item-7',
-    title: 'Cash Me Outside',
-    description: 'A teenage girl appeared on Dr. Phil saying "Cash me outside, howbow dah?" The phrase became a massive meme and she launched a music career.',
+    id: 'meme-1',
+    title: 'Harambe',
+    description: 'After a gorilla was shot at Cincinnati Zoo, the internet mourned with endless memes. "Dicks out for Harambe" became a cultural phenomenon.',
     categoryId: 'memes',
     monthId: 'may-2016',
     yearId: '2016',
-    popularityScore: 95,
-    slug: 'cash-me-outside',
-    timeline: { start: 'Sep 2016', peak: 'Oct 2016' },
-    impact: 'Started the era of social media personalities transitioning to music careers.'
-  },
-  
-  // June 2016
-  {
-    id: 'item-8',
-    title: 'Pokémon GO',
-    description: 'Niantic released the augmented reality game that took over the world. People walked into parks, ponds, and cemeteries to catch Pokémon.',
-    categoryId: 'gaming',
-    monthId: 'jun-2016',
-    yearId: '2016',
     popularityScore: 100,
-    slug: 'pokemon-go',
-    timeline: { start: 'Jul 2016', peak: 'Jul 2016' },
-    impact: 'Proved AR gaming\'s potential and got millions outside catching virtual creatures.',
-    creator: 'Niantic'
+    engagementScore: 99,
+    userVotes: 25000,
+    slug: 'harambe',
+    rank: 1
   },
   {
-    id: 'item-9',
-    title: 'Euro 2016',
-    description: 'The European Championship brought viral moments including Portugal\'s victory and Iceland\'s Viking Clap celebration.',
-    categoryId: 'trends',
-    monthId: 'jun-2016',
+    id: 'meme-2',
+    title: 'Damn Daniel',
+    description: 'A viral video where two teens record their friend Daniel wearing white Vans. "Damn Daniel! Back at it again with the white Vans!"',
+    categoryId: 'memes',
+    monthId: 'feb-2016',
     yearId: '2016',
-    popularityScore: 88,
-    slug: 'euro-2016',
-    timeline: { start: 'Jun 2016', peak: 'Jul 2016' },
-    impact: 'Iceland\'s underdog story captured hearts worldwide.'
+    popularityScore: 98,
+    engagementScore: 97,
+    userVotes: 22000,
+    slug: 'damn-daniel',
+    rank: 2
   },
-  
-  // July 2016
   {
-    id: 'item-10',
-    title: 'Oculus Rift',
-    description: 'Consumer VR finally arrived with the Oculus Rift. While adoption was limited, it kicked off the VR revolution.',
-    categoryId: 'products',
+    id: 'meme-3',
+    title: 'Cash Me Outside',
+    description: 'A teenage girl on Dr. Phil saying "Cash me outside, howbow dah?" launched a music career.',
+    categoryId: 'memes',
+    monthId: 'sep-2016',
+    yearId: '2016',
+    popularityScore: 95,
+    engagementScore: 94,
+    userVotes: 18500,
+    slug: 'cash-me-outside',
+    rank: 3
+  },
+  {
+    id: 'meme-4',
+    title: 'Arthur Fist',
+    description: 'The clenched fist from the Arthur cartoon became the go-to reaction meme for frustration.',
+    categoryId: 'memes',
     monthId: 'jul-2016',
     yearId: '2016',
-    popularityScore: 85,
-    slug: 'oculus-rift',
-    timeline: { start: 'Mar 2016', peak: 'Jun 2016' },
-    impact: 'Marked the beginning of mainstream VR gaming.',
-    creator: 'Oculus'
+    popularityScore: 93,
+    engagementScore: 92,
+    userVotes: 16000,
+    slug: 'arthur-fist',
+    rank: 4
   },
-  
-  // August 2016
   {
-    id: 'item-11',
-    title: 'Rio Olympics',
-    description: 'The Rio Olympics brought viral moments like Usain Bolt\'s pose, the Zika virus fears, and Simone Biles\'s dominance.',
-    categoryId: 'trends',
-    monthId: 'aug-2016',
+    id: 'meme-5',
+    title: 'Evil Kermit',
+    description: 'Kermit talking to his hooded evil self became the perfect meme for inner conflicts.',
+    categoryId: 'memes',
+    monthId: 'nov-2016',
+    yearId: '2016',
+    popularityScore: 91,
+    engagementScore: 90,
+    userVotes: 14500,
+    slug: 'evil-kermit',
+    rank: 5
+  },
+
+  // ===== STYLE 2016 =====
+  {
+    id: 'style-1',
+    title: 'Chokers',
+    description: 'The 90s accessory made a massive comeback, becoming the must-have accessory of 2016.',
+    categoryId: 'style',
+    monthId: 'mar-2016',
+    yearId: '2016',
+    popularityScore: 96,
+    engagementScore: 95,
+    userVotes: 12000,
+    slug: 'chokers',
+    rank: 1
+  },
+  {
+    id: 'style-2',
+    title: 'Off-Shoulder Tops',
+    description: 'The off-shoulder trend dominated summer fashion, from casual to formal wear.',
+    categoryId: 'style',
+    monthId: 'jun-2016',
+    yearId: '2016',
+    popularityScore: 94,
+    engagementScore: 93,
+    userVotes: 11200,
+    slug: 'off-shoulder',
+    rank: 2
+  },
+  {
+    id: 'style-3',
+    title: 'Athleisure',
+    description: 'Wearing gym clothes everywhere became not just acceptable but fashionable.',
+    categoryId: 'style',
+    monthId: 'apr-2016',
+    yearId: '2016',
+    popularityScore: 92,
+    engagementScore: 91,
+    userVotes: 10500,
+    slug: 'athleisure',
+    rank: 3
+  },
+  {
+    id: 'style-4',
+    title: 'Rose Gold Everything',
+    description: 'From phones to jewelry to home decor, rose gold was the color of 2016.',
+    categoryId: 'style',
+    monthId: 'sep-2016',
+    yearId: '2016',
+    popularityScore: 90,
+    engagementScore: 89,
+    userVotes: 9800,
+    slug: 'rose-gold',
+    rank: 4
+  },
+  {
+    id: 'style-5',
+    title: 'Bomber Jackets',
+    description: 'The military-inspired jacket became a streetwear staple.',
+    categoryId: 'style',
+    monthId: 'oct-2016',
+    yearId: '2016',
+    popularityScore: 88,
+    engagementScore: 87,
+    userVotes: 9200,
+    slug: 'bomber-jackets',
+    rank: 5
+  },
+
+  // ===== PRODUCTS 2016 =====
+  {
+    id: 'product-1',
+    title: 'Apple AirPods',
+    description: 'Initially mocked, these wireless earbuds became a massive status symbol.',
+    categoryId: 'products',
+    monthId: 'dec-2016',
+    yearId: '2016',
+    popularityScore: 97,
+    engagementScore: 96,
+    userVotes: 18000,
+    slug: 'airpods',
+    rank: 1
+  },
+  {
+    id: 'product-2',
+    title: 'Kylie Lip Kits',
+    description: 'Kylie Jenner\'s lip kits sold out in minutes and created a beauty empire.',
+    categoryId: 'products',
+    monthId: 'feb-2016',
+    yearId: '2016',
+    popularityScore: 95,
+    engagementScore: 94,
+    userVotes: 16500,
+    slug: 'kylie-lip-kits',
+    rank: 2
+  },
+  {
+    id: 'product-3',
+    title: 'Hatchimals',
+    description: 'The must-have toy of Christmas 2016 that parents fought over in stores.',
+    categoryId: 'products',
+    monthId: 'oct-2016',
     yearId: '2016',
     popularityScore: 93,
-    slug: 'rio-olympics',
-    timeline: { start: 'Aug 2016', peak: 'Aug 2016' },
-    impact: 'Michael Phelps\'s final games and Katie Ledecky\'s dominance highlighted swimming.'
+    engagementScore: 92,
+    userVotes: 14200,
+    slug: 'hatchimals',
+    rank: 3
   },
-  
-  // September 2016
   {
-    id: 'item-13',
-    title: 'Apple AirPods',
-    description: 'Apple released wireless earbuds that were initially mocked but became a massive status symbol and fashion item.',
+    id: 'product-4',
+    title: 'Nintendo NES Classic',
+    description: 'The retro console that was impossible to find and sparked nostalgia fever.',
     categoryId: 'products',
+    monthId: 'nov-2016',
+    yearId: '2016',
+    popularityScore: 91,
+    engagementScore: 90,
+    userVotes: 13000,
+    slug: 'nes-classic',
+    rank: 4
+  },
+  {
+    id: 'product-5',
+    title: 'Snapchat Spectacles',
+    description: 'Snapchat\'s camera glasses that could only be bought from vending machines.',
+    categoryId: 'products',
+    monthId: 'nov-2016',
+    yearId: '2016',
+    popularityScore: 89,
+    engagementScore: 88,
+    userVotes: 11500,
+    slug: 'spectacles',
+    rank: 5
+  },
+
+  // ===== DANCES 2016 =====
+  {
+    id: 'dance-1',
+    title: 'Juju on That Beat',
+    description: 'The viral dance challenge that took over every school hallway and social media feed.',
+    categoryId: 'dances',
+    monthId: 'aug-2016',
+    yearId: '2016',
+    popularityScore: 96,
+    engagementScore: 95,
+    userVotes: 14000,
+    slug: 'juju-on-that-beat',
+    rank: 1
+  },
+  {
+    id: 'dance-2',
+    title: 'Mannequin Challenge',
+    description: 'Everyone froze in place while "Black Beatles" played. Even celebrities joined in.',
+    categoryId: 'dances',
+    monthId: 'oct-2016',
+    yearId: '2016',
+    popularityScore: 98,
+    engagementScore: 97,
+    userVotes: 20000,
+    slug: 'mannequin-challenge',
+    rank: 2
+  },
+  {
+    id: 'dance-3',
+    title: 'Running Man Challenge',
+    description: 'The dance challenge that started with two high schoolers and went viral.',
+    categoryId: 'dances',
+    monthId: 'apr-2016',
+    yearId: '2016',
+    popularityScore: 92,
+    engagementScore: 91,
+    userVotes: 12500,
+    slug: 'running-man',
+    rank: 3
+  },
+  {
+    id: 'dance-4',
+    title: 'Hit the Quan',
+    description: 'The dance move that dominated early 2016 social media.',
+    categoryId: 'dances',
+    monthId: 'jan-2016',
+    yearId: '2016',
+    popularityScore: 88,
+    engagementScore: 87,
+    userVotes: 10000,
+    slug: 'hit-the-quan',
+    rank: 4
+  },
+  {
+    id: 'dance-5',
+    title: 'Dab',
+    description: 'The signature move that athletes, politicians, and everyone else couldn\'t stop doing.',
+    categoryId: 'dances',
+    monthId: 'feb-2016',
+    yearId: '2016',
+    popularityScore: 94,
+    engagementScore: 93,
+    userVotes: 15000,
+    slug: 'dab',
+    rank: 5
+  },
+
+  // ===== TV SHOWS 2016 =====
+  {
+    id: 'tv-1',
+    title: 'Stranger Things',
+    description: 'Netflix\'s sci-fi horror series became an instant cultural phenomenon with 80s nostalgia.',
+    categoryId: 'tv',
+    monthId: 'jul-2016',
+    yearId: '2016',
+    popularityScore: 99,
+    engagementScore: 98,
+    userVotes: 22000,
+    slug: 'stranger-things',
+    rank: 1
+  },
+  {
+    id: 'tv-2',
+    title: 'Game of Thrones S6',
+    description: 'The Battle of the Bastards and "Hold the Door" made this the most-watched season.',
+    categoryId: 'tv',
+    monthId: 'apr-2016',
+    yearId: '2016',
+    popularityScore: 98,
+    engagementScore: 97,
+    userVotes: 21000,
+    slug: 'game-of-thrones-s6',
+    rank: 2
+  },
+  {
+    id: 'tv-3',
+    title: 'Westworld',
+    description: 'HBO\'s mind-bending sci-fi series about AI consciousness captivated audiences.',
+    categoryId: 'tv',
+    monthId: 'oct-2016',
+    yearId: '2016',
+    popularityScore: 95,
+    engagementScore: 94,
+    userVotes: 17500,
+    slug: 'westworld',
+    rank: 3
+  },
+  {
+    id: 'tv-4',
+    title: 'The People v. O.J. Simpson',
+    description: 'The true crime series that brought the trial of the century to a new generation.',
+    categoryId: 'tv',
+    monthId: 'feb-2016',
+    yearId: '2016',
+    popularityScore: 93,
+    engagementScore: 92,
+    userVotes: 15000,
+    slug: 'oj-simpson',
+    rank: 4
+  },
+  {
+    id: 'tv-5',
+    title: 'Atlanta',
+    description: 'Donald Glover\'s groundbreaking comedy-drama about the Atlanta rap scene.',
+    categoryId: 'tv',
     monthId: 'sep-2016',
     yearId: '2016',
     popularityScore: 91,
-    slug: 'apple-airpods',
-    timeline: { start: 'Dec 2016', peak: '2017' },
-    impact: 'Killed the headphone jack and made wireless earbuds mainstream.',
-    creator: 'Apple'
+    engagementScore: 90,
+    userVotes: 13500,
+    slug: 'atlanta',
+    rank: 5
   },
-  
-  // November 2016
+
+  // ===== CELEBRITIES 2016 =====
   {
-    id: 'item-15',
+    id: 'celeb-1',
+    title: 'Beyoncé - Lemonade',
+    description: 'Queen Bey dropped a visual album that broke the internet and sparked "Who is Becky?" theories.',
+    categoryId: 'celebrities',
+    monthId: 'apr-2016',
+    yearId: '2016',
+    popularityScore: 99,
+    engagementScore: 98,
+    userVotes: 24000,
+    slug: 'beyonce-lemonade',
+    rank: 1
+  },
+  {
+    id: 'celeb-2',
+    title: 'Kim & Taylor Drama',
+    description: 'The Snapchat receipts that exposed Taylor Swift and dominated social media for weeks.',
+    categoryId: 'celebrities',
+    monthId: 'jul-2016',
+    yearId: '2016',
+    popularityScore: 97,
+    engagementScore: 96,
+    userVotes: 21000,
+    slug: 'kim-taylor-drama',
+    rank: 2
+  },
+  {
+    id: 'celeb-3',
+    title: 'Leonardo DiCaprio Oscar',
+    description: 'Leo finally won his Oscar for The Revenant after years of memes about his losses.',
+    categoryId: 'celebrities',
+    monthId: 'feb-2016',
+    yearId: '2016',
+    popularityScore: 96,
+    engagementScore: 95,
+    userVotes: 19500,
+    slug: 'leo-oscar',
+    rank: 3
+  },
+  {
+    id: 'celeb-4',
+    title: 'Brangelina Divorce',
+    description: 'Brad Pitt and Angelina Jolie\'s split shocked Hollywood and dominated headlines.',
+    categoryId: 'celebrities',
+    monthId: 'sep-2016',
+    yearId: '2016',
+    popularityScore: 94,
+    engagementScore: 93,
+    userVotes: 17000,
+    slug: 'brangelina',
+    rank: 4
+  },
+  {
+    id: 'celeb-5',
+    title: 'David Bowie Tribute',
+    description: 'The music world mourned the loss of the legendary artist in January.',
+    categoryId: 'celebrities',
+    monthId: 'jan-2016',
+    yearId: '2016',
+    popularityScore: 92,
+    engagementScore: 91,
+    userVotes: 16000,
+    slug: 'david-bowie',
+    rank: 5
+  },
+
+  // ===== TRENDS 2016 =====
+  {
+    id: 'trend-1',
+    title: 'Pokémon GO',
+    description: 'The AR game that got millions outside catching virtual creatures and caused accidents.',
+    categoryId: 'trends',
+    monthId: 'jul-2016',
+    yearId: '2016',
+    popularityScore: 100,
+    engagementScore: 99,
+    userVotes: 30000,
+    slug: 'pokemon-go',
+    rank: 1
+  },
+  {
+    id: 'trend-2',
     title: '2016 US Election',
-    description: 'One of the most controversial elections in US history dominated every platform and divided the internet.',
+    description: 'The most controversial election in US history dominated every platform.',
     categoryId: 'trends',
     monthId: 'nov-2016',
     yearId: '2016',
     popularityScore: 99,
-    slug: '2016-us-election',
-    timeline: { start: 'Jan 2016', peak: 'Nov 2016' },
-    impact: 'Changed political discourse on social media forever.'
+    engagementScore: 98,
+    userVotes: 28000,
+    slug: 'us-election-2016',
+    rank: 2
   },
-  
-  // December 2016
   {
-    id: 'item-17',
-    title: 'Star Wars: Rogue One',
-    description: 'The standalone Star Wars film brought back Darth Vader and broke box office records during the holiday season.',
-    categoryId: 'tv',
-    monthId: 'dec-2016',
+    id: 'trend-3',
+    title: 'Brexit',
+    description: 'The UK voted to leave the EU, shocking the world and creating endless memes.',
+    categoryId: 'trends',
+    monthId: 'jun-2016',
     yearId: '2016',
     popularityScore: 95,
-    slug: 'rogue-one',
-    timeline: { start: 'Dec 2016', peak: 'Dec 2016' },
-    impact: 'Proved the Star Wars universe could succeed beyond the main saga.'
-  },
-
-  // ===== 2020 PANDEMIC TRENDS =====
-
-  // March 2020
-  {
-    id: 'covid-1',
-    title: 'Tiger King',
-    description: 'Netflix\'s docuseries about Joe Exotic and the exotic animal trade became a massive quarantine phenomenon.',
-    categoryId: 'tv',
-    monthId: 'mar-2020',
-    yearId: '2020',
-    popularityScore: 98,
-    slug: 'tiger-king',
-    timeline: { start: 'Mar 2020', peak: 'Apr 2020' },
-    impact: 'Defined quarantine entertainment and launched a thousand memes.'
+    engagementScore: 94,
+    userVotes: 18000,
+    slug: 'brexit',
+    rank: 3
   },
   {
-    id: 'covid-2',
-    title: 'COVID-19 Lockdowns',
-    description: 'Global lockdowns changed everything. Work from home, Zoom calls, and toilet paper shortages became the new normal.',
+    id: 'trend-4',
+    title: 'Rio Olympics',
+    description: 'Usain Bolt\'s pose, green pools, and Simone Biles\' dominance defined the games.',
     categoryId: 'trends',
-    monthId: 'mar-2020',
-    yearId: '2020',
-    popularityScore: 100,
-    slug: 'covid-lockdowns',
-    timeline: { start: 'Mar 2020', peak: 'Apr 2020' },
-    impact: 'Transformed work, education, and social interaction permanently.'
+    monthId: 'aug-2016',
+    yearId: '2016',
+    popularityScore: 93,
+    engagementScore: 92,
+    userVotes: 16500,
+    slug: 'rio-olympics',
+    rank: 4
   },
   {
-    id: 'covid-3',
-    title: 'Zoom',
-    description: 'Zoom became the go-to platform for everything from work meetings to happy hours to yoga classes.',
-    categoryId: 'products',
-    monthId: 'mar-2020',
-    yearId: '2020',
+    id: 'trend-5',
+    title: 'Hamilton on Broadway',
+    description: 'The hip-hop musical about Alexander Hamilton became impossible to get tickets for.',
+    categoryId: 'trends',
+    monthId: 'mar-2016',
+    yearId: '2016',
+    popularityScore: 91,
+    engagementScore: 90,
+    userVotes: 15000,
+    slug: 'hamilton',
+    rank: 5
+  },
+
+  // ===== MOVIES 2016 =====
+  {
+    id: 'movie-1',
+    title: 'Rogue One: A Star Wars Story',
+    description: 'The standalone Star Wars film that brought back Darth Vader in epic fashion.',
+    categoryId: 'movies',
+    monthId: 'dec-2016',
+    yearId: '2016',
     popularityScore: 96,
-    slug: 'zoom',
-    timeline: { start: 'Mar 2020', peak: 'Apr 2020' },
-    impact: 'Made video conferencing mainstream and changed remote work forever.',
-    creator: 'Zoom'
-  },
-
-  // April 2020
-  {
-    id: 'covid-4',
-    title: '#BlackLivesMatter',
-    description: 'Following George Floyd\'s death, the BLM movement went viral with massive protests and global support.',
-    categoryId: 'trends',
-    monthId: 'apr-2020',
-    yearId: '2020',
-    popularityScore: 99,
-    slug: 'blm-2020',
-    timeline: { start: 'May 2020', peak: 'Jun 2020' },
-    impact: 'Led to global conversations about race and police reform.'
+    engagementScore: 95,
+    userVotes: 18000,
+    slug: 'rogue-one',
+    rank: 1
   },
   {
-    id: 'covid-5',
-    title: 'Dalgona Coffee',
-    description: 'The Korean whipped coffee became a viral sensation during lockdowns, with everyone trying to make it at home.',
-    categoryId: 'trends',
-    monthId: 'apr-2020',
-    yearId: '2020',
-    popularityScore: 85,
-    slug: 'dalgona-coffee',
-    timeline: { start: 'Mar 2020', peak: 'Apr 2020' },
-    impact: 'Made Korean coffee culture mainstream and spawned countless TikToks.'
-  },
-
-  // ===== 2023 TRENDS =====
-
-  // July 2023
-  {
-    id: 'barbie-1',
-    title: 'Barbie',
-    description: 'Greta Gerwig\'s Barbie film became a cultural phenomenon, breaking box office records and sparking global conversations.',
-    categoryId: 'tv',
-    monthId: 'jul-2023',
-    yearId: '2023',
-    popularityScore: 98,
-    slug: 'barbie-2023',
-    timeline: { start: 'Jul 2023', peak: 'Jul 2023' },
-    impact: 'Proved female-led films can dominate the box office.'
-  },
-  {
-    id: 'barbie-2',
-    title: 'Oppenheimer',
-    description: 'Christopher Nolan\'s atomic bomb drama became the unexpected hit of summer, creating the "Barbenheimer" phenomenon.',
-    categoryId: 'tv',
-    monthId: 'jul-2023',
-    yearId: '2023',
+    id: 'movie-2',
+    title: 'Deadpool',
+    description: 'Ryan Reynolds\' R-rated superhero film broke records and changed the genre.',
+    categoryId: 'movies',
+    monthId: 'feb-2016',
+    yearId: '2016',
     popularityScore: 95,
-    slug: 'oppenheimer-2023',
-    timeline: { start: 'Jul 2023', peak: 'Jul 2023' },
-    impact: 'Showed audiences wanted serious, intellectual cinema alongside blockbusters.'
+    engagementScore: 94,
+    userVotes: 17500,
+    slug: 'deadpool',
+    rank: 2
   },
   {
-    id: 'taylor-1',
-    title: 'Taylor Swift Eras Tour',
-    description: 'Taylor Swift\'s Eras Tour became the highest-grossing tour ever, with ticket sales causing Ticketmaster chaos.',
-    categoryId: 'music',
-    monthId: 'jul-2023',
-    yearId: '2023',
-    popularityScore: 99,
-    slug: 'taylor-eras-tour',
-    timeline: { start: 'Mar 2023', peak: 'Jul 2023' },
-    impact: 'Broke every tour record and defined pop culture in 2023.',
-    creator: 'Taylor Swift'
+    id: 'movie-3',
+    title: 'Captain America: Civil War',
+    description: 'Team Cap vs Team Iron Man divided fans and introduced Spider-Man to the MCU.',
+    categoryId: 'movies',
+    monthId: 'may-2016',
+    yearId: '2016',
+    popularityScore: 94,
+    engagementScore: 93,
+    userVotes: 16800,
+    slug: 'civil-war',
+    rank: 3
   },
   {
-    id: 'ai-1',
-    title: 'ChatGPT',
-    description: 'OpenAI\'s ChatGPT launched and quickly became the fastest-growing app in history, starting the AI revolution.',
-    categoryId: 'products',
-    monthId: 'jul-2023',
-    yearId: '2023',
-    popularityScore: 100,
-    slug: 'chatgpt',
-    timeline: { start: 'Nov 2022', peak: 'Jan 2023' },
-    impact: 'Started the mainstream AI era and changed how we work.',
-    creator: 'OpenAI'
-  },
-];
-
-// ===== ALL-TIME TOP PICKS =====
-
-export const allTimePicks: AllTimePick[] = [
-  {
-    id: 'all-1',
-    item: items.find(i => i.slug === 'pokemon-go')!,
-    years: [2016],
-    totalEngagement: 5000000000,
-    category: categories.find(c => c.id === 'gaming')!,
-    milestone: 'Most downloaded mobile game in a single month'
+    id: 'movie-4',
+    title: 'La La Land',
+    description: 'The musical that swept awards season and had everyone humming "City of Stars".',
+    categoryId: 'movies',
+    monthId: 'dec-2016',
+    yearId: '2016',
+    popularityScore: 92,
+    engagementScore: 91,
+    userVotes: 15000,
+    slug: 'la-la-land',
+    rank: 4
   },
   {
-    id: 'all-2',
-    item: items.find(i => i.slug === 'damn-daniel')!,
-    years: [2016],
-    totalEngagement: 2000000000,
-    category: categories.find(c => c.id === 'memes')!,
-    milestone: 'One of the most remixed memes of 2016'
-  },
-  {
-    id: 'all-3',
-    item: items.find(i => i.slug === 'harambe')!,
-    years: [2016],
-    totalEngagement: 3000000000,
-    category: categories.find(c => c.id === 'memes')!,
-    milestone: 'Highest engagement gorilla meme ever'
-  },
-  {
-    id: 'all-4',
-    item: items.find(i => i.slug === 'tiger-king')!,
-    years: [2020],
-    totalEngagement: 21000000,
-    category: categories.find(c => c.id === 'tv')!,
-    milestone: 'Most-watched docuseries in Netflix history (at the time)'
-  },
-  {
-    id: 'all-5',
-    item: items.find(i => i.slug === 'chatgpt')!,
-    years: [2022, 2023, 2024],
-    totalEngagement: 100000000,
-    category: categories.find(c => c.id === 'products')!,
-    milestone: 'Fastest-growing app in history'
-  },
-  {
-    id: 'all-6',
-    item: items.find(i => i.slug === 'stranger-things')!,
-    years: [2016, 2022, 2024],
-    totalEngagement: 80000000,
-    category: categories.find(c => c.id === 'tv')!,
-    milestone: 'Revived 80s nostalgia for a new generation'
-  },
-  {
-    id: 'all-7',
-    item: items.find(i => i.slug === 'taylor-eras-tour')!,
-    years: [2023],
-    totalEngagement: 50000000,
-    category: categories.find(c => c.id === 'music')!,
-    milestone: 'Highest-grossing tour in music history'
-  },
-  {
-    id: 'all-8',
-    item: items.find(i => i.slug === 'covid-lockdowns')!,
-    years: [2020],
-    totalEngagement: 10000000000,
-    category: categories.find(c => c.id === 'trends')!,
-    milestone: 'Largest global event captured on social media'
+    id: 'movie-5',
+    title: 'Zootopia',
+    description: 'Disney\'s animated hit about prejudice became a surprise cultural touchstone.',
+    categoryId: 'movies',
+    monthId: 'mar-2016',
+    yearId: '2016',
+    popularityScore: 90,
+    engagementScore: 89,
+    userVotes: 14000,
+    slug: 'zootopia',
+    rank: 5
   }
 ];
 
-// ===== HELPER FUNCTIONS =====
+// Demo user for MyCapsule
+export const demoUser: User = {
+  id: 'user-1',
+  username: 'nostalgic_user',
+  displayName: 'Nostalgic User',
+  avatarUrl: undefined,
+  bio: 'Collecting memories one year at a time 📼',
+  joinedDate: '2024-01-15',
+  followers: 142,
+  following: 89
+};
 
+// Demo personal capsules
+export const personalCapsules: PersonalCapsule[] = [
+  {
+    id: 'capsule-1',
+    userId: 'user-1',
+    yearId: '2016',
+    title: 'My 2016 Memories',
+    description: 'The year I graduated high school and discovered my love for memes',
+    entries: [],
+    isSealed: false,
+    allowSubmissions: true,
+    isPublic: true,
+    createdAt: '2024-06-15',
+    updatedAt: '2024-12-01',
+    likes: 24,
+    shares: 5
+  },
+  {
+    id: 'capsule-2',
+    userId: 'user-1',
+    yearId: '2020',
+    title: 'Quarantine Chronicles',
+    description: 'How I survived the pandemic with Tiger King and sourdough',
+    entries: [],
+    isSealed: true,
+    sealedUntil: '2025-12-31',
+    allowSubmissions: false,
+    isPublic: false,
+    createdAt: '2020-03-15',
+    updatedAt: '2020-12-31',
+    likes: 0,
+    shares: 0
+  }
+];
+
+// Helper functions to get data
 export function getYearById(id: string): Year | undefined {
   return years.find(y => y.id === id);
-}
-
-export function getYearByNumber(year: number): Year | undefined {
-  return years.find(y => y.year === year);
 }
 
 export function getMonthsByYear(yearId: string): Month[] {
@@ -544,11 +795,11 @@ export function getItemsByMonth(monthId: string): Item[] {
   return items.filter(i => i.monthId === monthId);
 }
 
-export function getItemsByYear(yearId: string): Item[] {
-  return items.filter(i => i.yearId === yearId);
+export function getItemsByCategory(categoryId: string, yearId?: string): Item[] {
+  return items.filter(i => i.categoryId === categoryId && (!yearId || i.yearId === yearId));
 }
 
-export function getItemsByCategory(monthId: string, categoryId: string): Item[] {
+export function getItemsByCategoryAndMonth(monthId: string, categoryId: string): Item[] {
   return items.filter(i => i.monthId === monthId && i.categoryId === categoryId);
 }
 
@@ -560,26 +811,26 @@ export function getItemBySlug(slug: string): Item | undefined {
   return items.find(i => i.slug === slug);
 }
 
-export function getItemsByCategoryForYear(yearId: string, categoryId: string): Item[] {
-  return items.filter(i => i.yearId === yearId && i.categoryId === categoryId)
+export function getLeaderboardByCategory(categoryId: string, yearId: string): Item[] {
+  return items
+    .filter(i => i.categoryId === categoryId && i.yearId === yearId)
     .sort((a, b) => (b.popularityScore || 0) - (a.popularityScore || 0));
 }
 
-export function getLeaderboardForCategory(yearId: string, categoryId: string): LeaderboardEntry[] {
-  const categoryItems = getItemsByCategoryForYear(yearId, categoryId);
-  return categoryItems.map((item, index) => ({
-    rank: index + 1,
-    item,
-    previousRank: undefined,
-    weeksOnChart: Math.floor(Math.random() * 52) + 1
-  }));
+export function getTopItemsAllTime(categoryId: string, limit: number = 10): Item[] {
+  return items
+    .filter(i => i.categoryId === categoryId)
+    .sort((a, b) => (b.engagementScore || 0) - (a.engagementScore || 0))
+    .slice(0, limit);
 }
 
-export function getAllTimePicks(): AllTimePick[] {
-  return allTimePicks.sort((a, b) => b.totalEngagement - a.totalEngagement);
-}
-
-export function getAllTimePicksByCategory(categoryId: string): AllTimePick[] {
-  return allTimePicks.filter(p => p.category.id === categoryId)
-    .sort((a, b) => b.totalEngagement - a.totalEngagement);
+export function getYearStats(yearId: string) {
+  const yearItems = items.filter(i => i.yearId === yearId);
+  return {
+    totalItems: yearItems.length,
+    byCategory: categories.map(cat => ({
+      category: cat,
+      count: yearItems.filter(i => i.categoryId === cat.id).length
+    }))
+  };
 }

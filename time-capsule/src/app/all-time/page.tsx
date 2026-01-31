@@ -1,187 +1,241 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { NostalgiaBackground } from '@/components/features/nostalgia-background';
+import { useState } from 'react';
 import { AnimatedSection } from '@/components/features/animated-section';
-import { Card, CardContent } from '@/components/ui/card';
+import { AllTimeLeaderboard } from '@/components/features/leaderboard';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { categories, getAllTimePicks } from '@/data/seed';
-import { AllTimePick, Category } from '@/types';
+import { categories, getTopItemsAllTime } from '@/data/seed';
 import { cn } from '@/lib/utils';
 
 export default function AllTimePage() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const allPicks = getAllTimePicks();
-  
-  const filteredPicks = selectedCategory 
-    ? allPicks.filter(p => p.category.id === selectedCategory)
-    : allPicks;
-
-  const getCategoryColor = (categoryId: string) => {
-    const colors: Record<string, string> = {
-      memes: 'bg-yellow-500',
-      music: 'bg-purple-500',
-      dances: 'bg-pink-500',
-      style: 'bg-orange-500',
-      products: 'bg-blue-500',
-      trends: 'bg-green-500',
-      tv: 'bg-red-500',
-      celebrities: 'bg-gold-500',
-      gaming: 'bg-indigo-500',
-      other: 'bg-gray-500',
-    };
-    return colors[categoryId] || 'bg-gray-500';
-  };
+  const [activeCategory, setActiveCategory] = useState('memes');
+  const activeCategoryData = categories.find(c => c.id === activeCategory);
+  const topItems = getTopItemsAllTime(activeCategory, 10);
 
   return (
-    <NostalgiaBackground>
-      <div className="min-h-screen py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <AnimatedSection animation="fadeUp">
-            <div className="text-center mb-12">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="text-6xl mb-4"
-              >
-                🏆
-              </motion.div>
-              <h1 className="text-4xl md:text-6xl font-bold text-retro-dark mb-4">
-                All-Time Top Picks
-              </h1>
-              <p className="text-xl text-retro-gray max-w-2xl mx-auto">
-                The most iconic trends, memes, and moments that defined internet culture across all years.
-              </p>
-            </div>
-          </AnimatedSection>
+    <div className="min-h-screen bg-[#0a0a0a]">
+      {/* Animated background */}
+      <div className="fixed inset-0 animated-gradient opacity-10 pointer-events-none" />
 
-          {/* Category Filter */}
-          <AnimatedSection animation="fadeUp" delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
-              <Button
-                variant={selectedCategory === null ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(null)}
-                className="rounded-full"
-              >
-                All Time
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.3, 0.8, 0.3],
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            >
+              {['🏆', '⭐', '🎵', '😂', '📺'][i % 5]}
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          {/* Back button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="absolute left-0 top-0"
+          >
+            <Link href="/">
+              <Button variant="ghost" className="text-gray-400 hover:text-white">
+                ← Back to Home
               </Button>
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className="rounded-full"
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.span 
+              className="text-8xl mb-6 block"
+              animate={{ rotate: [0, 10, 0, -10, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              🏆
+            </motion.span>
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-4">
+              All-Time <span className="bg-gradient-to-r from-[#FFE14F] to-[#FF9F4F] bg-clip-text text-transparent">Legends</span>
+            </h1>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              The greatest hits across all years. The memes, songs, and trends that transcended their time.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Category Tabs */}
+      <section className="py-8 px-4 sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-lg z-20 border-b border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-2">
+            {categories.slice(0, 7).map((cat) => {
+              const isActive = activeCategory === cat.id;
+              
+              return (
+                <motion.button
+                  key={cat.id}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={cn(
+                    'px-5 py-3 rounded-full flex items-center gap-2 transition-all',
+                    isActive 
+                      ? 'bg-gradient-to-r from-[#FFE14F] to-[#FF9F4F] text-black font-bold' 
+                      : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                  )}
                 >
-                  {category.icon} {category.name}
-                </Button>
+                  <span className="text-xl">{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Leaderboard */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <AnimatedSection animation="fadeUp">
+            {activeCategoryData && topItems.length > 0 ? (
+              <AllTimeLeaderboard 
+                items={topItems} 
+                category={activeCategoryData}
+                maxItems={10}
+              />
+            ) : (
+              <div className="text-center py-16">
+                <span className="text-6xl mb-4 block">🔍</span>
+                <p className="text-gray-400">No items found for this category</p>
+              </div>
+            )}
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 px-4 border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection animation="fadeUp">
+            <h2 className="text-2xl font-bold text-white text-center mb-8">
+              📊 Hall of Fame Stats
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { label: 'Total Legends', value: '50+', icon: '🏆', color: '#FFE14F' },
+                { label: 'Years Covered', value: '14', icon: '📅', color: '#FF6B9D' },
+                { label: 'Categories', value: '7', icon: '📂', color: '#C44FFF' },
+                { label: 'User Votes', value: '1M+', icon: '👥', color: '#4FFFC4' },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center"
+                >
+                  <span className="text-4xl mb-3 block">{stat.icon}</span>
+                  <div className="text-3xl font-black" style={{ color: stat.color }}>
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </motion.div>
               ))}
             </div>
           </AnimatedSection>
+        </div>
+      </section>
 
-          {/* Top Picks List */}
-          <div className="space-y-6">
-            {filteredPicks.map((pick, index) => (
-              <AnimatedSection key={pick.id} animation="fadeUp" delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Card className={cn(
-                    'overflow-hidden transition-all duration-300',
-                    index === 0 ? 'border-4 border-yellow-400 bg-gradient-to-r from-yellow-50 to-orange-50' :
-                    index === 1 ? 'border-4 border-gray-300 bg-gradient-to-r from-gray-50 to-gray-100' :
-                    index === 2 ? 'border-4 border-orange-300 bg-gradient-to-r from-orange-50 to-amber-50' :
-                    'hover:border-retro-teal/40'
-                  )}>
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-6">
-                        {/* Rank */}
-                        <div className={cn(
-                          'w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-2xl shrink-0',
-                          index === 0 ? 'bg-yellow-500' :
-                          index === 1 ? 'bg-gray-400' :
-                          index === 2 ? 'bg-orange-400' :
-                          'bg-retro-teal'
-                        )}>
-                          #{index + 1}
-                        </div>
+      {/* Category Highlights */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection animation="fadeUp">
+            <h2 className="text-2xl font-bold text-white text-center mb-8">
+              🌟 Category Champions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categories.slice(0, 6).map((cat, i) => {
+                const topItem = getTopItemsAllTime(cat.id, 1)[0];
+                if (!topItem) return null;
 
-                        {/* Content */}
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-3xl">{pick.item.categoryId && pick.category.icon}</span>
-                            <h3 className="text-2xl font-bold text-retro-dark">
-                              {pick.item.title}
-                            </h3>
-                            <Badge className={cn(getCategoryColor(pick.category.id), 'text-white')}>
-                              {pick.category.name}
-                            </Badge>
-                          </div>
-                          
-                          <p className="text-retro-gray mb-4">
-                            {pick.item.description}
-                          </p>
-
-                          <div className="flex flex-wrap gap-4 text-sm">
-                            <div className="flex items-center gap-2">
-                              <span className="text-retro-teal">📅</span>
-                              <span className="text-retro-gray">
-                                {pick.years.join(', ')}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-retro-purple">📊</span>
-                              <span className="text-retro-gray">
-                                {pick.totalEngagement.toLocaleString()} engagements
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-retro-pink">⭐</span>
-                              <span className="text-retro-gray">
-                                {pick.milestone}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* View Details */}
-                        <Link href={`/trend/${pick.item.slug}`}>
-                          <Button variant="outline" size="sm">
-                            View Details →
-                          </Button>
-                        </Link>
+                return (
+                  <motion.div
+                    key={cat.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 cursor-pointer transition-all"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-3xl">{cat.icon}</span>
+                      <div>
+                        <h3 className="font-bold text-white">{cat.name}</h3>
+                        <p className="text-xs text-gray-400">All-Time #1</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          {/* Footer Navigation */}
-          <AnimatedSection animation="fadeUp" delay={0.5}>
-            <div className="mt-16 text-center">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/years">
-                  <Button size="lg" variant="outline">
-                    📅 Browse by Year
-                  </Button>
-                </Link>
-                <Link href="/personal">
-                  <Button size="lg">
-                    🎁 Create Your Capsule
-                  </Button>
-                </Link>
-              </div>
+                      <span className="ml-auto text-2xl">🥇</span>
+                    </div>
+                    <div className="p-4 rounded-xl bg-white/5">
+                      <h4 className="font-semibold text-white mb-1">{topItem.title}</h4>
+                      <p className="text-sm text-gray-400 line-clamp-2">{topItem.description}</p>
+                      <div className="mt-2 text-xs text-gray-500">
+                        From {topItem.yearId} • Score: {topItem.engagementScore}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </AnimatedSection>
         </div>
-      </div>
-    </NostalgiaBackground>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 border-t border-white/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <AnimatedSection animation="fadeUp">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Want to explore by year?
+            </h2>
+            <p className="text-gray-400 mb-8">
+              Dive into specific years to see what was trending month by month
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/years">
+                <Button size="lg" className="bg-gradient-to-r from-[#FF6B9D] to-[#C44FFF] hover:opacity-90">
+                  Browse All Years 📅
+                </Button>
+              </Link>
+              <Link href="/mycapsule">
+                <Button size="lg" variant="outline" className="border-[#4FFFC4] text-[#4FFFC4] hover:bg-[#4FFFC4]/10">
+                  Create Your Capsule ✨
+                </Button>
+              </Link>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    </div>
   );
 }

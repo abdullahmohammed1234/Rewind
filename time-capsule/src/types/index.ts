@@ -1,18 +1,12 @@
 // Data Models for TimeCapsule
 
-// ===== Core Types =====
-
 export interface Year {
   id: string;
   year: number;
   description: string;
   theme?: string;
   topTrends?: string[];
-  colorScheme?: {
-    primary: string;
-    secondary: string;
-    accent: string;
-  };
+  coverImage?: string;
 }
 
 export interface Month {
@@ -22,18 +16,16 @@ export interface Month {
   shortName?: string;
 }
 
-// ===== Category Types =====
-
 export type CategoryType = 
   | 'memes'
   | 'music'
   | 'dances'
   | 'style'
   | 'products'
-  | 'trends'
   | 'tv'
   | 'celebrities'
-  | 'gaming'
+  | 'trends'
+  | 'movies'
   | 'other';
 
 export interface Category {
@@ -41,10 +33,8 @@ export interface Category {
   name: string;
   type: CategoryType;
   icon?: string;
-  description?: string;
+  color?: string;
 }
-
-// ===== Item/Trend Types =====
 
 export interface Item {
   id: string;
@@ -55,6 +45,8 @@ export interface Item {
   monthId: string;
   yearId?: string;
   popularityScore?: number;
+  engagementScore?: number;
+  userVotes?: number;
   slug?: string;
   timeline?: {
     start: string;
@@ -63,28 +55,27 @@ export interface Item {
   };
   impact?: string;
   rank?: number;
-  platform?: string;
-  creator?: string;
 }
-
-// ===== Leaderboard Types =====
 
 export interface LeaderboardEntry {
-  rank: number;
+  id: string;
+  itemId: string;
   item: Item;
+  rank: number;
+  engagementScore: number;
+  userVotes: number;
   previousRank?: number;
-  weeksOnChart?: number;
+  trend: 'up' | 'down' | 'same' | 'new';
 }
 
-export interface CategoryLeaderboard {
+export interface Leaderboard {
+  id: string;
   categoryId: string;
-  category: Category;
+  yearId: string;
   entries: LeaderboardEntry[];
   lastUpdated: string;
-  timeRange: 'year' | 'all-time';
+  isFinal: boolean;
 }
-
-// ===== Wrapped Summary Types =====
 
 export interface WrappedSummary {
   yearId: string;
@@ -93,165 +84,73 @@ export interface WrappedSummary {
   topTrend: Item;
   topCelebrity: Item;
   topDance?: Item;
-  topTV?: Item;
   topProduct?: Item;
+  topTV?: Item;
+  topStyle?: Item;
   stats: {
     totalMemes: number;
     totalSongs: number;
     totalTrends: number;
-    totalDances: number;
-    totalTV: number;
     totalProducts: number;
-    totalCelebrities: number;
+    totalTV: number;
   };
-  highlights: string[];
-  quotes: string[];
 }
 
-// ===== User Types =====
-
+// MyCapsule Types
 export interface User {
   id: string;
   username: string;
   displayName: string;
   avatarUrl?: string;
   bio?: string;
+  joinedDate: string;
+  followers?: number;
+  following?: number;
+}
+
+export interface PersonalCapsuleEntry {
+  id: string;
+  userId: string;
+  yearId: string;
+  categoryId: string;
+  title: string;
+  description?: string;
+  mediaUrl?: string;
+  mediaType?: 'image' | 'video' | 'text';
   createdAt: string;
-  followers: number;
-  following: number;
-  capsulesCount: number;
-  isPrivate: boolean;
+  isPublic: boolean;
 }
-
-export interface UserProfile extends User {
-  capsules: PersonalCapsule[];
-  friends: User[];
-  galleries: Gallery[];
-}
-
-// ===== Personal Capsule Types =====
-
-export type CapsuleStatus = 'open' | 'sealed' | 'unlocked';
-export type CapsuleVisibility = 'private' | 'friends' | 'public';
 
 export interface PersonalCapsule {
   id: string;
   userId: string;
-  year: number;
+  yearId: string;
   title: string;
   description?: string;
-  status: CapsuleStatus;
-  visibility: CapsuleVisibility;
-  sealedAt?: string;
-  unlockDate?: string;
-  createdAt: string;
-  updatedAt: string;
-  submissions: CapsuleSubmission[];
   coverImage?: string;
-  isFavorite: boolean;
-  shareCode?: string;
-}
-
-export interface CapsuleSubmission {
-  id: string;
-  capsuleId: string;
-  userId: string;
-  type: 'image' | 'video' | 'text' | 'link' | 'audio';
-  title?: string;
-  content: string;
-  category: CategoryType;
-  month?: string;
-  tags: string[];
-  likes: number;
-  comments: number;
-  createdAt: string;
-  isPinned: boolean;
-}
-
-// ===== Gallery Types =====
-
-export interface Gallery {
-  id: string;
-  userId: string;
-  name: string;
-  description?: string;
-  capsules: PersonalCapsule[];
-  coverImage?: string;
-  isShared: boolean;
-  sharedWith: string[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-// ===== Sealing Types =====
-
-export interface SealOptions {
-  unlockDate: string;
-  requirePassword: boolean;
-  password?: string;
+  entries: PersonalCapsuleEntry[];
+  isSealed: boolean;
+  sealedUntil?: string;
   allowSubmissions: boolean;
-  notifyOnUnlock: boolean;
-  email?: string;
-}
-
-export interface SealConfirmation {
-  capsuleId: string;
-  sealedAt: string;
-  unlockDate: string;
-  confirmationCode: string;
-  witnessCount: number;
-}
-
-// ===== All-Time Picks Types =====
-
-export interface AllTimePick {
-  id: string;
-  item: Item;
-  years: number[];
-  totalEngagement: number;
-  category: Category;
-  milestone: string;
-}
-
-// ===== Share Types =====
-
-export interface ShareOptions {
-  platform: 'twitter' | 'facebook' | 'linkedin' | 'copy';
-  includeStats: boolean;
-  includeImage: boolean;
-}
-
-export interface SharedCapsule {
-  id: string;
-  capsule: PersonalCapsule;
-  sharedBy: User;
-  sharedAt: string;
-  viewCount: number;
-  likeCount: number;
-  isExpired: boolean;
-  expiresAt?: string;
-}
-
-// ===== Compare Types =====
-
-export interface ComparisonResult {
-  year1: Year;
-  year2: Year;
-  commonTrends: Item[];
-  uniqueToYear1: Item[];
-  uniqueToYear2: Item[];
-  similarityScore: number;
-}
-
-// ===== Notification Types =====
-
-export interface Notification {
-  id: string;
-  userId: string;
-  type: 'like' | 'comment' | 'share' | 'seal' | 'unlock' | 'friend_request';
-  title: string;
-  message: string;
-  link?: string;
-  isRead: boolean;
+  isPublic: boolean;
   createdAt: string;
+  updatedAt: string;
+  likes?: number;
+  shares?: number;
+}
+
+export interface UserGallery {
+  userId: string;
+  capsules: PersonalCapsule[];
+  featuredCapsule?: PersonalCapsule;
+}
+
+// All-Time Top Picks
+export interface AllTimeTopPick {
+  id: string;
+  categoryId: string;
+  item: Item;
+  totalEngagement: number;
+  yearsActive: number[];
+  peakYear: number;
 }

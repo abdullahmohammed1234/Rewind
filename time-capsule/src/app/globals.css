@@ -1,47 +1,51 @@
 @import "tailwindcss";
 
-/* Base theme - Retro (Light) */
 :root {
-  --background: #f5f0e6;
-  --foreground: #2d2a26;
+  /* Nostalgic color palette */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
   
+  /* Spotify-Wrapped inspired colors */
+  --spotify-green: #1DB954;
+  --spotify-black: #191414;
+  --spotify-dark: #121212;
+  
+  /* Vibrant gradient colors */
+  --gradient-pink: #FF6B9D;
+  --gradient-purple: #C44FFF;
+  --gradient-blue: #4F8FFF;
+  --gradient-teal: #4FFFC4;
+  --gradient-orange: #FF9F4F;
+  --gradient-yellow: #FFE14F;
+  --gradient-red: #FF4F6B;
+  
+  /* Retro colors */
   --retro-cream: #f5f0e6;
   --retro-beige: #e8dfd0;
-  --retro-teal: #4a9b9b;
-  --retro-teal-dark: #3a7b7b;
-  --retro-pink: #c4a4a4;
-  --retro-pink-dark: #a88484;
-  --retro-purple: #8b7b9b;
-  --retro-purple-dark: #6b5b7b;
-  --retro-orange: #d4a574;
-  --retro-gray: #6b6560;
-  --retro-dark: #2d2a26;
-  --retro-light: #faf8f5;
-}
-
-/* Cyberpunk Dark Theme */
-[data-theme="cyberpunk"] {
-  --background: #0a0a0f;
-  --foreground: #e0e0e0;
-  
-  --retro-cream: #0a0a0f;
-  --retro-beige: #1a1a2e;
-  --retro-teal: #00ff88;
-  --retro-teal-dark: #00cc6a;
-  --retro-pink: #ff00ff;
-  --retro-pink-dark: #cc00cc;
-  --retro-purple: #bf00ff;
-  --retro-purple-dark: #9900cc;
-  --retro-orange: #ff8800;
+  --retro-teal: #4FFFC4;
+  --retro-teal-dark: #3acc9a;
+  --retro-pink: #FF6B9D;
+  --retro-pink-dark: #cc5580;
+  --retro-purple: #C44FFF;
+  --retro-purple-dark: #9a3fcc;
+  --retro-orange: #FF9F4F;
   --retro-gray: #a0a0a0;
-  --retro-dark: #e0e0e0;
-  --retro-light: #1a1a2e;
+  --retro-dark: #ffffff;
+  --retro-light: #1a1a1a;
+  
+  /* Cassette tape colors */
+  --cassette-body: #2a2a2a;
+  --cassette-label: #1a1a1a;
+  --cassette-reel: #0f0f0f;
+  --cassette-tape: #3a3a3a;
+  --cassette-accent: #FF6B9D;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
+  /* Retro color aliases */
   --color-retro-cream: var(--retro-cream);
   --color-retro-beige: var(--retro-beige);
   --color-retro-teal: var(--retro-teal);
@@ -60,12 +64,11 @@
 }
 
 body {
-  background-color: var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Smooth scrolling */
@@ -80,28 +83,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--retro-beige);
-}
-
-[data-theme="cyberpunk"] ::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: var(--spotify-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--retro-teal);
+  background: var(--gradient-purple);
   border-radius: 4px;
 }
 
-[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb {
-  background: #00ff88;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--retro-teal-dark);
-}
-
-[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
-  background: #00cc6a;
+  background: var(--gradient-pink);
 }
 
 /* Line clamp utilities */
@@ -119,6 +110,36 @@ html {
   overflow: hidden;
 }
 
+/* Spotify-Wrapped style gradients */
+.gradient-wrapped {
+  background: linear-gradient(135deg, var(--gradient-pink) 0%, var(--gradient-purple) 50%, var(--gradient-blue) 100%);
+}
+
+.gradient-wrapped-2 {
+  background: linear-gradient(135deg, var(--gradient-teal) 0%, var(--gradient-blue) 50%, var(--gradient-purple) 100%);
+}
+
+.gradient-wrapped-3 {
+  background: linear-gradient(135deg, var(--gradient-orange) 0%, var(--gradient-pink) 50%, var(--gradient-purple) 100%);
+}
+
+.gradient-wrapped-4 {
+  background: linear-gradient(135deg, var(--gradient-yellow) 0%, var(--gradient-orange) 50%, var(--gradient-red) 100%);
+}
+
+/* Animated gradient background */
+.animated-gradient {
+  background: linear-gradient(-45deg, var(--gradient-pink), var(--gradient-purple), var(--gradient-blue), var(--gradient-teal));
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 /* Glitch hover effect */
 .hover-glitch:hover {
   animation: glitch 0.3s ease-in-out;
@@ -131,6 +152,143 @@ html {
   60% { transform: translate(2px, 2px); }
   80% { transform: translate(2px, -2px); }
   100% { transform: translate(0); }
+}
+
+/* Cassette Tape Styles */
+.cassette-tape {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cassette-tape:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 8px 30px rgba(196, 79, 255, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cassette-label {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  right: 20px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--gradient-pink) 0%, var(--gradient-purple) 100%);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cassette-label-lines {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  right: 10px;
+  height: 20px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.1) 3px,
+    rgba(255, 255, 255, 0.1) 4px
+  );
+}
+
+.cassette-reels {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.cassette-reel {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #1a1a1a 30%, #0f0f0f 70%);
+  border-radius: 50%;
+  border: 3px solid #3a3a3a;
+  position: relative;
+  animation: spin 4s linear infinite;
+}
+
+.cassette-reel::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  background: #0a0a0a;
+  border-radius: 50%;
+  border: 2px solid #2a2a2a;
+}
+
+.cassette-reel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35px;
+  height: 35px;
+  border: 2px dashed #3a3a3a;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cassette-tape:hover .cassette-reel {
+  animation-duration: 1s;
+}
+
+.cassette-window {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  border: 2px solid #3a3a3a;
+}
+
+.cassette-screws {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cassette-screw {
+  width: 8px;
+  height: 8px;
+  background: #4a4a4a;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* VHS-style border */
@@ -150,71 +308,165 @@ html {
   opacity: 0.5;
 }
 
-/* Dark theme overrides */
-[data-theme="cyberpunk"] .text-retro-dark {
-  color: #e0e0e0 !important;
+/* Glow effects */
+.glow-pink {
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
 }
 
-[data-theme="cyberpunk"] .text-retro-gray {
-  color: #a0a0a0 !important;
+.glow-purple {
+  box-shadow: 0 0 20px rgba(196, 79, 255, 0.5);
 }
 
-[data-theme="cyberpunk"] .text-retro-teal {
-  color: #00ff88 !important;
+.glow-teal {
+  box-shadow: 0 0 20px rgba(79, 255, 196, 0.5);
 }
 
-[data-theme="cyberpunk"] .text-retro-purple {
-  color: #bf00ff !important;
+/* Text glow */
+.text-glow-pink {
+  text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
 }
 
-[data-theme="cyberpunk"] .text-retro-pink {
-  color: #ff00ff !important;
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(196, 79, 255, 0.8);
 }
 
-[data-theme="cyberpunk"] .text-retro-orange {
-  color: #ff8800 !important;
+.text-glow-teal {
+  text-shadow: 0 0 10px rgba(79, 255, 196, 0.8);
 }
 
-[data-theme="cyberpunk"] .bg-retro-cream {
-  background-color: #0a0a0f !important;
+/* Leaderboard styles */
+.leaderboard-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.3s ease;
 }
 
-[data-theme="cyberpunk"] .bg-retro-beige {
-  background-color: #1a1a2e !important;
+.leaderboard-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--gradient-purple);
+  transform: translateX(5px);
 }
 
-[data-theme="cyberpunk"] .bg-retro-teal\/5 {
-  background-color: rgba(0, 255, 136, 0.05) !important;
+.leaderboard-rank {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
-[data-theme="cyberpunk"] .bg-retro-teal\/10 {
-  background-color: rgba(0, 255, 136, 0.1) !important;
+.leaderboard-rank-1 {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #000;
 }
 
-[data-theme="cyberpunk"] .bg-retro-teal\/90 {
-  background-color: rgba(0, 255, 136, 0.9) !important;
+.leaderboard-rank-2 {
+  background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+  color: #000;
 }
 
-[data-theme="cyberpunk"] .border-retro-teal\/10 {
-  border-color: rgba(0, 255, 136, 0.1) !important;
+.leaderboard-rank-3 {
+  background: linear-gradient(135deg, #CD7F32, #8B4513);
+  color: #fff;
 }
 
-[data-theme="cyberpunk"] .border-retro-teal {
-  border-color: #00ff88 !important;
+/* Sealed capsule effect */
+.sealed-capsule {
+  position: relative;
+  overflow: hidden;
 }
 
-[data-theme="cyberpunk"] .bg-white\/60 {
-  background-color: rgba(26, 26, 46, 0.6) !important;
+.sealed-capsule::before {
+  content: '🔒 SEALED';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 10;
 }
 
-[data-theme="cyberpunk"] .bg-white\/80 {
-  background-color: rgba(26, 26, 46, 0.8) !important;
+.sealed-capsule::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 5;
 }
 
-[data-theme="cyberpunk"] .bg-white {
-  background-color: #1a1a2e !important;
+/* Card hover effects */
+.card-hover-glow {
+  transition: all 0.3s ease;
 }
 
-[data-theme="cyberpunk"] .bg-retro-purple\/20 {
-  background-color: rgba(191, 0, 255, 0.2) !important;
+.card-hover-glow:hover {
+  box-shadow: 0 0 30px rgba(196, 79, 255, 0.3);
 }
+
+/* Pulse animation for live elements */
+.pulse-live {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Floating animation */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Shine effect for buttons */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Category badge colors */
+.badge-music { background: #1DB954; }
+.badge-memes { background: #FF6B6B; }
+.badge-style { background: #E91E63; }
+.badge-products { background: #FF9800; }
+.badge-dances { background: #9C27B0; }
+.badge-tv { background: #2196F3; }
+.badge-celebrities { background: #FFC107; }
+.badge-trends { background: #4CAF50; }
+.badge-movies { background: #673AB7; }

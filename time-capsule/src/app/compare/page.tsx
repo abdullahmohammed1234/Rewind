@@ -40,7 +40,7 @@ export default function ComparePage() {
                 <select
                   value={year1}
                   onChange={(e) => setYear1(e.target.value)}
-                  className="px-4 py-2 rounded-lg border-2 border-retro-teal/30 bg-white text-retro-dark focus:border-retro-teal focus:outline-none"
+                  className="px-4 py-2 rounded-lg border-2 border-retro-teal/30 bg-white text-black focus:border-retro-teal focus:outline-none"
                 >
                   {years.map(y => (
                     <option key={y.id} value={y.id}>{y.year}</option>
@@ -55,7 +55,7 @@ export default function ComparePage() {
                 <select
                   value={year2}
                   onChange={(e) => setYear2(e.target.value)}
-                  className="px-4 py-2 rounded-lg border-2 border-retro-purple/30 bg-white text-retro-dark focus:border-retro-purple focus:outline-none"
+                  className="px-4 py-2 rounded-lg border-2 border-retro-purple/30 bg-white text-black focus:border-retro-purple focus:outline-none"
                 >
                   {years.map(y => (
                     <option key={y.id} value={y.id}>{y.year}</option>
@@ -115,7 +115,7 @@ export default function ComparePage() {
                   </ul>
 
                   <Link href={`/year/${year2Data?.year}`}>
-                    <Button variant="secondary" className="mt-6 w-full">
+                    <Button className="mt-6 w-full">
                       Explore {year2Data?.year} →
                     </Button>
                   </Link>

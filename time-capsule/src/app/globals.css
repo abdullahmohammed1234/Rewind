@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* Nostalgic color palette */
-  --background: #0a0a0a;
-  --foreground: #ffffff;
+  /* Default: Retro Light Mode */
+  --background: #f5f0e6;
+  --foreground: #2d2a26;
   
   /* Spotify-Wrapped inspired colors */
   --spotify-green: #1DB954;
@@ -19,7 +19,7 @@
   --gradient-yellow: #FFE14F;
   --gradient-red: #FF4F6B;
   
-  /* Retro colors */
+  /* Retro light theme colors */
   --retro-cream: #f5f0e6;
   --retro-beige: #e8dfd0;
   --retro-teal: #4FFFC4;
@@ -29,6 +29,32 @@
   --retro-purple: #C44FFF;
   --retro-purple-dark: #9a3fcc;
   --retro-orange: #FF9F4F;
+  --retro-gray: #a0a0a0;
+  --retro-dark: #2d2a26;
+  --retro-light: #f5f0e6;
+  
+  /* Cassette tape colors */
+  --cassette-body: #3a3a3a;
+  --cassette-label: #e8dfd0;
+  --cassette-reel: #2a2a2a;
+  --cassette-tape: #4a4a4a;
+  --cassette-accent: #FF6B9D;
+}
+
+/* Cyberpunk Dark Theme */
+[data-theme="cyberpunk"] {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  
+  --retro-cream: #0a0a0a;
+  --retro-beige: #1a1a2e;
+  --retro-teal: #00ff88;
+  --retro-teal-dark: #00cc6a;
+  --retro-pink: #ff00ff;
+  --retro-pink-dark: #cc00cc;
+  --retro-purple: #bf00ff;
+  --retro-purple-dark: #9900cc;
+  --retro-orange: #ff8800;
   --retro-gray: #a0a0a0;
   --retro-dark: #ffffff;
   --retro-light: #1a1a1a;
@@ -83,16 +109,29 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--spotify-dark);
+  background: var(--retro-beige);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gradient-purple);
+  background: var(--retro-purple);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gradient-pink);
+  background: var(--retro-pink);
+}
+
+/* Dark theme scrollbar */
+[data-theme="cyberpunk"] ::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb {
+  background: var(--retro-teal);
+}
+
+[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-teal-dark);
 }
 
 /* Line clamp utilities */

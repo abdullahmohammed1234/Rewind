@@ -26,7 +26,7 @@ export default function YearsPage() {
           {/*File Upload*/}
           <AnimatedSection animation = "fadeUp">
             <div className="text-center mb-12">
-              <Link href="//fileUpload">
+              <Link href="/fileUpload">
                 <Button size="lg" className="text-lg px-8">
                   Upload File
                 </Button>

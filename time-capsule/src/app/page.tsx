@@ -5,10 +5,41 @@ import { motion } from 'framer-motion';
 import { NostalgiaBackground } from '@/components/features/nostalgia-background';
 import { AnimatedSection } from '@/components/features/animated-section';
 import { Button } from '@/components/ui/button';
-import { years } from '@/data/seed';
+import { years, categories } from '@/data/seed';
 
 export default function Home() {
   const featuredYear = years.find(y => y.id === '2016');
+
+  const features = [
+    { 
+      icon: '📅', 
+      title: 'General Capsules', 
+      desc: 'Explore yearly trends across memes, music, style, products, dances, TV, and celebrities',
+      href: '/years',
+      color: 'bg-blue-500'
+    },
+    { 
+      icon: '🏆', 
+      title: 'All-Time Picks', 
+      desc: 'See the most iconic trends that defined internet culture across all years',
+      href: '/all-time',
+      color: 'bg-yellow-500'
+    },
+    { 
+      icon: '📦', 
+      title: 'MyCapsule', 
+      desc: 'Create your personal time capsule with photos, memories, and favorites',
+      href: '/my-capsule',
+      color: 'bg-purple-500'
+    },
+    { 
+      icon: '📊', 
+      title: 'Compare Years', 
+      desc: 'See how different years stack up against each other',
+      href: '/compare',
+      color: 'bg-green-500'
+    },
+  ];
 
   return (
     <NostalgiaBackground showFloatingYears>
@@ -46,7 +77,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl md:text-2xl text-retro-gray max-w-2xl mx-auto mb-10"
             >
-              Explore the memes, music, and moments that defined each year of internet culture.
+              Explore the memes, music, trends, and moments that defined each year of internet culture.
               <br />
               <span className="text-sm opacity-70">A Spotify Wrapped-style journey through digital history.</span>
             </motion.p>
@@ -85,32 +116,67 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Featured Preview Section */}
+      {/* Features Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-retro-dark mb-4">
-                Why TimeCapsule?
+                Explore TimeCapsule
               </h2>
               <p className="text-retro-gray max-w-2xl mx-auto">
-                Rediscover the viral moments that shaped our digital culture.
+                Rediscover the viral moments that shaped our digital culture through multiple perspectives.
               </p>
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: '🧠', title: 'Memory Lane', desc: 'Relive the trends you grew up with' },
-              { icon: '📊', title: 'Data Driven', desc: 'See what truly defined each year' },
-              { icon: '🎨', title: 'Visual Journey', desc: 'Beautiful, scrollable timelines' },
-            ].map((feature, i) => (
-              <AnimatedSection key={feature.title} animation="fadeUp" delay={0.2 * (i + 1)}>
-                <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 text-center hover:bg-white/80 transition-colors">
-                  <span className="text-5xl mb-4 block">{feature.icon}</span>
-                  <h3 className="text-xl font-bold text-retro-dark mb-2">{feature.title}</h3>
-                  <p className="text-retro-gray">{feature.desc}</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, i) => (
+              <AnimatedSection key={feature.title} animation="fadeUp" delay={0.1 * (i + 1)}>
+                <Link href={feature.href}>
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white/60 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/80 transition-all h-full cursor-pointer shadow-md hover:shadow-xl"
+                  >
+                    <span className="text-5xl mb-4 block">{feature.icon}</span>
+                    <h3 className="text-xl font-bold text-retro-dark mb-2">{feature.title}</h3>
+                    <p className="text-retro-gray text-sm">{feature.desc}</p>
+                  </motion.div>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Categories Preview */}
+      <section className="py-20 px-4 bg-retro-teal/5">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection animation="fadeUp">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-retro-dark mb-4">
+                Categories
+              </h2>
+              <p className="text-retro-gray max-w-2xl mx-auto">
+                Browse trends across all your favorite categories
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.slice(0, 8).map((category, i) => (
+              <AnimatedSection key={category.id} animation="scaleIn" delay={0.05 * i}>
+                <Link href={`/years`}>
+                  <motion.div
+                    whileHover={{ scale: 1.1, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white rounded-full px-6 py-3 shadow-md cursor-pointer hover:shadow-lg transition-all flex items-center gap-2"
+                  >
+                    <span className="text-2xl">{category.icon}</span>
+                    <span className="font-medium text-retro-dark">{category.name}</span>
+                  </motion.div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
@@ -118,7 +184,7 @@ export default function Home() {
       </section>
 
       {/* Years Preview */}
-      <section className="py-20 px-4 bg-retro-teal/5">
+      <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-12">
@@ -126,7 +192,7 @@ export default function Home() {
                 Available Years
               </h2>
               <p className="text-retro-gray max-w-2xl mx-auto">
-                Dive into the archives from 2012 to 2018
+                Dive into the archives from 2012 to 2024
               </p>
             </div>
           </AnimatedSection>

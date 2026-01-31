@@ -47,13 +47,19 @@ function Header() {
               href="/years" 
               className="text-sm font-medium text-retro-gray hover:text-retro-teal transition-colors"
             >
-              Explore Years
+              General Capsules
             </Link>
             <Link 
-              href="/personal"
+              href="/all-time" 
               className="text-sm font-medium text-retro-gray hover:text-retro-teal transition-colors"
             >
-              Personal Capsule
+              All-Time
+            </Link>
+            <Link 
+              href="/my-capsule"
+              className="text-sm font-medium text-retro-gray hover:text-retro-teal transition-colors"
+            >
+              MyCapsule
             </Link>
             <Link 
               href="/compare" 

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { YearCard } from '@/components/features/year-card';
 import { years } from '@/data/seed';
 
-export default function YearsPage() {
+export default function personalPage() {
   return (
     <NostalgiaBackground showFloatingYears>
       <div className="min-h-screen py-12 px-4">
@@ -26,7 +26,7 @@ export default function YearsPage() {
           {/*File Upload*/}
           <AnimatedSection animation = "fadeUp">
             <div className="text-center mb-12">
-              <Link href="//fileUpload">
+              <Link href="/fileUpload">
                 <Button size="lg" className="text-lg px-8">
                   Upload File
                 </Button>

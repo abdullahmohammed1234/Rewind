@@ -17,7 +17,7 @@ export default function YearsPage() {
                 Your Own Personal Time Capsule
               </h1>
               <p className="text-xl text-retro-gray max-w-2xl mx-auto">
-                Explore what YOU did throught the years!
+                Explore what YOU did throughout the years!
               </p>
             </div>
           </AnimatedSection>

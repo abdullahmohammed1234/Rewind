@@ -18,8 +18,8 @@ export function NostalgiaBackground({
     offset: ['start start', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  // Removed opacity fade that was causing pages to disappear on scroll
 
   return (
     <div 
@@ -67,12 +67,9 @@ export function NostalgiaBackground({
       )}
 
       {/* Content */}
-      <motion.div 
-        style={{ opacity }}
-        className="relative z-10"
-      >
+      <div className="relative z-10">
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

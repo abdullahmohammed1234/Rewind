@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
+/* Base theme - Retro (Light) */
 :root {
-  /* Nostalgic color palette */
   --background: #f5f0e6;
   --foreground: #2d2a26;
   
-  /* Retro colors */
   --retro-cream: #f5f0e6;
   --retro-beige: #e8dfd0;
   --retro-teal: #4a9b9b;
@@ -20,11 +19,29 @@
   --retro-light: #faf8f5;
 }
 
+/* Cyberpunk Dark Theme */
+[data-theme="cyberpunk"] {
+  --background: #0a0a0f;
+  --foreground: #e0e0e0;
+  
+  --retro-cream: #0a0a0f;
+  --retro-beige: #1a1a2e;
+  --retro-teal: #00ff88;
+  --retro-teal-dark: #00cc6a;
+  --retro-pink: #ff00ff;
+  --retro-pink-dark: #cc00cc;
+  --retro-purple: #bf00ff;
+  --retro-purple-dark: #9900cc;
+  --retro-orange: #ff8800;
+  --retro-gray: #a0a0a0;
+  --retro-dark: #e0e0e0;
+  --retro-light: #1a1a2e;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
-  /* Retro color aliases */
   --color-retro-cream: var(--retro-cream);
   --color-retro-beige: var(--retro-beige);
   --color-retro-teal: var(--retro-teal);
@@ -43,11 +60,12 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Smooth scrolling */
@@ -65,13 +83,25 @@ html {
   background: var(--retro-beige);
 }
 
+[data-theme="cyberpunk"] ::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
 ::-webkit-scrollbar-thumb {
   background: var(--retro-teal);
   border-radius: 4px;
 }
 
+[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb {
+  background: #00ff88;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--retro-teal-dark);
+}
+
+[data-theme="cyberpunk"] ::-webkit-scrollbar-thumb:hover {
+  background: #00cc6a;
 }
 
 /* Line clamp utilities */
@@ -118,4 +148,73 @@ html {
   bottom: -4px;
   border: 1px solid var(--retro-purple);
   opacity: 0.5;
+}
+
+/* Dark theme overrides */
+[data-theme="cyberpunk"] .text-retro-dark {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="cyberpunk"] .text-retro-gray {
+  color: #a0a0a0 !important;
+}
+
+[data-theme="cyberpunk"] .text-retro-teal {
+  color: #00ff88 !important;
+}
+
+[data-theme="cyberpunk"] .text-retro-purple {
+  color: #bf00ff !important;
+}
+
+[data-theme="cyberpunk"] .text-retro-pink {
+  color: #ff00ff !important;
+}
+
+[data-theme="cyberpunk"] .text-retro-orange {
+  color: #ff8800 !important;
+}
+
+[data-theme="cyberpunk"] .bg-retro-cream {
+  background-color: #0a0a0f !important;
+}
+
+[data-theme="cyberpunk"] .bg-retro-beige {
+  background-color: #1a1a2e !important;
+}
+
+[data-theme="cyberpunk"] .bg-retro-teal\/5 {
+  background-color: rgba(0, 255, 136, 0.05) !important;
+}
+
+[data-theme="cyberpunk"] .bg-retro-teal\/10 {
+  background-color: rgba(0, 255, 136, 0.1) !important;
+}
+
+[data-theme="cyberpunk"] .bg-retro-teal\/90 {
+  background-color: rgba(0, 255, 136, 0.9) !important;
+}
+
+[data-theme="cyberpunk"] .border-retro-teal\/10 {
+  border-color: rgba(0, 255, 136, 0.1) !important;
+}
+
+[data-theme="cyberpunk"] .border-retro-teal {
+  border-color: #00ff88 !important;
+}
+
+[data-theme="cyberpunk"] .bg-white\/60 {
+  background-color: rgba(26, 26, 46, 0.6) !important;
+}
+
+[data-theme="cyberpunk"] .bg-white\/80 {
+  background-color: rgba(26, 26, 46, 0.8) !important;
+}
+
+[data-theme="cyberpunk"] .bg-white {
+  background-color: #1a1a2e !important;
+}
+
+[data-theme="cyberpunk"] .bg-retro-purple\/20 {
+  background-color: rgba(191, 0, 255, 0.2) !important;
 }

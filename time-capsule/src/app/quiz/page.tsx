@@ -179,7 +179,7 @@ export default function QuizPage() {
                     <Badge variant="secondary" className="w-fit mx-auto mb-4 bg-retro-purple/20 text-retro-purple">
                       Question {currentQuestion + 1} of {quizQuestions.length}
                     </Badge>
-                    <CardTitle className="text-2xl md:text-3xl font-bold text-black">
+                    <CardTitle className="text-2xl md:text-3xl font-bold text-retro-dark">
                       {quizQuestions[currentQuestion].question}
                     </CardTitle>
                   </CardHeader>
@@ -193,7 +193,7 @@ export default function QuizPage() {
                       >
                         <Button
                           variant="outline"
-                          className="w-full text-left justify-start h-auto py-4 px-6 text-lg hover:bg-retro-teal/10 hover:border-retro-teal transition-all text-black"
+                          className="w-full text-left justify-start h-auto py-4 px-6 text-lg hover:bg-retro-teal/10 hover:border-retro-teal transition-all text-retro-dark"
                           onClick={() => handleAnswer(option.memeIds)}
                         >
                           {option.text}
@@ -229,7 +229,7 @@ export default function QuizPage() {
                     <Badge variant="secondary" className="mb-4 bg-retro-teal/20 text-retro-teal">
                       Your 2016 Meme Persona
                     </Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-retro-dark mb-4">
                       {result?.title}
                     </h2>
                     <p className="text-lg text-retro-gray mb-6">
@@ -243,7 +243,7 @@ export default function QuizPage() {
                       >
                         Share Result 🐦
                       </Button>
-                      <Button variant="outline" onClick={resetQuiz} className="text-black" className="border-retro-purple text-retro-purple hover:bg-retro-purple/10">
+                      <Button variant="outline" onClick={resetQuiz} className="border-retro-purple text-retro-purple hover:bg-retro-purple/10">
                         Take Quiz Again 🔄
                       </Button>
                     </div>

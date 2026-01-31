@@ -1,4 +1,4 @@
-#Xhacks
+# Xhacks
 
 **Step back into the past/Archive your memories**
 
@@ -13,4 +13,5 @@
 ## Tech Stack
 
 ## Future Endeavors
+
 

@@ -19,6 +19,13 @@ export default function Home() {
       color: 'bg-blue-500'
     },
     { 
+      icon: '😂', 
+      title: 'Meme Quiz', 
+      desc: 'Which 2016 meme are you? Take the interactive quiz to find out!',
+      href: '/quiz',
+      color: 'bg-pink-500'
+    },
+    { 
       icon: '🏆', 
       title: 'All-Time Picks', 
       desc: 'See the most iconic trends that defined internet culture across all years',
@@ -31,13 +38,6 @@ export default function Home() {
       desc: 'Create your personal time capsule with photos, memories, and favorites',
       href: '/my-capsule',
       color: 'bg-purple-500'
-    },
-    { 
-      icon: '📊', 
-      title: 'Compare Years', 
-      desc: 'See how different years stack up against each other',
-      href: '/compare',
-      color: 'bg-green-500'
     },
   ];
 

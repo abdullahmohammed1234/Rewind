@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NostalgiaBackground } from '@/components/features/nostalgia-background';
 import { AnimatedSection } from '@/components/features/animated-section';
+import { PersonalizedWrapped } from '@/components/features/personalized-wrapped';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -111,7 +112,7 @@ export default function MyCapsulePage() {
   const [selectedCapsule, setSelectedCapsule] = useState<PersonalCapsule | null>(null);
   const [showSealModal, setShowSealModal] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
-  const [activeTab, setActiveTab] = useState<'capsules' | 'gallery' | 'friends'>('capsules');
+  const [activeTab, setActiveTab] = useState<'capsules' | 'gallery' | 'friends' | 'wrapped'>('capsules');
 
   const getStatusBadge = (status: CapsuleStatus) => {
     const styles = {
@@ -215,14 +216,14 @@ export default function MyCapsulePage() {
           {/* Tabs */}
           <AnimatedSection animation="fadeUp" delay={0.1}>
             <div className="flex justify-center gap-2 mb-8">
-              {(['capsules', 'gallery', 'friends'] as const).map((tab) => (
+              {(['capsules', 'gallery', 'friends', 'wrapped'] as const).map((tab) => (
                 <Button
                   key={tab}
                   variant={activeTab === tab ? 'default' : 'outline'}
                   onClick={() => setActiveTab(tab)}
                   className="capitalize"
                 >
-                  {tab === 'capsules' && '📦'} {tab === 'gallery' && '🖼️'} {tab === 'friends' && '👥'}
+                  {tab === 'capsules' && '📦'} {tab === 'gallery' && '🖼️'} {tab === 'friends' && '👥'} {tab === 'wrapped' && '✨'}
                   {' '}{tab}
                 </Button>
               ))}
@@ -365,6 +366,13 @@ export default function MyCapsulePage() {
               </AnimatedSection>
             ))}
           </div>
+
+          {/* Wrapped Tab Content */}
+          {activeTab === 'wrapped' && (
+            <AnimatedSection animation="fadeUp">
+              <PersonalizedWrapped />
+            </AnimatedSection>
+          )}
 
           {/* Seal Modal */}
           <AnimatePresence>

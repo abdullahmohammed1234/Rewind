@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  /* Nostalgic color palette */
+  --background: #f5f0e6;
+  --foreground: #2d2a26;
+  
+  /* Retro colors */
+  --retro-cream: #f5f0e6;
+  --retro-beige: #e8dfd0;
+  --retro-teal: #4a9b9b;
+  --retro-teal-dark: #3a7b7b;
+  --retro-pink: #c4a4a4;
+  --retro-pink-dark: #a88484;
+  --retro-purple: #8b7b9b;
+  --retro-purple-dark: #6b5b7b;
+  --retro-orange: #d4a574;
+  --retro-gray: #6b6560;
+  --retro-dark: #2d2a26;
+  --retro-light: #faf8f5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Retro color aliases */
+  --color-retro-cream: var(--retro-cream);
+  --color-retro-beige: var(--retro-beige);
+  --color-retro-teal: var(--retro-teal);
+  --color-retro-teal-dark: var(--retro-teal-dark);
+  --color-retro-pink: var(--retro-pink);
+  --color-retro-pink-dark: var(--retro-pink-dark);
+  --color-retro-purple: var(--retro-purple);
+  --color-retro-purple-dark: var(--retro-purple-dark);
+  --color-retro-orange: var(--retro-orange);
+  --color-retro-gray: var(--retro-gray);
+  --color-retro-dark: var(--retro-dark);
+  --color-retro-light: var(--retro-light);
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--retro-beige);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--retro-teal);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-teal-dark);
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Glitch hover effect */
+.hover-glitch:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* VHS-style border */
+.vhs-border {
+  border: 2px solid var(--retro-teal);
+  position: relative;
+}
+
+.vhs-border::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid var(--retro-purple);
+  opacity: 0.5;
+}

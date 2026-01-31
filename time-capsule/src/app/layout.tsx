@@ -38,7 +38,6 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Header />
-          <ThemeToggle />
           <main className="pt-16">
             {children}
           </main>

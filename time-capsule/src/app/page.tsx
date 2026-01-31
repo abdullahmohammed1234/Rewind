@@ -7,10 +7,17 @@ import { AnimatedSection } from '@/components/features/animated-section';
 import { CassetteYearCard } from '@/components/features/cassette-year-card';
 import { Button } from '@/components/ui/button';
 import { years, categories, getTopItemsAllTime } from '@/data/seed';
+import { StreakCounter } from '@/components/features/streak-counter';
+import { AchievementsBadges } from '@/components/features/achievements-badges';
+import { ShareableWrappedCard } from '@/components/features/shareable-wrapped-card';
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { X } from 'lucide-react';
 
 export default function Home() {
   const featuredYear = years.find(y => y.id === '2016');
   const recentYears = years.slice(-6).reverse();
+  const [showGamification, setShowGamification] = useState(true);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -349,6 +356,44 @@ export default function Home() {
                 </motion.div>
               </AnimatedSection>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gamification Section */}
+      <section className="py-20 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-teal/5 to-transparent" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <AnimatedSection animation="fadeUp">
+            <div className="text-center mb-12">
+              <motion.span 
+                className="text-6xl mb-4 block"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                🎮
+              </motion.span>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Your <span className="bg-gradient-to-r from-[#4FFFC4] to-[#4F8FFF] bg-clip-text text-transparent">Journey</span>
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                Track your progress, earn achievements, and share your nostalgic journey with friends!
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left: Streak & Achievements */}
+            <div className="space-y-6">
+              <StreakCounter />
+              <AchievementsBadges />
+            </div>
+
+            {/* Right: Shareable Wrapped Card */}
+            <div>
+              <ShareableWrappedCard year="2016" />
+            </div>
           </div>
         </div>
       </section>

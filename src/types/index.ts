@@ -36,15 +36,6 @@ export interface Category {
   color?: string;
 }
 
-export type EmbedType = 'youtube' | 'spotify' | 'twitter' | 'wikipedia' | null;
-
-export interface EmbedData {
-  type: EmbedType;
-  id: string; // Video ID, track ID, tweet ID, or Wikipedia slug
-  url?: string; // Original URL for reference
-  title?: string; // Optional title/description for Wikipedia cards
-}
-
 export interface Item {
   id: string;
   title: string;
@@ -64,7 +55,6 @@ export interface Item {
   };
   impact?: string;
   rank?: number;
-  embed?: EmbedData; // For embedding YouTube, Spotify, Twitter, Wikipedia content
 }
 
 export interface LeaderboardEntry {
@@ -163,4 +153,50 @@ export interface AllTimeTopPick {
   totalEngagement: number;
   yearsActive: number[];
   peakYear: number;
+}
+
+// On This Day Types
+export interface OnThisDayEntry {
+  id: string;
+  item: Item;
+  year: number;
+  monthId: string;
+  significance: 'high' | 'medium' | 'low';
+}
+
+// Related Trends Types
+export interface RelatedTrend {
+  id: string;
+  item: Item;
+  relationType: 'similar_category' | 'same_era' | 'cultural_successor' | 'cultural_predecessor';
+  relevanceScore: number;
+}
+
+// Decade View Types
+export interface DecadeView {
+  id: string;
+  decade: number;
+  name: string;
+  description: string;
+  theme: string;
+  coverImage?: string;
+  summary: {
+    totalTrends: number;
+    topCategories: { categoryId: string; count: number }[];
+    iconicMoments: Item[];
+    culturalImpact: string;
+  };
+  yearSummaries: {
+    year: number;
+    highlight: string;
+    topTrend: string;
+  }[];
+}
+
+// Random Trend Types
+export interface RandomTrendConfig {
+  includeCategories?: string[];
+  excludeCategories?: string[];
+  yearRange?: { start: number; end: number };
+  minPopularityScore?: number;
 }

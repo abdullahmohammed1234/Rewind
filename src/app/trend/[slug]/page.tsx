@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { AnimatedSection } from '@/components/features/animated-section';
+import { RelatedTrends } from '@/components/features/related-trends';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { getItemBySlug } from '@/data/seed';
-import { getCategoryById } from '@/data/seed';
-import { UnifiedEmbed } from '@/components/features/embeds';
+import { getItemBySlug, getCategoryById } from '@/data/seed';
 import Footer from '@/components/footer';
+
 
 export default function TrendPage() {
   const params = useParams();
@@ -119,27 +119,6 @@ export default function TrendPage() {
             </motion.div>
           </AnimatedSection>
 
-          {/* Embed Section */}
-          {item.embed && (
-            <AnimatedSection animation="fadeUp" delay={0.25}>
-              <motion.div
-                whileHover={{ scale: 1.01 }}
-                className="mb-8 bg-black/50 border border-white/10 rounded-2xl overflow-hidden"
-              >
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-white mb-4">
-                    📺 Media & Context
-                  </h2>
-                  <UnifiedEmbed
-                    type={item.embed.type}
-                    id={item.embed.id}
-                    title={item.embed.title}
-                  />
-                </div>
-              </motion.div>
-            </AnimatedSection>
-          )}
-
           {/* Timeline */}
           {item.timeline && (
             <AnimatedSection animation="fadeUp" delay={0.3}>
@@ -209,6 +188,13 @@ export default function TrendPage() {
               </motion.div>
             </AnimatedSection>
           )}
+
+          {/* Related Trends */}
+          <AnimatedSection animation="fadeUp" delay={0.45}>
+            <div className="mb-8 bg-black/30 border border-white/10 rounded-2xl p-6">
+              <RelatedTrends currentItem={item} />
+            </div>
+          </AnimatedSection>
 
           {/* Navigation */}
           <AnimatedSection animation="fadeUp" delay={0.5}>

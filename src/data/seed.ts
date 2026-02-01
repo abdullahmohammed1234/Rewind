@@ -110,6 +110,59 @@ export const years: Year[] = [
 ];
 
 export const months: Month[] = [
+  // 2012
+  { id: 'jan-2012', name: 'January', yearId: '2012', shortName: 'Jan' },
+  { id: 'feb-2012', name: 'February', yearId: '2012', shortName: 'Feb' },
+  { id: 'mar-2012', name: 'March', yearId: '2012', shortName: 'Mar' },
+  { id: 'apr-2012', name: 'April', yearId: '2012', shortName: 'Apr' },
+  { id: 'may-2012', name: 'May', yearId: '2012', shortName: 'May' },
+  { id: 'jun-2012', name: 'June', yearId: '2012', shortName: 'Jun' },
+  { id: 'jul-2012', name: 'July', yearId: '2012', shortName: 'Jul' },
+  { id: 'aug-2012', name: 'August', yearId: '2012', shortName: 'Aug' },
+  { id: 'sep-2012', name: 'September', yearId: '2012', shortName: 'Sep' },
+  { id: 'oct-2012', name: 'October', yearId: '2012', shortName: 'Oct' },
+  { id: 'nov-2012', name: 'November', yearId: '2012', shortName: 'Nov' },
+  { id: 'dec-2012', name: 'December', yearId: '2012', shortName: 'Dec' },
+  // 2013
+  { id: 'jan-2013', name: 'January', yearId: '2013', shortName: 'Jan' },
+  { id: 'feb-2013', name: 'February', yearId: '2013', shortName: 'Feb' },
+  { id: 'mar-2013', name: 'March', yearId: '2013', shortName: 'Mar' },
+  { id: 'apr-2013', name: 'April', yearId: '2013', shortName: 'Apr' },
+  { id: 'may-2013', name: 'May', yearId: '2013', shortName: 'May' },
+  { id: 'jun-2013', name: 'June', yearId: '2013', shortName: 'Jun' },
+  { id: 'jul-2013', name: 'July', yearId: '2013', shortName: 'Jul' },
+  { id: 'aug-2013', name: 'August', yearId: '2013', shortName: 'Aug' },
+  { id: 'sep-2013', name: 'September', yearId: '2013', shortName: 'Sep' },
+  { id: 'oct-2013', name: 'October', yearId: '2013', shortName: 'Oct' },
+  { id: 'nov-2013', name: 'November', yearId: '2013', shortName: 'Nov' },
+  { id: 'dec-2013', name: 'December', yearId: '2013', shortName: 'Dec' },
+  // 2014
+  { id: 'jan-2014', name: 'January', yearId: '2014', shortName: 'Jan' },
+  { id: 'feb-2014', name: 'February', yearId: '2014', shortName: 'Feb' },
+  { id: 'mar-2014', name: 'March', yearId: '2014', shortName: 'Mar' },
+  { id: 'apr-2014', name: 'April', yearId: '2014', shortName: 'Apr' },
+  { id: 'may-2014', name: 'May', yearId: '2014', shortName: 'May' },
+  { id: 'jun-2014', name: 'June', yearId: '2014', shortName: 'Jun' },
+  { id: 'jul-2014', name: 'July', yearId: '2014', shortName: 'Jul' },
+  { id: 'aug-2014', name: 'August', yearId: '2014', shortName: 'Aug' },
+  { id: 'sep-2014', name: 'September', yearId: '2014', shortName: 'Sep' },
+  { id: 'oct-2014', name: 'October', yearId: '2014', shortName: 'Oct' },
+  { id: 'nov-2014', name: 'November', yearId: '2014', shortName: 'Nov' },
+  { id: 'dec-2014', name: 'December', yearId: '2014', shortName: 'Dec' },
+  // 2015
+  { id: 'jan-2015', name: 'January', yearId: '2015', shortName: 'Jan' },
+  { id: 'feb-2015', name: 'February', yearId: '2015', shortName: 'Feb' },
+  { id: 'mar-2015', name: 'March', yearId: '2015', shortName: 'Mar' },
+  { id: 'apr-2015', name: 'April', yearId: '2015', shortName: 'Apr' },
+  { id: 'may-2015', name: 'May', yearId: '2015', shortName: 'May' },
+  { id: 'jun-2015', name: 'June', yearId: '2015', shortName: 'Jun' },
+  { id: 'jul-2015', name: 'July', yearId: '2015', shortName: 'Jul' },
+  { id: 'aug-2015', name: 'August', yearId: '2015', shortName: 'Aug' },
+  { id: 'sep-2015', name: 'September', yearId: '2015', shortName: 'Sep' },
+  { id: 'oct-2015', name: 'October', yearId: '2015', shortName: 'Oct' },
+  { id: 'nov-2015', name: 'November', yearId: '2015', shortName: 'Nov' },
+  { id: 'dec-2015', name: 'December', yearId: '2015', shortName: 'Dec' },
+  // 2016
   { id: 'jan-2016', name: 'January', yearId: '2016', shortName: 'Jan' },
   { id: 'feb-2016', name: 'February', yearId: '2016', shortName: 'Feb' },
   { id: 'mar-2016', name: 'March', yearId: '2016', shortName: 'Mar' },
@@ -122,6 +175,124 @@ export const months: Month[] = [
   { id: 'oct-2016', name: 'October', yearId: '2016', shortName: 'Oct' },
   { id: 'nov-2016', name: 'November', yearId: '2016', shortName: 'Nov' },
   { id: 'dec-2016', name: 'December', yearId: '2016', shortName: 'Dec' },
+  // 2017
+  { id: 'jan-2017', name: 'January', yearId: '2017', shortName: 'Jan' },
+  { id: 'feb-2017', name: 'February', yearId: '2017', shortName: 'Feb' },
+  { id: 'mar-2017', name: 'March', yearId: '2017', shortName: 'Mar' },
+  { id: 'apr-2017', name: 'April', yearId: '2017', shortName: 'Apr' },
+  { id: 'may-2017', name: 'May', yearId: '2017', shortName: 'May' },
+  { id: 'jun-2017', name: 'June', yearId: '2017', shortName: 'Jun' },
+  { id: 'jul-2017', name: 'July', yearId: '2017', shortName: 'Jul' },
+  { id: 'aug-2017', name: 'August', yearId: '2017', shortName: 'Aug' },
+  { id: 'sep-2017', name: 'September', yearId: '2017', shortName: 'Sep' },
+  { id: 'oct-2017', name: 'October', yearId: '2017', shortName: 'Oct' },
+  { id: 'nov-2017', name: 'November', yearId: '2017', shortName: 'Nov' },
+  { id: 'dec-2017', name: 'December', yearId: '2017', shortName: 'Dec' },
+  // 2018
+  { id: 'jan-2018', name: 'January', yearId: '2018', shortName: 'Jan' },
+  { id: 'feb-2018', name: 'February', yearId: '2018', shortName: 'Feb' },
+  { id: 'mar-2018', name: 'March', yearId: '2018', shortName: 'Mar' },
+  { id: 'apr-2018', name: 'April', yearId: '2018', shortName: 'Apr' },
+  { id: 'may-2018', name: 'May', yearId: '2018', shortName: 'May' },
+  { id: 'jun-2018', name: 'June', yearId: '2018', shortName: 'Jun' },
+  { id: 'jul-2018', name: 'July', yearId: '2018', shortName: 'Jul' },
+  { id: 'aug-2018', name: 'August', yearId: '2018', shortName: 'Aug' },
+  { id: 'sep-2018', name: 'September', yearId: '2018', shortName: 'Sep' },
+  { id: 'oct-2018', name: 'October', yearId: '2018', shortName: 'Oct' },
+  { id: 'nov-2018', name: 'November', yearId: '2018', shortName: 'Nov' },
+  { id: 'dec-2018', name: 'December', yearId: '2018', shortName: 'Dec' },
+  // 2019
+  { id: 'jan-2019', name: 'January', yearId: '2019', shortName: 'Jan' },
+  { id: 'feb-2019', name: 'February', yearId: '2019', shortName: 'Feb' },
+  { id: 'mar-2019', name: 'March', yearId: '2019', shortName: 'Mar' },
+  { id: 'apr-2019', name: 'April', yearId: '2019', shortName: 'Apr' },
+  { id: 'may-2019', name: 'May', yearId: '2019', shortName: 'May' },
+  { id: 'jun-2019', name: 'June', yearId: '2019', shortName: 'Jun' },
+  { id: 'jul-2019', name: 'July', yearId: '2019', shortName: 'Jul' },
+  { id: 'aug-2019', name: 'August', yearId: '2019', shortName: 'Aug' },
+  { id: 'sep-2019', name: 'September', yearId: '2019', shortName: 'Sep' },
+  { id: 'oct-2019', name: 'October', yearId: '2019', shortName: 'Oct' },
+  { id: 'nov-2019', name: 'November', yearId: '2019', shortName: 'Nov' },
+  { id: 'dec-2019', name: 'December', yearId: '2019', shortName: 'Dec' },
+  // 2020
+  { id: 'jan-2020', name: 'January', yearId: '2020', shortName: 'Jan' },
+  { id: 'feb-2020', name: 'February', yearId: '2020', shortName: 'Feb' },
+  { id: 'mar-2020', name: 'March', yearId: '2020', shortName: 'Mar' },
+  { id: 'apr-2020', name: 'April', yearId: '2020', shortName: 'Apr' },
+  { id: 'may-2020', name: 'May', yearId: '2020', shortName: 'May' },
+  { id: 'jun-2020', name: 'June', yearId: '2020', shortName: 'Jun' },
+  { id: 'jul-2020', name: 'July', yearId: '2020', shortName: 'Jul' },
+  { id: 'aug-2020', name: 'August', yearId: '2020', shortName: 'Aug' },
+  { id: 'sep-2020', name: 'September', yearId: '2020', shortName: 'Sep' },
+  { id: 'oct-2020', name: 'October', yearId: '2020', shortName: 'Oct' },
+  { id: 'nov-2020', name: 'November', yearId: '2020', shortName: 'Nov' },
+  { id: 'dec-2020', name: 'December', yearId: '2020', shortName: 'Dec' },
+  // 2021
+  { id: 'jan-2021', name: 'January', yearId: '2021', shortName: 'Jan' },
+  { id: 'feb-2021', name: 'February', yearId: '2021', shortName: 'Feb' },
+  { id: 'mar-2021', name: 'March', yearId: '2021', shortName: 'Mar' },
+  { id: 'apr-2021', name: 'April', yearId: '2021', shortName: 'Apr' },
+  { id: 'may-2021', name: 'May', yearId: '2021', shortName: 'May' },
+  { id: 'jun-2021', name: 'June', yearId: '2021', shortName: 'Jun' },
+  { id: 'jul-2021', name: 'July', yearId: '2021', shortName: 'Jul' },
+  { id: 'aug-2021', name: 'August', yearId: '2021', shortName: 'Aug' },
+  { id: 'sep-2021', name: 'September', yearId: '2021', shortName: 'Sep' },
+  { id: 'oct-2021', name: 'October', yearId: '2021', shortName: 'Oct' },
+  { id: 'nov-2021', name: 'November', yearId: '2021', shortName: 'Nov' },
+  { id: 'dec-2021', name: 'December', yearId: '2021', shortName: 'Dec' },
+  // 2022
+  { id: 'jan-2022', name: 'January', yearId: '2022', shortName: 'Jan' },
+  { id: 'feb-2022', name: 'February', yearId: '2022', shortName: 'Feb' },
+  { id: 'mar-2022', name: 'March', yearId: '2022', shortName: 'Mar' },
+  { id: 'apr-2022', name: 'April', yearId: '2022', shortName: 'Apr' },
+  { id: 'may-2022', name: 'May', yearId: '2022', shortName: 'May' },
+  { id: 'jun-2022', name: 'June', yearId: '2022', shortName: 'Jun' },
+  { id: 'jul-2022', name: 'July', yearId: '2022', shortName: 'Jul' },
+  { id: 'aug-2022', name: 'August', yearId: '2022', shortName: 'Aug' },
+  { id: 'sep-2022', name: 'September', yearId: '2022', shortName: 'Sep' },
+  { id: 'oct-2022', name: 'October', yearId: '2022', shortName: 'Oct' },
+  { id: 'nov-2022', name: 'November', yearId: '2022', shortName: 'Nov' },
+  { id: 'dec-2022', name: 'December', yearId: '2022', shortName: 'Dec' },
+  // 2023
+  { id: 'jan-2023', name: 'January', yearId: '2023', shortName: 'Jan' },
+  { id: 'feb-2023', name: 'February', yearId: '2023', shortName: 'Feb' },
+  { id: 'mar-2023', name: 'March', yearId: '2023', shortName: 'Mar' },
+  { id: 'apr-2023', name: 'April', yearId: '2023', shortName: 'Apr' },
+  { id: 'may-2023', name: 'May', yearId: '2023', shortName: 'May' },
+  { id: 'jun-2023', name: 'June', yearId: '2023', shortName: 'Jun' },
+  { id: 'jul-2023', name: 'July', yearId: '2023', shortName: 'Jul' },
+  { id: 'aug-2023', name: 'August', yearId: '2023', shortName: 'Aug' },
+  { id: 'sep-2023', name: 'September', yearId: '2023', shortName: 'Sep' },
+  { id: 'oct-2023', name: 'October', yearId: '2023', shortName: 'Oct' },
+  { id: 'nov-2023', name: 'November', yearId: '2023', shortName: 'Nov' },
+  { id: 'dec-2023', name: 'December', yearId: '2023', shortName: 'Dec' },
+  // 2024
+  { id: 'jan-2024', name: 'January', yearId: '2024', shortName: 'Jan' },
+  { id: 'feb-2024', name: 'February', yearId: '2024', shortName: 'Feb' },
+  { id: 'mar-2024', name: 'March', yearId: '2024', shortName: 'Mar' },
+  { id: 'apr-2024', name: 'April', yearId: '2024', shortName: 'Apr' },
+  { id: 'may-2024', name: 'May', yearId: '2024', shortName: 'May' },
+  { id: 'jun-2024', name: 'June', yearId: '2024', shortName: 'Jun' },
+  { id: 'jul-2024', name: 'July', yearId: '2024', shortName: 'Jul' },
+  { id: 'aug-2024', name: 'August', yearId: '2024', shortName: 'Aug' },
+  { id: 'sep-2024', name: 'September', yearId: '2024', shortName: 'Sep' },
+  { id: 'oct-2024', name: 'October', yearId: '2024', shortName: 'Oct' },
+  { id: 'nov-2024', name: 'November', yearId: '2024', shortName: 'Nov' },
+  { id: 'dec-2024', name: 'December', yearId: '2024', shortName: 'Dec' },
+  // 2025
+  { id: 'jan-2025', name: 'January', yearId: '2025', shortName: 'Jan' },
+  { id: 'feb-2025', name: 'February', yearId: '2025', shortName: 'Feb' },
+  { id: 'mar-2025', name: 'March', yearId: '2025', shortName: 'Mar' },
+  { id: 'apr-2025', name: 'April', yearId: '2025', shortName: 'Apr' },
+  { id: 'may-2025', name: 'May', yearId: '2025', shortName: 'May' },
+  { id: 'jun-2025', name: 'June', yearId: '2025', shortName: 'Jun' },
+  { id: 'jul-2025', name: 'July', yearId: '2025', shortName: 'Jul' },
+  { id: 'aug-2025', name: 'August', yearId: '2025', shortName: 'Aug' },
+  { id: 'sep-2025', name: 'September', yearId: '2025', shortName: 'Sep' },
+  { id: 'oct-2025', name: 'October', yearId: '2025', shortName: 'Oct' },
+  { id: 'nov-2025', name: 'November', yearId: '2025', shortName: 'Nov' },
+  { id: 'dec-2025', name: 'December', yearId: '2025', shortName: 'Dec' },
+  // 2026
   { id: 'jan-2026', name: 'January', yearId: '2026', shortName: 'Jan' },
   { id: 'feb-2026', name: 'February', yearId: '2026', shortName: 'Feb' }
 ];
@@ -153,7 +324,6 @@ export const items: Item[] = [
     userVotes: 15420,
     slug: 'closer-chainsmokers',
     rank: 1,
-    embed: { type: 'spotify', id: '2QjOVO8SDrRIIWj4T0K2aE' }
   },
   {
     id: 'music-2',
@@ -167,7 +337,6 @@ export const items: Item[] = [
     userVotes: 14200,
     slug: 'one-dance-drake',
     rank: 2,
-    embed: { type: 'spotify', id: '1ziAxLzzLrI9L0NMGdLq6D' }
   },
   {
     id: 'music-3',
@@ -181,7 +350,6 @@ export const items: Item[] = [
     userVotes: 13100,
     slug: 'work-rihanna',
     rank: 3,
-    embed: { type: 'spotify', id: '4OdQ1X9h7bG2t72L8cJ5qR' }
   },
   {
     id: 'music-4',
@@ -195,7 +363,6 @@ export const items: Item[] = [
     userVotes: 11800,
     slug: 'life-of-pablo',
     rank: 4,
-    embed: { type: 'spotify', id: '7D0cVvK7i4b1mH7X4G5L8A', url: 'https://open.spotify.com/album/7D0cVvK7i4b1mH7X4G5L8A' }
   },
   {
     id: 'music-5',
@@ -209,7 +376,6 @@ export const items: Item[] = [
     userVotes: 10500,
     slug: 'panda-desiigner',
     rank: 5,
-    embed: { type: 'youtube', id: 'Pzz1TUDxL3I', url: 'https://www.youtube.com/watch?v=Pzz1TUDxL3I' }
   },
 
   // ===== MEMES 2016 =====
@@ -225,7 +391,6 @@ export const items: Item[] = [
     userVotes: 25000,
     slug: 'harambe',
     rank: 1,
-    embed: { type: 'wikipedia', id: 'Harambe', title: 'The gorilla that started a movement' }
   },
   {
     id: 'meme-2',
@@ -239,7 +404,6 @@ export const items: Item[] = [
     userVotes: 22000,
     slug: 'damn-daniel',
     rank: 2,
-    embed: { type: 'youtube', id: 'sCJAX6zvrDk', url: 'https://www.youtube.com/watch?v=sCJAX6zvrDk' }
   },
   {
     id: 'meme-3',
@@ -253,7 +417,6 @@ export const items: Item[] = [
     userVotes: 18500,
     slug: 'cash-me-outside',
     rank: 3,
-    embed: { type: 'twitter', id: '780150968851548160', url: 'https://twitter.com/bghoard/status/780150968851548160' }
   },
   {
     id: 'meme-4',
@@ -267,7 +430,6 @@ export const items: Item[] = [
     userVotes: 16000,
     slug: 'arthur-fist',
     rank: 4,
-    embed: { type: 'wikipedia', id: 'Arthur_(TV_series)', title: 'The animated series behind the meme' }
   },
   {
     id: 'meme-5',
@@ -281,7 +443,6 @@ export const items: Item[] = [
     userVotes: 14500,
     slug: 'evil-kermit',
     rank: 5,
-    embed: { type: 'wikipedia', id: 'Kermit_the_Frog', title: 'The Muppet behind the meme' }
   },
 
   // ===== STYLE 2016 =====
@@ -925,4 +1086,136 @@ export function getYearStats(yearId: string) {
       count: yearItems.filter(i => i.categoryId === cat.id).length
     }))
   };
+}
+
+// ===== DECADE DATA =====
+
+interface DecadeHighlight {
+  year: number;
+  highlight: string;
+  topTrend: string;
+}
+
+interface DecadeSummary {
+  totalTrends: number;
+  iconicMoments: string[];
+  culturalImpact: string;
+  definingCategories: string[];
+}
+
+interface Decade {
+  id: string;
+  decade: number;
+  name: string;
+  description: string;
+  theme: string;
+  coverEmoji: string;
+  summary: DecadeSummary;
+  yearHighlights: DecadeHighlight[];
+}
+
+export const decades: Decade[] = [
+  {
+    id: '2010s',
+    decade: 2010,
+    name: 'The 2010s',
+    description: 'The decade that defined modern internet culture. From the rise of social media to viral memes that shaped our world.',
+    theme: 'digital-explosion',
+    coverEmoji: '📱',
+    summary: {
+      totalTrends: 150,
+      iconicMoments: [
+        'Gangnam Style',
+        'Harlem Shake',
+        'Ice Bucket Challenge',
+        'Pokémon GO',
+        'Despacito',
+        'Mannequin Challenge'
+      ],
+      culturalImpact: 'This decade saw the birth of TikTok, the dominance of streaming services, and the spread of viral challenges that united (and divided) the internet.',
+      definingCategories: ['memes', 'music', 'dances', 'trends']
+    },
+    yearHighlights: [
+      { year: 2010, highlight: 'Rise of Instagram and mobile social media', topTrend: 'The Dress' },
+      { year: 2011, highlight: 'Arab Spring and viral social movements', topTrend: 'Friday by Rebecca Black' },
+      { year: 2012, highlight: 'Gangnam Style breaks YouTube', topTrend: 'Gangnam Style' },
+      { year: 2013, highlight: 'Selfie becomes Word of the Year', topTrend: 'Selfie' },
+      { year: 2014, highlight: 'Ice Bucket Challenge goes viral', topTrend: 'Ice Bucket Challenge' },
+      { year: 2015, highlight: 'Streaming takes over music', topTrend: 'Fidget Spinner' },
+      { year: 2016, highlight: 'Pokémon GO and peak meme culture', topTrend: 'Pokémon GO' },
+      { year: 2017, highlight: 'Despacito summer', topTrend: 'Despacito' },
+      { year: 2018, highlight: 'TikTok begins its rise', topTrend: 'Avengers: Infinity War' },
+      { year: 2019, highlight: 'Old Town Road breaks records', topTrend: 'Old Town Road' }
+    ]
+  },
+  {
+    id: '2000s',
+    decade: 2000,
+    name: 'The 2000s',
+    description: 'The dawn of internet culture. From early viral videos to the rise of YouTube and social networking.',
+    theme: 'web-2-0',
+    coverEmoji: '💻',
+    summary: {
+      totalTrends: 80,
+      iconicMoments: [
+        'Charlie Bit My Finger',
+        'Keyboard Cat',
+        'Evolution of Dance',
+        'Leave Britney Alone',
+        'Numa Numa'
+      ],
+      culturalImpact: 'This decade marked the transition from web 1.0 to social media, with YouTube founding in 2005 and Facebook opening to everyone in 2006.',
+      definingCategories: ['memes', 'trends', 'other']
+    },
+    yearHighlights: [
+      { year: 2000, highlight: 'Dot-com bubble burst', topTrend: 'Y2K' },
+      { year: 2001, highlight: '9/11 and internet as news source', topTrend: 'Crazy Frog' },
+      { year: 2002, highlight: 'American Idol voting chaos', topTrend: 'Numa Numa' },
+      { year: 2003, highlight: 'MySpace launches', topTrend: 'Star Wars Kid' },
+      { year: 2004, highlight: 'Facebook founded', topTrend: 'LOL Cats' },
+      { year: 2005, highlight: 'YouTube founded', topTrend: 'Evolution of Dance' },
+      { year: 2006, highlight: 'Facebook opens to all', topTrend: 'Chocolate Rain' },
+      { year: 2007, highlight: 'iPhone revolution', topTrend: 'Leave Britney Alone' },
+      { year: 2008, highlight: 'Obama\'s viral campaign', topTrend: 'Keyboard Cat' },
+      { year: 2009, highlight: 'Michael Jackson tributes', topTrend: 'Charlie Bit My Finger' }
+    ]
+  }
+];
+
+// Helper function for decade data
+export function getDecadeById(id: string): Decade | undefined {
+  return decades.find(d => d.id === id);
+}
+
+export function getItemsByDecade(decade: number): Item[] {
+  const startYear = decade;
+  const endYear = decade + 9;
+  return items.filter(i => {
+    const year = parseInt(i.yearId || '0');
+    return year >= startYear && year <= endYear;
+  });
+}
+
+export function getRandomItem(config?: { categoryId?: string; yearRange?: [number, number]; minScore?: number }): Item | undefined {
+  let filteredItems = [...items];
+  
+  if (config?.categoryId) {
+    filteredItems = filteredItems.filter(i => i.categoryId === config.categoryId);
+  }
+  
+  if (config?.yearRange) {
+    filteredItems = filteredItems.filter(i => {
+      const year = parseInt(i.yearId || '0');
+      return year >= config.yearRange![0] && year <= config.yearRange![1];
+    });
+  }
+  
+  if (config?.minScore) {
+    filteredItems = filteredItems.filter(i => (i.popularityScore || 0) >= config.minScore!);
+  }
+  
+  if (filteredItems.length === 0) return undefined;
+  
+  const randomIndex = Math.floor(Math.random() * filteredItems.length);
+  return filteredItems[randomIndex];
 }

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { AnimatedSection } from '@/components/features/animated-section';
 import { CassetteYearCard } from '@/components/features/cassette-year-card';
+import { OnThisDay } from '@/components/features/on-this-day';
+import { RandomTrendButton } from '@/components/features/random-trend-button';
 import { Button } from '@/components/ui/button';
 import { years, categories } from '@/data/seed';
 import { useState } from 'react';
@@ -314,11 +316,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Embed Demo Section */}
+      {/* New Features Section - On This Day & Random Trend */}
       <section className="py-20 px-4 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-purple/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FF6B9D]/5 to-transparent pointer-events-none" />
         
-        <div className="max-w-4xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-12">
               <motion.span 
@@ -326,47 +328,61 @@ export default function Home() {
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                🎬
+                🎲
               </motion.span>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-                Media <span className="bg-gradient-to-r from-[#C44FFF] to-[#4F8FFF] bg-clip-text text-transparent">Embeds</span>
+                Discover Something <span className="bg-gradient-to-r from-[#FF6B9D] to-[#C44FFF] bg-clip-text text-transparent">New</span>
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                Experience viral videos, music, tweets, and Wikipedia context for each trend.
+                Explore what was trending today in history or get a random surprise!
               </p>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection animation="fadeUp" delay={0.2}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {[
-                { icon: '▶️', label: 'YouTube', color: '#FF0000' },
-                { icon: '🎵', label: 'Spotify', color: '#1DB954' },
-                { icon: '𝕏', label: 'Twitter/X', color: '#000000' },
-                { icon: '📚', label: 'Wikipedia', color: '#FFFFFF' },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i }}
-                  className="p-6 rounded-xl bg-black/50 border border-white/10 text-center"
-                >
-                  <span className="text-3xl block mb-2">{item.icon}</span>
-                  <span className="text-white font-medium">{item.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          </AnimatedSection>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {/* On This Day */}
+            <AnimatedSection animation="fadeUp" delay={0.1}>
+              <OnThisDay compact={false} />
+            </AnimatedSection>
 
+            {/* Random Trend */}
+            <AnimatedSection animation="fadeUp" delay={0.2}>
+              <Card className="bg-gradient-to-br from-retro-purple/20 to-retro-teal/20 border-white/10 overflow-hidden h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-2xl">🎲</span>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Random Discovery</h3>
+                      <p className="text-sm text-gray-400">Surprise me with a trend!</p>
+                    </div>
+                  </div>
+                  <RandomTrendButton variant="primary" size="md" showResult={true} />
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+
+          {/* Decade View Link */}
           <AnimatedSection animation="fadeUp" delay={0.3}>
-            <div className="text-center">
-              <Link href="/demo/embeds">
-                <Button size="lg" className="text-lg px-8 bg-gradient-to-r from-[#C44FFF] to-[#4F8FFF] hover:opacity-90 border-0">
-                  Try Embeds Demo 🎬
-                </Button>
-              </Link>
-            </div>
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="p-8 rounded-2xl bg-gradient-to-r from-retro-teal/20 via-retro-purple/20 to-retro-pink/20 border border-white/10"
+            >
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <span className="text-5xl">🕐</span>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">Decade View</h3>
+                    <p className="text-gray-400">Explore the internet culture that defined each era</p>
+                  </div>
+                </div>
+                <Link href="/decade">
+                  <Button size="lg" className="bg-gradient-to-r from-[#4FFFC4] to-[#4F8FFF] hover:opacity-90 border-0 whitespace-nowrap">
+                    Explore Decades →
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </AnimatedSection>
         </div>
       </section>

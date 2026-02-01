@@ -5,6 +5,14 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Item } from '@/types';
 
+// Map embed types to icons
+const embedTypeIcons: Record<string, string> = {
+  youtube: '▶️',
+  spotify: '🎵',
+  twitter: '𝕏',
+  wikipedia: '📚'
+};
+
 interface TrendCardProps {
   item: Item;
   compact?: boolean;
@@ -28,6 +36,14 @@ export function TrendCard({ item, compact = false }: TrendCardProps) {
               {/* Placeholder for trend icon */}
               📈
             </span>
+            {/* Embed type indicator */}
+            {item.embed && (
+              <div className="absolute top-2 right-2 bg-retro-black/60 px-2 py-1 rounded-full">
+                <span className="text-xs" title={item.embed.type}>
+                  {embedTypeIcons[item.embed.type] || '📎'}
+                </span>
+              </div>
+            )}
           </div>
           
           <CardContent className={compact ? 'p-3' : 'p-4'}>

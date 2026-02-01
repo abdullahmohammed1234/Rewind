@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getItemBySlug } from '@/data/seed';
 import { getCategoryById } from '@/data/seed';
+import { UnifiedEmbed } from '@/components/features/embeds';
 
 export default function TrendPage() {
   const params = useParams();
@@ -88,6 +89,24 @@ export default function TrendPage() {
               </CardContent>
             </Card>
           </AnimatedSection>
+
+          {/* Embed Section */}
+          {item.embed && (
+            <AnimatedSection animation="fadeUp" delay={0.25}>
+              <Card className="mb-8 overflow-hidden">
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold text-retro-dark mb-4">
+                    📺 Media & Context
+                  </h2>
+                  <UnifiedEmbed
+                    type={item.embed.type}
+                    id={item.embed.id}
+                    title={item.embed.title}
+                  />
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          )}
 
           {/* Timeline */}
           {item.timeline && (

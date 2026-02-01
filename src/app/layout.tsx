@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/lib/theme-provider";
-import { ThemeToggle } from "@/components/features/theme-toggle";
+import { FirebaseAuthProvider } from "@/components/providers";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -37,10 +37,12 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
-          <Header />
-          <main className="pt-16">
-            {children}
-          </main>
+          <FirebaseAuthProvider>
+            <Header />
+            <main className="pt-16">
+              {children}
+            </main>
+          </FirebaseAuthProvider>
         </ThemeProvider>
       </body>
     </html>

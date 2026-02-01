@@ -322,6 +322,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Embed Demo Section */}
+      <section className="py-20 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-purple/5 to-transparent" />
+        
+        <div className="max-w-4xl mx-auto relative z-10">
+          <AnimatedSection animation="fadeUp">
+            <div className="text-center mb-12">
+              <motion.span 
+                className="text-6xl mb-4 block"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                🎬
+              </motion.span>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Media <span className="bg-gradient-to-r from-[#C44FFF] to-[#4F8FFF] bg-clip-text text-transparent">Embeds</span>
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                Experience viral videos, music, tweets, and Wikipedia context for each trend.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fadeUp" delay={0.2}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {[
+                { icon: '▶️', label: 'YouTube', color: '#FF0000' },
+                { icon: '🎵', label: 'Spotify', color: '#1DB954' },
+                { icon: '𝕏', label: 'Twitter/X', color: '#000000' },
+                { icon: '📚', label: 'Wikipedia', color: '#FFFFFF' },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * i }}
+                  className="p-6 rounded-xl bg-white/5 border border-white/10 text-center"
+                >
+                  <span className="text-3xl block mb-2">{item.icon}</span>
+                  <span className="text-white font-medium">{item.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fadeUp" delay={0.3}>
+            <div className="text-center">
+              <Link href="/demo/embeds">
+                <Button size="lg" className="text-lg px-8 bg-gradient-to-r from-[#C44FFF] to-[#4F8FFF] hover:opacity-90 border-0">
+                  Try Embeds Demo 🎬
+                </Button>
+              </Link>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Why Rewind Section */}
       <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4F8FFF]/5 to-transparent" />

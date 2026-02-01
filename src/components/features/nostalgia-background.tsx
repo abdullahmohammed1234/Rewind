@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 interface NostalgiaBackgroundProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   showFloatingYears?: boolean;
 }
 

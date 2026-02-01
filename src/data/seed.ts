@@ -143,7 +143,8 @@ export const items: Item[] = [
     engagementScore: 98,
     userVotes: 15420,
     slug: 'closer-chainsmokers',
-    rank: 1
+    rank: 1,
+    embed: { type: 'spotify', id: '2QjOVO8SDrRIIWj4T0K2aE' }
   },
   {
     id: 'music-2',
@@ -156,7 +157,8 @@ export const items: Item[] = [
     engagementScore: 96,
     userVotes: 14200,
     slug: 'one-dance-drake',
-    rank: 2
+    rank: 2,
+    embed: { type: 'spotify', id: '1ziAxLzzLrI9L0NMGdLq6D' }
   },
   {
     id: 'music-3',
@@ -169,7 +171,8 @@ export const items: Item[] = [
     engagementScore: 94,
     userVotes: 13100,
     slug: 'work-rihanna',
-    rank: 3
+    rank: 3,
+    embed: { type: 'spotify', id: '4OdQ1X9h7bG2t72L8cJ5qR' }
   },
   {
     id: 'music-4',
@@ -182,7 +185,8 @@ export const items: Item[] = [
     engagementScore: 91,
     userVotes: 11800,
     slug: 'life-of-pablo',
-    rank: 4
+    rank: 4,
+    embed: { type: 'spotify', id: '7D0cVvK7i4b1mH7X4G5L8A', url: 'https://open.spotify.com/album/7D0cVvK7i4b1mH7X4G5L8A' }
   },
   {
     id: 'music-5',
@@ -195,7 +199,8 @@ export const items: Item[] = [
     engagementScore: 89,
     userVotes: 10500,
     slug: 'panda-desiigner',
-    rank: 5
+    rank: 5,
+    embed: { type: 'youtube', id: 'Pzz1TUDxL3I', url: 'https://www.youtube.com/watch?v=Pzz1TUDxL3I' }
   },
 
   // ===== MEMES 2016 =====
@@ -210,7 +215,8 @@ export const items: Item[] = [
     engagementScore: 99,
     userVotes: 25000,
     slug: 'harambe',
-    rank: 1
+    rank: 1,
+    embed: { type: 'wikipedia', id: 'Harambe', title: 'The gorilla that started a movement' }
   },
   {
     id: 'meme-2',
@@ -223,7 +229,8 @@ export const items: Item[] = [
     engagementScore: 97,
     userVotes: 22000,
     slug: 'damn-daniel',
-    rank: 2
+    rank: 2,
+    embed: { type: 'youtube', id: 'sCJAX6zvrDk', url: 'https://www.youtube.com/watch?v=sCJAX6zvrDk' }
   },
   {
     id: 'meme-3',
@@ -236,7 +243,8 @@ export const items: Item[] = [
     engagementScore: 94,
     userVotes: 18500,
     slug: 'cash-me-outside',
-    rank: 3
+    rank: 3,
+    embed: { type: 'twitter', id: '780150968851548160', url: 'https://twitter.com/bghoard/status/780150968851548160' }
   },
   {
     id: 'meme-4',
@@ -249,7 +257,8 @@ export const items: Item[] = [
     engagementScore: 92,
     userVotes: 16000,
     slug: 'arthur-fist',
-    rank: 4
+    rank: 4,
+    embed: { type: 'wikipedia', id: 'Arthur_(TV_series)', title: 'The animated series behind the meme' }
   },
   {
     id: 'meme-5',
@@ -262,7 +271,8 @@ export const items: Item[] = [
     engagementScore: 90,
     userVotes: 14500,
     slug: 'evil-kermit',
-    rank: 5
+    rank: 5,
+    embed: { type: 'wikipedia', id: 'Kermit_the_Frog', title: 'The Muppet behind the meme' }
   },
 
   // ===== STYLE 2016 =====

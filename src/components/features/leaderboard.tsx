@@ -1,8 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Item, Category } from '@/types';
 import { cn } from '@/lib/utils';
+
+// Map embed types to icons
+const embedTypeIcons: Record<string, string> = {
+  youtube: '▶️',
+  spotify: '🎵',
+  twitter: '𝕏',
+  wikipedia: '📚'
+};
 
 interface LeaderboardProps {
   items: Item[];
@@ -27,13 +36,6 @@ export function Leaderboard({ items, category, showVotes = true, maxItems = 5 }:
     }
   };
 
-  const getTrendIcon = (rank: number, previousRank?: number) => {
-    if (!previousRank) return '🆕';
-    if (rank < previousRank) return '📈';
-    if (rank > previousRank) return '📉';
-    return '➡️';
-  };
-
   return (
     <div className="space-y-3">
       {/* Header */}
@@ -48,50 +50,58 @@ export function Leaderboard({ items, category, showVotes = true, maxItems = 5 }:
       {/* Leaderboard items */}
       <div className="space-y-2">
         {displayItems.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ x: 5, scale: 1.01 }}
-            className={cn(
-              'flex items-center gap-4 p-4 rounded-xl transition-all cursor-pointer',
-              'bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10'
-            )}
-          >
-            {/* Rank badge */}
-            <div 
+          <Link key={item.id} href={`/trend/${item.slug}`}>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ x: 5, scale: 1.01 }}
               className={cn(
-                'w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shrink-0',
-                getRankStyle(index + 1)
+                'flex items-center gap-4 p-4 rounded-xl transition-all cursor-pointer',
+                'bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10'
               )}
             >
-              {index + 1}
-            </div>
-
-            {/* Item info */}
-            <div className="flex-1 min-w-0">
-              <h4 className="font-semibold text-white truncate">{item.title}</h4>
-              <p className="text-sm text-gray-400 truncate">{item.description}</p>
-            </div>
-
-            {/* Stats */}
-            {showVotes && (
-              <div className="text-right shrink-0">
-                <div className="text-lg font-bold text-white">
-                  {item.popularityScore}
-                </div>
-                <div className="text-xs text-gray-400">
-                  {item.userVotes?.toLocaleString()} votes
-                </div>
+              {/* Rank badge */}
+              <div 
+                className={cn(
+                  'w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shrink-0',
+                  getRankStyle(index + 1)
+                )}
+              >
+                {index + 1}
               </div>
-            )}
 
-            {/* Trend indicator */}
-            <div className="text-xl shrink-0">
-              {index < 3 ? ['🥇', '🥈', '🥉'][index] : ''}
-            </div>
-          </motion.div>
+              {/* Item info */}
+              <div className="flex-1 min-w-0">
+                <h4 className="font-semibold text-white truncate flex items-center gap-2">
+                  {item.title}
+                  {item.embed?.type && (
+                    <span className="text-sm" title={item.embed.type}>
+                      {embedTypeIcons[item.embed.type]}
+                    </span>
+                  )}
+                </h4>
+                <p className="text-sm text-gray-400 truncate">{item.description}</p>
+              </div>
+
+              {/* Stats */}
+              {showVotes && (
+                <div className="text-right shrink-0">
+                  <div className="text-lg font-bold text-white">
+                    {item.popularityScore}
+                  </div>
+                  <div className="text-xs text-gray-400">
+                    {item.userVotes?.toLocaleString()} votes
+                  </div>
+                </div>
+              )}
+
+              {/* Trend indicator */}
+              <div className="text-xl shrink-0">
+                {index < 3 ? ['🥇', '🥈', '🥉'][index] : ''}
+              </div>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </div>
@@ -110,17 +120,19 @@ export function LeaderboardCompact({ items, category, maxItems = 3 }: Leaderboar
       </div>
 
       {displayItems.map((item, index) => (
-        <motion.div
-          key={item.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: index * 0.05 }}
-          className="flex items-center gap-2 text-sm"
-        >
-          <span className="text-gray-500 w-4">{index + 1}.</span>
-          <span className="text-white truncate flex-1">{item.title}</span>
-          <span className="text-gray-400">{item.popularityScore}</span>
-        </motion.div>
+        <Link key={item.id} href={`/trend/${item.slug}`}>
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: index * 0.05 }}
+            className="flex items-center gap-2 text-sm hover:bg-white/5 p-2 rounded-lg transition-colors"
+          >
+            <span className="text-gray-500 w-4">{index + 1}.</span>
+            <span className="text-white truncate flex-1">{item.title}</span>
+            <span className="text-gray-400">{item.popularityScore}</span>
+          </motion.div>
+        </Link>
       ))}
     </div>
   );
@@ -148,54 +160,61 @@ export function AllTimeLeaderboard({ items, category, maxItems = 10 }: AllTimeLe
 
       <div className="space-y-3">
         {displayItems.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            whileHover={{ scale: 1.02 }}
-            className={cn(
-              'relative p-5 rounded-2xl overflow-hidden cursor-pointer transition-all',
-              index === 0 && 'bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border-2 border-yellow-500/50',
-              index === 1 && 'bg-gradient-to-r from-gray-400/20 to-gray-500/20 border border-gray-400/50',
-              index === 2 && 'bg-gradient-to-r from-amber-600/20 to-amber-700/20 border border-amber-600/50',
-              index > 2 && 'bg-white/5 border border-white/10 hover:border-white/20'
-            )}
-          >
-            <div className="flex items-center gap-4">
-              {/* Large rank number */}
-              <div className={cn(
-                'text-5xl font-black',
-                index === 0 && 'text-yellow-400',
-                index === 1 && 'text-gray-300',
-                index === 2 && 'text-amber-500',
-                index > 2 && 'text-white/30'
-              )}>
-                {index + 1}
-              </div>
-
-              {/* Item details */}
-              <div className="flex-1">
-                <h4 className="text-xl font-bold text-white">{item.title}</h4>
-                <p className="text-sm text-gray-400 line-clamp-1">{item.description}</p>
-                <div className="flex items-center gap-4 mt-2">
-                  <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-gray-300">
-                    {item.yearId}
-                  </span>
-                  <span className="text-xs text-gray-400">
-                    {item.engagementScore} engagement
-                  </span>
-                </div>
-              </div>
-
-              {/* Trophy for top 3 */}
-              {index < 3 && (
-                <div className="text-4xl">
-                  {['🏆', '🥈', '🥉'][index]}
-                </div>
+          <Link key={item.id} href={`/trend/${item.slug}`}>
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+              className={cn(
+                'relative p-5 rounded-2xl overflow-hidden cursor-pointer transition-all',
+                index === 0 && 'bg-gradient-to-r from-yellow-500/20 to-amber-500/20 border-2 border-yellow-500/50',
+                index === 1 && 'bg-gradient-to-r from-gray-400/20 to-gray-500/20 border border-gray-400/50',
+                index === 2 && 'bg-gradient-to-r from-amber-600/20 to-amber-700/20 border border-amber-600/50',
+                index > 2 && 'bg-white/5 border border-white/10 hover:border-white/20'
               )}
-            </div>
-          </motion.div>
+            >
+              <div className="flex items-center gap-4">
+                {/* Large rank number */}
+                <div className={cn(
+                  'text-5xl font-black',
+                  index === 0 && 'text-yellow-400',
+                  index === 1 && 'text-gray-300',
+                  index === 2 && 'text-amber-500',
+                  index > 2 && 'text-white/30'
+                )}>
+                  {index + 1}
+                </div>
+
+                {/* Item details */}
+                <div className="flex-1">
+                  <h4 className="text-xl font-bold text-white">{item.title}</h4>
+                  <p className="text-sm text-gray-400 line-clamp-1">{item.description}</p>
+                  <div className="flex items-center gap-4 mt-2">
+                    <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-gray-300">
+                      {item.yearId}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      {item.engagementScore} engagement
+                    </span>
+                    {item.embed?.type && (
+                      <span className="text-xs text-retro-purple">
+                        {embedTypeIcons[item.embed.type]}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Trophy for top 3 */}
+                {index < 3 && (
+                  <div className="text-4xl">
+                    {['🏆', '🥈', '🥉'][index]}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </div>

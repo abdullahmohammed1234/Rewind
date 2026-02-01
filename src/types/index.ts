@@ -36,6 +36,15 @@ export interface Category {
   color?: string;
 }
 
+export type EmbedType = 'youtube' | 'spotify' | 'twitter' | 'wikipedia' | null;
+
+export interface EmbedData {
+  type: EmbedType;
+  id: string; // Video ID, track ID, tweet ID, or Wikipedia slug
+  url?: string; // Original URL for reference
+  title?: string; // Optional title/description for Wikipedia cards
+}
+
 export interface Item {
   id: string;
   title: string;
@@ -55,6 +64,7 @@ export interface Item {
   };
   impact?: string;
   rank?: number;
+  embed?: EmbedData; // For embedding YouTube, Spotify, Twitter, Wikipedia content
 }
 
 export interface LeaderboardEntry {

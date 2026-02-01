@@ -12,15 +12,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      return NextResponse.json({ error: 'Only image files are allowed' }, { status: 400 });
+    // Validate file type (allow images and videos)
+    const allowedTypes = ['image/', 'video/'];
+    const isAllowed = allowedTypes.some(type => file.type.startsWith(type));
+    if (!isAllowed) {
+      return NextResponse.json({ error: 'Only image and video files are allowed' }, { status: 400 });
     }
 
-    // Validate file size (max 5MB for local storage)
-    const maxSize = 5 * 1024 * 1024;
+    // Validate file size (max 50MB for videos, 5MB for images)
+    const isVideo = file.type.startsWith('video/');
+    const maxSize = isVideo ? 50 * 1024 * 1024 : 5 * 1024 * 1024;
     if (file.size > maxSize) {
-      return NextResponse.json({ error: 'File too large (max 5MB)' }, { status: 400 });
+      return NextResponse.json({ 
+        error: isVideo ? 'Video too large (max 50MB)' : 'File too large (max 5MB)' 
+      }, { status: 400 });
     }
 
     // Generate unique filename with token

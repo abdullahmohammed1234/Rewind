@@ -111,11 +111,7 @@ const UploadIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const ImageIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-  </svg>
-);
+
 
 export default function MyCapsulePage() {
   const { user, loading: authLoading } = useAuth();
@@ -132,12 +128,11 @@ export default function MyCapsulePage() {
   // Toast notification state for sealed capsule warning
   const [sealedCapsuleToast, setSealedCapsuleToast] = useState<{unlockDate: string} | null>(null);
   
-  // Image upload state
-  const [uploadingImage, setUploadingImage] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // Submission file upload state
+  const [submissionFile, setSubmissionFile] = useState<File | null>(null);
+  const [submissionFilePreview, setSubmissionFilePreview] = useState<string | null>(null);
+  const [uploadingSubmissionFile, setUploadingSubmissionFile] = useState(false);
+  const submissionFileInputRef = useRef<HTMLInputElement>(null);
 
   // Form states
   const [createForm, setCreateForm] = useState({
@@ -281,19 +276,42 @@ export default function MyCapsulePage() {
   const handleAddSubmission = async () => {
     if (!selectedCapsule) return;
     
-    // For images, require a URL
-    if (submissionForm.type === 'image' && !submissionForm.content.trim()) {
-      alert('Please enter a picture URL for image submissions');
-      return;
+    // Check if we need to upload a file first
+    if (submissionFile && !submissionForm.content) {
+      setUploadingSubmissionFile(true);
+      try {
+        const formData = new FormData();
+        formData.append('file', submissionFile);
+        
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || 'Upload failed');
+        }
+        
+        const result = await response.json();
+        setSubmissionForm(prev => ({ ...prev, content: result.url }));
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('Failed to upload file. Please try again.');
+        setUploadingSubmissionFile(false);
+        return;
+      }
+      setUploadingSubmissionFile(false);
     }
     
+    // Now create the submission
     const newSubmission = {
       id: `sub-${Date.now()}`,
       capsuleId: selectedCapsule.id,
       userId: 'user-1',
       type: submissionForm.type,
       title: submissionForm.title || `New ${submissionForm.type}`,
-      content: submissionForm.content || 'Sample content',
+      content: submissionForm.content || (submissionForm.type === 'text' ? 'Sample content' : ''),
       category: submissionForm.category,
       month: submissionForm.month,
       tags: [],
@@ -319,6 +337,7 @@ export default function MyCapsulePage() {
           : c
       ));
       
+      // Reset form and file states
       setShowSubmitModal(false);
       setSubmissionForm({
         title: '',
@@ -328,6 +347,11 @@ export default function MyCapsulePage() {
         month: MONTHS[new Date().getMonth()],
         content: ''
       });
+      setSubmissionFile(null);
+      setSubmissionFilePreview(null);
+      if (submissionFileInputRef.current) {
+        submissionFileInputRef.current.value = '';
+      }
     } catch (error) {
       console.error('Error adding submission:', error);
       alert('Failed to add submission. Please try again.');
@@ -439,6 +463,78 @@ export default function MyCapsulePage() {
     setCreateForm(prev => ({ ...prev, coverImage: '', coverImageToken: '' }));
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
+    }
+  };
+
+  // Submission file upload handlers
+  const handleSubmissionFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const isImage = file.type.startsWith('image/');
+    const isVideo = file.type.startsWith('video/');
+    
+    if (!isImage && !isVideo) {
+      alert('Please select an image or video file');
+      return;
+    }
+    
+    // Validate file size
+    const maxSize = isVideo ? 50 * 1024 * 1024 : 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+      alert(isVideo ? 'Video too large (max 50MB)' : 'Image too large (max 5MB)');
+      return;
+    }
+    
+    setSubmissionFile(file);
+    
+    // Create preview for images
+    if (isImage) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setSubmissionFilePreview(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setSubmissionFilePreview(null);
+    }
+  };
+
+  const handleUploadSubmissionFile = async () => {
+    if (!submissionFile) return;
+    
+    setUploadingSubmissionFile(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('file', submissionFile);
+      
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+      
+      const result = await response.json();
+      setSubmissionForm(prev => ({ ...prev, content: result.url }));
+      setUploadingSubmissionFile(false);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Failed to upload file. Please try again or enter a URL.');
+      setUploadingSubmissionFile(false);
+    }
+  };
+
+  const handleRemoveSubmissionFile = () => {
+    setSubmissionFile(null);
+    setSubmissionFilePreview(null);
+    setSubmissionForm(prev => ({ ...prev, content: '' }));
+    if (submissionFileInputRef.current) {
+      submissionFileInputRef.current.value = '';
     }
   };
 
@@ -1415,38 +1511,92 @@ export default function MyCapsulePage() {
                       </div>
                     </div>
                     
-                    {/* Picture URL - Optional */}
-                    {(submissionForm.type === 'image') && (
+                    {/* Image/Video Upload */}
+                    {(submissionForm.type === 'image' || submissionForm.type === 'video') && (
                       <div>
                         <label className="block text-sm font-medium mb-2 text-gray-300">
-                          Image URL <span className="text-gray-500">(optional)</span>
+                          Upload {submissionForm.type === 'image' ? 'Image' : 'Video'}
                         </label>
-                        <input 
-                          type="text"
-                          className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500"
-                          placeholder="https://example.com/image.jpg"
-                          value={submissionForm.content}
-                          onChange={(e) => setSubmissionForm(prev => ({ ...prev, content: e.target.value }))}
-                        />
-                        {submissionForm.type === 'image' && !submissionForm.content && (
-                          <p className="text-xs text-gray-500 mt-1">Leave empty to add without a picture</p>
+                        
+                        {/* File input */}
+                        <div className="flex gap-2 mb-2">
+                          <input
+                            type="file"
+                            ref={submissionFileInputRef}
+                            accept={submissionForm.type === 'image' ? 'image/*' : 'video/*'}
+                            onChange={handleSubmissionFileSelect}
+                            className="hidden"
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => submissionFileInputRef.current?.click()}
+                            className="border-white/30 text-white hover:bg-white/10"
+                          >
+                            📁 Choose File
+                          </Button>
+                          
+                          {submissionFile && (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={handleUploadSubmissionFile}
+                              disabled={uploadingSubmissionFile}
+                              className="border-white/30 text-white hover:bg-white/10"
+                            >
+                              {uploadingSubmissionFile ? '⏳' : '⬆️'} Upload
+                            </Button>
+                          )}
+                          
+                          {submissionFile && (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={handleRemoveSubmissionFile}
+                              className="border-white/30 text-white hover:bg-white/10"
+                            >
+                              ❌
+                            </Button>
+                          )}
+                        </div>
+                        
+                        {/* Selected file info */}
+                        {submissionFile && (
+                          <p className="text-sm text-gray-400 mb-2">
+                            Selected: {submissionFile.name} ({formatFileSize(submissionFile.size)})
+                          </p>
                         )}
-                      </div>
-                    )}
-                    {(submissionForm.type === 'video') && (
-                      <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-300">
-                          Video URL <span className="text-gray-500">(optional)</span>
+                        
+                        {/* Preview for images */}
+                        {submissionFilePreview && (
+                          <div className="mt-2 mb-2">
+                            <img 
+                              src={submissionFilePreview} 
+                              alt="Preview" 
+                              className="max-h-32 rounded-lg border border-white/20"
+                            />
+                          </div>
+                        )}
+                        
+                        {/* URL input */}
+                        <label className="block text-sm font-medium mt-3 mb-2 text-gray-300">
+                          Or enter URL <span className="text-gray-500">(optional)</span>
                         </label>
                         <input 
                           type="text"
                           className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500"
-                          placeholder="https://example.com/video.mp4"
+                          placeholder={`https://example.com/${submissionForm.type}.${submissionForm.type === 'image' ? 'jpg' : 'mp4'}`}
                           value={submissionForm.content}
                           onChange={(e) => setSubmissionForm(prev => ({ ...prev, content: e.target.value }))}
                         />
-                        {submissionForm.type === 'video' && !submissionForm.content && (
-                          <p className="text-xs text-gray-500 mt-1">Leave empty to add without a video</p>
+                        {!submissionForm.content && !submissionFile && (
+                          <p className="text-xs text-gray-500 mt-1">Upload a file or enter a URL</p>
+                        )}
+                        {submissionForm.content && (
+                          <p className="text-xs text-green-400 mt-1">✓ URL set - will use uploaded file if present</p>
                         )}
                       </div>
                     )}

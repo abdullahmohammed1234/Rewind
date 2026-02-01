@@ -185,12 +185,12 @@ export default function SignUpPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md z-10"
       >
-        <Card className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-2xl">
+        <Card className="bg-gray-900/95 backdrop-blur-sm shadow-2xl">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Join Time Capsule
             </CardTitle>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">
+            <p className="text-gray-400 mt-2">
               Create your account and start preserving memories
             </p>
           </CardHeader>
@@ -202,7 +202,7 @@ export default function SignUpPage() {
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
-                  className="p-3 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm"
+                  className="p-3 rounded-lg bg-red-900/30 text-red-400 text-sm"
                 >
                   {signUpError || googleError || errors.general}
                 </motion.div>
@@ -210,7 +210,7 @@ export default function SignUpPage() {
 
               {/* Display Name */}
               <div>
-                <label htmlFor="displayName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="displayName" className="block text-sm font-medium text-gray-300 mb-1">
                   Display Name
                 </label>
                 <Input
@@ -230,7 +230,7 @@ export default function SignUpPage() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
                   Email Address
                 </label>
                 <Input
@@ -250,7 +250,7 @@ export default function SignUpPage() {
 
               {/* Password */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
                   Password
                 </label>
                 <div className="relative">
@@ -279,7 +279,7 @@ export default function SignUpPage() {
 
               {/* Confirm Password */}
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-1">
                   Confirm Password
                 </label>
                 <Input
@@ -316,10 +316,10 @@ export default function SignUpPage() {
               {/* Divider */}
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300 dark:border-gray-700"></div>
+                  <div className="w-full border-t border-gray-700"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white dark:bg-gray-900 text-gray-500">Or continue with</span>
+                  <span className="px-2 bg-gray-900 text-gray-500">Or continue with</span>
                 </div>
               </div>
 
@@ -353,7 +353,7 @@ export default function SignUpPage() {
               </Button>
 
               {/* Sign In Link */}
-              <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+              <p className="text-center text-sm text-gray-400 mt-6">
                 Already have an account?{' '}
                 <Link
                   href="/auth/login"

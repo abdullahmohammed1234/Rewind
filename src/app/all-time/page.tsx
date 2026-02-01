@@ -48,19 +48,7 @@ export default function AllTimePage() {
         </div>
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          {/* Back button */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="absolute left-0 top-0"
-          >
-            <Link href="/">
-              <Button variant="ghost" className="text-gray-400 hover:text-white">
-                ← Back to Home
-              </Button>
-            </Link>
-          </motion.div>
-
+          
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

@@ -26,19 +26,6 @@ export default function YearsPage() {
       {/* Header */}
       <section className="py-20 px-4 relative">
         <div className="max-w-7xl mx-auto">
-          {/* Back button */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
-          >
-            <Link href="/">
-              <Button variant="ghost" className="text-gray-400 hover:text-white">
-                ← Back to Home
-              </Button>
-            </Link>
-          </motion.div>
-
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-16">
               <motion.span 

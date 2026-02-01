@@ -30,7 +30,7 @@ interface CapsuleSubmission {
   id: string;
   capsuleId: string;
   userId: string;
-  type: 'image' | 'video' | 'text' | 'audio';
+  type: 'image' | 'video' | 'text';
   title: string;
   content: string;
   category: string;
@@ -59,88 +59,6 @@ interface Capsule {
   isFavorite?: boolean;
   shareCode?: string;
 }
-
-// Mock data for demo
-const mockCapsules: Capsule[] = [
-  {
-    id: 'capsule-2024',
-    userId: 'user-1',
-    year: 2024,
-    title: 'My 2024 Rewind',
-    description: 'A year of AI, elections, and new beginnings',
-    status: 'open',
-    visibility: 'public',
-    createdAt: '2024-01-01',
-    updatedAt: '2024-12-01',
-    submissions: [
-      {
-        id: 'sub-1',
-        capsuleId: 'capsule-2024',
-        userId: 'user-1',
-        type: 'image',
-        title: 'Summer Vacation Photo',
-        content: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
-        category: 'style',
-        month: 'July',
-        tags: ['travel', 'summer', 'memories'],
-        likes: 12,
-        comments: 3,
-        createdAt: '2024-07-15',
-        isPinned: true
-      },
-      {
-        id: 'sub-2',
-        capsuleId: 'capsule-2024',
-        userId: 'user-1',
-        type: 'text',
-        title: 'Favorite Song of the Year',
-        content: 'Espresso by Sabrina Carpenter - this song defined my summer!',
-        category: 'music',
-        month: 'August',
-        tags: ['music', 'favorite', 'summer'],
-        likes: 8,
-        comments: 2,
-        createdAt: '2024-08-20',
-        isPinned: false
-      }
-    ],
-    coverImage: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800',
-    isFavorite: true,
-    shareCode: 'CAP-2024-XYZ'
-  },
-  {
-    id: 'capsule-2023',
-    userId: 'user-1',
-    year: 2023,
-    title: 'My 2023 Time Capsule',
-    description: 'The year of Barbenheimer and AI',
-    status: 'sealed',
-    visibility: 'friends',
-    createdAt: '2023-01-01',
-    updatedAt: '2023-12-31',
-    sealedAt: '2023-12-31',
-    unlockDate: '2028-12-31',
-    submissions: [
-      {
-        id: 'sub-3',
-        capsuleId: 'capsule-2023',
-        userId: 'user-1',
-        type: 'image',
-        title: 'Barbie Movie Night',
-        content: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400',
-        category: 'tv',
-        month: 'July',
-        tags: ['barbie', 'movies', 'friends'],
-        likes: 25,
-        comments: 7,
-        createdAt: '2023-07-21',
-        isPinned: true
-      }
-    ],
-    coverImage: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',
-    isFavorite: false
-  }
-];
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -218,7 +136,7 @@ export default function MyCapsulePage() {
   const [submissionForm, setSubmissionForm] = useState({
     title: '',
     description: '',
-    type: 'text' as 'image' | 'video' | 'text' | 'audio',
+    type: 'text' as 'image' | 'video' | 'text',
     category: 'other',
     month: MONTHS[new Date().getMonth()],
     content: ''
@@ -418,8 +336,7 @@ export default function MyCapsulePage() {
       const startM = year === currentYear ? startMonth : 0;
       for (let month = startM; month < 12; month++) {
         const monthName = MONTHS[month];
-        const lastDay = new Date(year, month + 1, 0).getDate();
-        const day = Math.min(28, lastDay);
+        const day = new Date(year, month + 1, 0).getDate();
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         options.push({ value: dateStr, label: `${monthName} ${day}, ${year}` });
       }
@@ -758,7 +675,6 @@ export default function MyCapsulePage() {
                           <span className="text-4xl block mb-2">
                             {sub.type === 'text' && '📝'}
                             {sub.type === 'video' && '🎬'}
-                            {sub.type === 'audio' && '🎵'}
                           </span>
                           <p className="text-sm">{sub.title}</p>
                         </div>
@@ -1117,7 +1033,7 @@ export default function MyCapsulePage() {
                     <div>
                       <label className="block text-sm font-medium mb-2 text-gray-300">Type</label>
                       <div className="flex gap-2 flex-wrap">
-                        {(['image', 'video', 'text', 'audio'] as const).map((type) => (
+                        {(['image', 'video', 'text'] as const).map((type) => (
                           <Button
                             key={type}
                             variant={submissionForm.type === type ? 'default' : 'outline'}
@@ -1130,7 +1046,6 @@ export default function MyCapsulePage() {
                             {type === 'image' && '📷'}
                             {type === 'video' && '🎬'}
                             {type === 'text' && '📝'}
-                            {type === 'audio' && '🎵'}
                             {' '}{type.charAt(0).toUpperCase() + type.slice(1)}
                           </Button>
                         ))}
@@ -1138,10 +1053,10 @@ export default function MyCapsulePage() {
                     </div>
                     
                     {/* Picture URL - Optional */}
-                    {(submissionForm.type === 'image' || submissionForm.type === 'video') && (
+                    {(submissionForm.type === 'image') && (
                       <div>
                         <label className="block text-sm font-medium mb-2 text-gray-300">
-                          Picture/Video URL <span className="text-gray-500">(optional)</span>
+                          Image URL <span className="text-gray-500">(optional)</span>
                         </label>
                         <input 
                           type="text"
@@ -1152,6 +1067,23 @@ export default function MyCapsulePage() {
                         />
                         {submissionForm.type === 'image' && !submissionForm.content && (
                           <p className="text-xs text-gray-500 mt-1">Leave empty to add without a picture</p>
+                        )}
+                      </div>
+                    )}
+                    {(submissionForm.type === 'video') && (
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-gray-300">
+                          Video URL <span className="text-gray-500">(optional)</span>
+                        </label>
+                        <input 
+                          type="text"
+                          className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500"
+                          placeholder="https://example.com/video.mp4"
+                          value={submissionForm.content}
+                          onChange={(e) => setSubmissionForm(prev => ({ ...prev, content: e.target.value }))}
+                        />
+                        {submissionForm.type === 'video' && !submissionForm.content && (
+                          <p className="text-xs text-gray-500 mt-1">Leave empty to add without a video</p>
                         )}
                       </div>
                     )}

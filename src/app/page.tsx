@@ -8,35 +8,58 @@ import { OnThisDay } from '@/components/features/on-this-day';
 import { RandomTrendButton } from '@/components/features/random-trend-button';
 import { Button } from '@/components/ui/button';
 import { years, categories } from '@/data/seed';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Footer from '@/components/footer';
 
+interface Particle {
+  id: number;
+  left: string;
+  top: string;
+  background: string;
+  duration: number;
+  delay: number;
+}
+
 export default function Home() {
+  const [particles, setParticles] = useState<Particle[]>([]);
   const featuredYear = years.find(y => y.id === '2016');
   const recentYears = years.slice(-6).reverse();
+
+  // Generate particles only on client side to avoid hydration mismatch
+  useEffect(() => {
+    const newParticles = [...Array(20)].map((_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      background: ['#FF6B9D', '#C44FFF', '#4FFFC4', '#4F8FFF'][i % 4],
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2,
+    }));
+    setParticles(newParticles);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black">
       {/* Animated background particles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div
-            key={i}
+            key={particle.id}
             className="absolute w-2 h-2 rounded-full"
             style={{
-              background: ['#FF6B9D', '#C44FFF', '#4FFFC4', '#4F8FFF'][i % 4],
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              background: particle.background,
+              left: particle.left,
+              top: particle.top,
             }}
             animate={{
               y: [0, -30, 0],
               opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: particle.delay,
             }}
           />
         ))}

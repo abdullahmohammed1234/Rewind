@@ -8,14 +8,19 @@ import { auth, db } from '@/lib/firebase/config';
 import { useAuth } from '@/components/providers';
 import { Button } from '@/components/ui/button';
 
-const navLinks = [
+// Base navigation links (visible to everyone)
+const baseNavLinks = [
   { href: '/', label: 'Home' },
   { href: '/years', label: 'Capsules' },
   { href: '/quiz', label: 'Quiz' },
   { href: '/search', label: 'Search' },
   { href: '/all-time', label: 'All-Time' },
-  { href: '/my-capsule', label: 'MyCapsule' },
   { href: '/compare', label: 'Compare' },
+];
+
+// Links visible only to authenticated users
+const authNavLinks = [
+  { href: '/my-capsule', label: 'MyCapsule' },
 ];
 
 export default function Header() {
@@ -93,7 +98,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
+            {[...baseNavLinks, ...(user ? authNavLinks : [])].map((link) => (
               <Link 
                 key={link.href}
                 href={link.href}
@@ -177,7 +182,7 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-retro-purple/10">
             <nav className="flex flex-col gap-2 mb-4">
-              {navLinks.map((link) => (
+              {[...baseNavLinks, ...(user ? authNavLinks : [])].map((link) => (
                 <Link 
                   key={link.href}
                   href={link.href}

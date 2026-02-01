@@ -275,7 +275,7 @@ export default function Home() {
           {/* CTA */}
           <AnimatedSection animation="fadeUp" delay={0.6}>
             <div className="text-center">
-              <Link href="/mycapsule">
+              <Link href="/my-capsule">
                 <Button size="lg" className="text-lg px-10 bg-gradient-to-r from-[#FF6B9D] to-[#C44FFF] hover:opacity-90 border-0">
                   Create Your Capsule 🚀
                 </Button>

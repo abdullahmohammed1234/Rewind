@@ -294,8 +294,8 @@ export default function Home() {
             {[
               { label: 'Years Archived', value: years.length, icon: '📅' },
               { label: 'Categories', value: categories.length, icon: '📂' },
-              { label: 'Trends Tracked', value: '500+', icon: '📈' },
-              { label: 'User Votes', value: '1M+', icon: '👥' },
+              { label: 'Trends Tracked', value: '100+', icon: '📈' },
+              { label: 'User Votes', value: '0', icon: '👥' },
             ].map((stat, i) => (
               <AnimatedSection key={stat.label} animation="scaleIn" delay={0.1 * i}>
                 <motion.div 

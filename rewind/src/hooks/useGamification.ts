@@ -167,7 +167,7 @@ export const ACHIEVEMENTS: Achievement[] = [
 ];
 
 // Storage keys
-const GAMIFICATION_KEY = 'time-capsule-gamification';
+const GAMIFICATION_KEY = 'rewind-gamification';
 
 export function useGamification() {
   const [stats, setStats] = useState<UserStats>({

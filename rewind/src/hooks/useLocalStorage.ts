@@ -19,7 +19,7 @@ export interface UserWrapped {
 }
 
 // Key for localStorage
-const STORAGE_KEY = 'time-capsule-wrapped';
+const STORAGE_KEY = 'rewind-wrapped';
 
 export function useLocalStorage() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
@@ -133,7 +133,7 @@ export function useLocalStorage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'time-capsule-wrapped.json';
+    a.download = 'rewind-wrapped.json';
     a.click();
     URL.revokeObjectURL(url);
   }, [favorites]);
@@ -163,7 +163,7 @@ export function useUserPreferences() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('time-capsule-preferences');
+      const stored = localStorage.getItem('rewind-preferences');
       if (stored) {
         setPreferences(JSON.parse(stored));
       }
@@ -176,7 +176,7 @@ export function useUserPreferences() {
   useEffect(() => {
     if (isLoaded) {
       try {
-        localStorage.setItem('time-capsule-preferences', JSON.stringify(preferences));
+        localStorage.setItem('rewind-preferences', JSON.stringify(preferences));
       } catch (error) {
         console.error('Failed to save preferences:', error);
       }

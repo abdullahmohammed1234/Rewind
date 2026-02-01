@@ -93,7 +93,7 @@ export function ShareableWrappedCard({
 
   // Copy share text
   const copyShareText = async () => {
-    const shareText = `🎉 My ${year} Wrapped!\n\n🔥 ${yearFavorites.length} trends explored\n🏆 ${achievements} achievements earned\n⚡ ${streak} day streak\n\nExplore your own nostalgic journey! #TimeCapsule #${year}Wrapped`;
+    const shareText = `🎉 My ${year} Wrapped!\n\n🔥 ${yearFavorites.length} trends explored\n🏆 ${achievements} achievements earned\n⚡ ${streak} day streak\n\nExplore your own nostalgic journey! #Rewind #${year}Wrapped`;
     
     try {
       await navigator.clipboard.writeText(shareText);
@@ -107,7 +107,7 @@ export function ShareableWrappedCard({
   // Share on social media
   const shareOnSocial = (platform: string) => {
     const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent(`🎉 My ${year} Wrapped! I explored ${yearFavorites.length} trends and earned ${achievements} achievements. Check out your nostalgic journey! #TimeCapsule #${year}Wrapped`);
+    const text = encodeURIComponent(`🎉 My ${year} Wrapped! I explored ${yearFavorites.length} trends and earned ${achievements} achievements. Check out your nostalgic journey! #Rewind #${year}Wrapped`);
     
     let shareUrl = '';
     switch (platform) {
@@ -196,7 +196,7 @@ export function ShareableWrappedCard({
 
             {/* Footer */}
             <div className="text-center pt-4 border-t border-white/10">
-              <p className="text-white/40 text-sm">time-capsule.app/{year}</p>
+              <p className="text-white/40 text-sm">rewind.app/{year}</p>
             </div>
 
             {/* Decorative elements */}

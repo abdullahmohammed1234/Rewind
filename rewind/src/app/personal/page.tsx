@@ -16,7 +16,7 @@ export default function personalPage() {
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-retro-dark mb-4">
-                Your Own Personal Time Capsule
+                Your Own Personal Rewind
               </h1>
               <p className="text-xl text-retro-gray max-w-2xl mx-auto">
                 Explore what YOU did throughout the years!

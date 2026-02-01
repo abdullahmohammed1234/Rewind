@@ -1,4 +1,4 @@
-// Data Models for TimeCapsule
+// Data Models for Rewind
 
 export interface Year {
   id: string;

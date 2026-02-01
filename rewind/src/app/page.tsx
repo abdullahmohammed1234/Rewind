@@ -69,9 +69,8 @@ export default function Home() {
             className="text-5xl md:text-8xl font-black mb-6"
           >
             <span className="bg-gradient-to-r from-[#FF6B9D] via-[#C44FFF] to-[#4F8FFF] bg-clip-text text-transparent">
-              Time
+              Rewind
             </span>
-            <span className="text-white">Capsule</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -212,7 +211,7 @@ export default function Home() {
                 My<span className="bg-gradient-to-r from-[#FF6B9D] to-[#C44FFF] bg-clip-text text-transparent">Capsule</span>
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                Create your own personal time capsule. Save your favorite moments, 
+                Create your own personal rewind. Save your favorite moments, 
                 photos, and memories from each year.
               </p>
             </div>
@@ -323,7 +322,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why TimeCapsule Section */}
+      {/* Why Rewind Section */}
       <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4F8FFF]/5 to-transparent" />
         
@@ -331,7 +330,7 @@ export default function Home() {
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Why TimeCapsule?
+                Why Rewind?
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
                 Rediscover the viral moments that shaped our digital culture.

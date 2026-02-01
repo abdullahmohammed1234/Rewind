@@ -18,7 +18,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TimeCapsule | Relive Internet Culture by Year",
+  title: "Rewind | Relive Internet Culture by Year",
   description: "Explore internet culture by year and month - a nostalgic, Spotify-Wrapped-style platform for digital history.",
 };
 

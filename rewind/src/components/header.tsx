@@ -26,7 +26,7 @@ export default function Header() {
               📼
             </span>
             <span className="font-bold text-xl text-white hidden sm:block">
-              TimeCapsule
+              Rewind
             </span>
           </Link>
 

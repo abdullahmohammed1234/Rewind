@@ -1,4 +1,4 @@
-// Seed data for TimeCapsule - Demo focusing on 2016
+// Seed data for Rewind - Demo focusing on 2016
 import { Year, Month, Category, Item, LeaderboardEntry, Leaderboard, PersonalCapsule, User } from '@/types';
 
 export const years: Year[] = [

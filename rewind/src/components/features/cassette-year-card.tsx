@@ -81,7 +81,7 @@ export function CassetteYearCard({ year, index }: CassetteYearCardProps) {
               
               {/* Theme text */}
               <span className="text-xs text-white/80 uppercase tracking-widest mt-1 z-10">
-                {year.theme || 'Time Capsule'}
+                {year.theme || 'Rewind'}
               </span>
               
               {/* Decorative corner */}

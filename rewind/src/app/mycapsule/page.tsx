@@ -90,7 +90,7 @@ export default function MyCapsulePage() {
                 My<span className="bg-gradient-to-r from-[#FF6B9D] to-[#C44FFF] bg-clip-text text-transparent">Capsule</span>
               </h2>
               <p className="text-gray-400 max-w-xl mx-auto">
-                Your personal time capsules. Save memories, seal them for the future, and share with friends.
+                Your personal rewinds. Save memories, seal them for the future, and share with friends.
               </p>
             </div>
           </AnimatedSection>

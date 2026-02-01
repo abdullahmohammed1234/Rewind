@@ -31,7 +31,7 @@ const mockCapsules: PersonalCapsule[] = [
     id: 'capsule-2024',
     userId: 'user-1',
     year: 2024,
-    title: 'My 2024 Time Capsule',
+    title: 'My 2024 Rewind',
     description: 'A year of AI, elections, and new beginnings',
     status: 'open',
     visibility: 'public',
@@ -186,7 +186,7 @@ export default function MyCapsulePage() {
                   MyCapsule
                 </h1>
                 <p className="text-xl text-retro-gray">
-                  Create and manage your personal time capsules
+                  Create and manage your personal rewinds
                 </p>
               </div>
               
@@ -240,7 +240,7 @@ export default function MyCapsulePage() {
                     id: `capsule-${Date.now()}`,
                     userId: 'user-1',
                     year: new Date().getFullYear(),
-                    title: `My ${new Date().getFullYear()} Time Capsule`,
+                    title: `My ${new Date().getFullYear()} Rewind`,
                     description: 'Start building your capsule!',
                     status: 'open',
                     visibility: 'public',

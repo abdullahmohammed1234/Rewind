@@ -157,7 +157,7 @@ export default function QuizPage() {
 
   const shareResult = () => {
     if (result) {
-      const text = `I got "${result.title}" in the "Which 2016 Meme Are You?" quiz! 🐣 Test your 2016 vibes at TimeCapsule!`;
+      const text = `I got "${result.title}" in the "Which 2016 Meme Are You?" quiz! 🐣 Test your 2016 vibes at Rewind!`;
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
     }
   };

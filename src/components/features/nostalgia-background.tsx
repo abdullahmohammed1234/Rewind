@@ -1,12 +1,21 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 interface NostalgiaBackgroundProps {
   children?: React.ReactNode;
   showFloatingYears?: boolean;
 }
+
+// Pre-generated particle positions to avoid hydration mismatch
+const PARTICLE_CONFIG = Array.from({ length: 30 }, (_, i) => ({
+  id: i,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  duration: 4 + Math.random() * 3,
+  delay: Math.random() * 3,
+}));
 
 export function NostalgiaBackground({ 
   children, 
@@ -19,6 +28,11 @@ export function NostalgiaBackground({
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div 
@@ -37,7 +51,7 @@ export function NostalgiaBackground({
       />
 
       {/* Floating years in background */}
-      {showFloatingYears && (
+      {showFloatingYears && mounted && (
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
           <motion.div 
             style={{ y }}
@@ -71,29 +85,31 @@ export function NostalgiaBackground({
         </div>
       )}
 
-      {/* Floating particles */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              background: ['#FF6B9D', '#C44FFF', '#4FFFC4', '#4F8FFF'][i % 4],
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -50, 0],
-              opacity: [0.2, 0.6, 0.2],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-            }}
-          />
-        ))}
-      </div>
+      {/* Floating particles - only render after mount to avoid hydration mismatch */}
+      {mounted && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+          {PARTICLE_CONFIG.map((particle) => (
+            <motion.div
+              key={particle.id}
+              className="absolute w-1 h-1 rounded-full"
+              style={{
+                background: ['#FF6B9D', '#C44FFF', '#4FFFC4', '#4F8FFF'][particle.id % 4],
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+              }}
+              animate={{
+                y: [0, -50, 0],
+                opacity: [0.2, 0.6, 0.2],
+              }}
+              transition={{
+                duration: particle.duration,
+                repeat: Infinity,
+                delay: particle.delay,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10">

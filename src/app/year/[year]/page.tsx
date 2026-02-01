@@ -9,6 +9,7 @@ import { Leaderboard, LeaderboardCompact } from '@/components/features/leaderboa
 import { Button } from '@/components/ui/button';
 import { getYearById, getMonthsByYear, categories, getLeaderboardByCategory, getYearStats } from '@/data/seed';
 import { cn } from '@/lib/utils';
+import Footer from '@/components/footer';
 
 export default function YearPage() {
   const params = useParams();
@@ -321,6 +322,8 @@ export default function YearPage() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

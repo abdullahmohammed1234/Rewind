@@ -2,54 +2,46 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { NostalgiaBackground } from '@/components/features/nostalgia-background';
 import { AnimatedSection } from '@/components/features/animated-section';
 import { CassetteYearCard } from '@/components/features/cassette-year-card';
 import { Button } from '@/components/ui/button';
-import { years, categories, getTopItemsAllTime } from '@/data/seed';
-import { StreakCounter } from '@/components/features/streak-counter';
-import { AchievementsBadges } from '@/components/features/achievements-badges';
-import { ShareableWrappedCard } from '@/components/features/shareable-wrapped-card';
+import { years, categories } from '@/data/seed';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { X } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import Footer from '@/components/footer';
 
 export default function Home() {
   const featuredYear = years.find(y => y.id === '2016');
   const recentYears = years.slice(-6).reverse();
-  const [showGamification, setShowGamification] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Animated gradient background */}
-      <div className="fixed inset-0 animated-gradient opacity-20 pointer-events-none" />
-      
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full"
+            style={{
+              background: ['#FF6B9D', '#C44FFF', '#4FFFC4', '#4F8FFF'][i % 4],
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-        {/* Floating decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 rounded-full"
-              style={{
-                background: ['#FF6B9D', '#C44FFF', '#4FFFC4', '#4F8FFF'][i % 4],
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-
         <div className="max-w-5xl mx-auto text-center relative z-10">
           {/* Logo/Icon */}
           <motion.div
@@ -163,7 +155,7 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.1 * i }}
                   whileHover={{ scale: 1.1 }}
-                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 flex items-center gap-2 cursor-pointer hover:border-white/30 transition-all"
+                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 flex items-center gap-2 cursor-pointer hover:border-retro-teal/50 transition-all"
                 >
                   <span className="text-xl">{cat.icon}</span>
                   <span className="text-white text-sm font-medium">{cat.name}</span>
@@ -195,7 +187,7 @@ export default function Home() {
       {/* MyCapsule Section */}
       <section className="py-20 px-4 relative overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#C44FFF]/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#C44FFF]/5 to-transparent pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedSection animation="fadeUp">
@@ -242,7 +234,7 @@ export default function Home() {
               <AnimatedSection key={feature.title} animation="fadeUp" delay={0.2 * (i + 1)}>
                 <motion.div 
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all cursor-pointer"
+                  className="p-8 rounded-2xl bg-black/50 border border-white/10 hover:border-white/20 transition-all cursor-pointer"
                   style={{ 
                     boxShadow: `0 0 30px ${feature.color}10`
                   }}
@@ -300,7 +292,7 @@ export default function Home() {
               <AnimatedSection key={stat.label} animation="scaleIn" delay={0.1 * i}>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
-                  className="p-6 rounded-xl bg-white/5 border border-white/10 text-center"
+                  className="p-6 rounded-xl bg-black/50 border border-white/10 text-center"
                 >
                   <span className="text-3xl mb-2 block">{stat.icon}</span>
                   <div className="text-3xl font-black text-white">{stat.value}</div>
@@ -324,7 +316,7 @@ export default function Home() {
 
       {/* Embed Demo Section */}
       <section className="py-20 px-4 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-purple/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-purple/5 to-transparent pointer-events-none" />
         
         <div className="max-w-4xl mx-auto relative z-10">
           <AnimatedSection animation="fadeUp">
@@ -358,7 +350,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i }}
-                  className="p-6 rounded-xl bg-white/5 border border-white/10 text-center"
+                  className="p-6 rounded-xl bg-black/50 border border-white/10 text-center"
                 >
                   <span className="text-3xl block mb-2">{item.icon}</span>
                   <span className="text-white font-medium">{item.label}</span>
@@ -381,7 +373,7 @@ export default function Home() {
 
       {/* Why Rewind Section */}
       <section className="py-20 px-4 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4F8FFF]/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4F8FFF]/5 to-transparent pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedSection animation="fadeUp">
@@ -404,7 +396,7 @@ export default function Home() {
               <AnimatedSection key={feature.title} animation="fadeUp" delay={0.2 * (i + 1)}>
                 <motion.div 
                   whileHover={{ y: -5 }}
-                  className="p-8 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white/20 transition-all"
+                  className="p-8 rounded-2xl bg-black/50 border border-white/10 text-center hover:border-white/20 transition-all"
                 >
                   <span className="text-5xl mb-4 block">{feature.icon}</span>
                   <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
@@ -418,7 +410,7 @@ export default function Home() {
 
       {/* Gamification Section */}
       <section className="py-20 px-4 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-teal/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-retro-teal/5 to-transparent pointer-events-none" />
         
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedSection animation="fadeUp">
@@ -442,36 +434,43 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left: Streak & Achievements */}
             <div className="space-y-6">
-              <StreakCounter />
-              <AchievementsBadges />
+              {/* This would import from components but keeping it simple */}
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="p-6 rounded-2xl bg-black/50 border border-white/10"
+              >
+                <h3 className="text-xl font-bold text-white mb-4">Your Stats</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 rounded-xl bg-white/5">
+                    <div className="text-2xl font-bold text-retro-teal">0</div>
+                    <div className="text-sm text-gray-400">Current Streak</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/5">
+                    <div className="text-2xl font-bold text-retro-purple">0</div>
+                    <div className="text-sm text-gray-400">Achievements</div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
             {/* Right: Shareable Wrapped Card */}
             <div>
-              <ShareableWrappedCard year="2016" />
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="p-8 rounded-2xl bg-gradient-to-br from-[#FF6B9D]/20 via-[#C44FFF]/20 to-[#4F8FFF]/20 border border-white/10"
+              >
+                <h3 className="text-xl font-bold text-white mb-4 text-center">2016 Wrapped</h3>
+                <div className="text-center">
+                  <span className="text-6xl mb-4 block">📼</span>
+                  <p className="text-gray-400">Your personalized year summary</p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-4 border-t border-white/10">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="mb-4"
-          >
-            <span className="text-4xl">📼</span>
-          </motion.div>
-          <p className="text-gray-400 mb-4">
-            Made with ❤️ for XHacks 2026
-          </p>
-          <p className="text-sm text-gray-600">
-            A nostalgic journey through internet culture
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

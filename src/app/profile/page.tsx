@@ -10,6 +10,7 @@ import { AnimatedSection } from '@/components/features/animated-section';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import Footer from '@/components/footer';
 
 // User profile interface
 interface UserProfile {
@@ -426,6 +427,8 @@ export default function ProfilePage() {
           </div>
         </section>
       )}
+
+      <Footer />
     </div>
   );
 }

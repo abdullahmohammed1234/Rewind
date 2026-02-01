@@ -25,7 +25,7 @@ export function TrendCard({ item, compact = false }: TrendCardProps) {
         whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
       >
-        <Card className="overflow-hidden group">
+        <Card className="overflow-hidden group bg-black/50 border-white/10 hover:border-retro-teal/50 transition-all">
           {/* Image placeholder with gradient */}
           <div 
             className="h-32 bg-gradient-to-br from-retro-teal/20 to-retro-purple/20 
@@ -37,8 +37,8 @@ export function TrendCard({ item, compact = false }: TrendCardProps) {
               📈
             </span>
             {/* Embed type indicator */}
-            {item.embed && (
-              <div className="absolute top-2 right-2 bg-retro-black/60 px-2 py-1 rounded-full">
+            {item.embed && item.embed.type && (
+              <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 rounded-full">
                 <span className="text-xs" title={item.embed.type}>
                   {embedTypeIcons[item.embed.type] || '📎'}
                 </span>
@@ -51,13 +51,13 @@ export function TrendCard({ item, compact = false }: TrendCardProps) {
               {item.title}
             </h3>
             {!compact && (
-              <p className="text-sm text-retro-gray mt-1 line-clamp-2">
+              <p className="text-sm text-gray-400 mt-1 line-clamp-2">
                 {item.description}
               </p>
             )}
             {item.popularityScore && (
               <div className="mt-2 flex items-center gap-2">
-                <div className="flex-1 h-1.5 bg-retro-cream rounded-full overflow-hidden">
+                <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-retro-teal rounded-full"
                     initial={{ width: 0 }}

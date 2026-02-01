@@ -8,6 +8,7 @@ import { AllTimeLeaderboard } from '@/components/features/leaderboard';
 import { Button } from '@/components/ui/button';
 import { categories, getTopItemsAllTime } from '@/data/seed';
 import { cn } from '@/lib/utils';
+import Footer from '@/components/footer';
 
 export default function AllTimePage() {
   const [activeCategory, setActiveCategory] = useState('memes');
@@ -15,38 +16,35 @@ export default function AllTimePage() {
   const topItems = getTopItemsAllTime(activeCategory, 10);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Animated background */}
-      <div className="fixed inset-0 animated-gradient opacity-10 pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.3, 0.8, 0.3],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          >
+            {['🏆', '⭐', '🎵', '😂', '📺'][i % 5]}
+          </motion.div>
+        ))}
+      </div>
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.3, 0.8, 0.3],
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            >
-              {['🏆', '⭐', '🎵', '😂', '📺'][i % 5]}
-            </motion.div>
-          ))}
-        </div>
-
         <div className="max-w-6xl mx-auto text-center relative z-10">
           
           <motion.div
@@ -174,7 +172,7 @@ export default function AllTimePage() {
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ y: -5, scale: 1.02 }}
                     onClick={() => setActiveCategory(cat.id)}
-                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 cursor-pointer transition-all"
+                    className="p-6 rounded-2xl bg-black/50 border border-white/10 hover:border-white/20 cursor-pointer transition-all"
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-3xl">{cat.icon}</span>
@@ -224,6 +222,8 @@ export default function AllTimePage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

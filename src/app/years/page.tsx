@@ -6,6 +6,7 @@ import { AnimatedSection } from '@/components/features/animated-section';
 import { CassetteYearCard } from '@/components/features/cassette-year-card';
 import { Button } from '@/components/ui/button';
 import { years } from '@/data/seed';
+import Footer from '@/components/footer';
 
 export default function YearsPage() {
   // Group years by decade
@@ -19,22 +20,43 @@ export default function YearsPage() {
   const decades = Object.keys(yearsByDecade).map(Number).sort((a, b) => b - a);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Animated background */}
-      <div className="fixed inset-0 animated-gradient opacity-10 pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-white/10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 0.5, 0],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
 
       {/* Header */}
-      <section className="py-20 px-4 relative">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-4">
+        <div className="max-w-7xl mx-auto relative z-10">
           <AnimatedSection animation="fadeUp">
             <div className="text-center mb-16">
-              <motion.span 
-                className="text-7xl mb-6 block"
-                animate={{ rotate: [0, 5, 0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-7xl mb-6"
               >
                 📼
-              </motion.span>
+              </motion.div>
               <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
                 <span className="bg-gradient-to-r from-[#FF6B9D] via-[#C44FFF] to-[#4F8FFF] bg-clip-text text-transparent">
                   Capsules
@@ -78,7 +100,7 @@ export default function YearsPage() {
           <AnimatedSection animation="fadeUp" delay={0.5}>
             <motion.div 
               whileHover={{ scale: 1.02 }}
-              className="mt-16 p-8 rounded-3xl text-center"
+              className="mt-16 p-8 rounded-3xl text-center bg-black/50 border border-white/10"
               style={{
                 background: 'linear-gradient(135deg, rgba(79, 255, 196, 0.1) 0%, rgba(79, 143, 255, 0.1) 100%)',
                 border: '2px dashed rgba(79, 255, 196, 0.3)'
@@ -122,6 +144,8 @@ export default function YearsPage() {
           </AnimatedSection>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

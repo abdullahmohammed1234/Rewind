@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { NostalgiaBackground } from '@/components/features/nostalgia-background';
 import { items, categories } from '@/data/seed';
+import Footer from '@/components/footer';
 
 // Quiz question type
 interface QuizQuestion {
@@ -163,8 +163,31 @@ export default function QuizPage() {
   };
 
   return (
-    <NostalgiaBackground>
-      <div className="min-h-screen py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-white/10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 0.5, 0],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 min-h-screen py-12 px-4">
         <div className="max-w-2xl mx-auto">
           <AnimatePresence mode="wait">
             {!showResult ? (
@@ -174,12 +197,12 @@ export default function QuizPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <Card className="shadow-xl">
+                <Card className="bg-black/50 border-white/20 shadow-xl">
                   <CardHeader className="text-center">
-                    <Badge variant="secondary" className="w-fit mx-auto mb-4 bg-retro-purple/20 text-retro-purple">
+                    <Badge variant="secondary" className="w-fit mx-auto mb-4 bg-retro-purple/20 text-retro-teal">
                       Question {currentQuestion + 1} of {quizQuestions.length}
                     </Badge>
-                    <CardTitle className="text-2xl md:text-3xl font-bold text-retro-dark">
+                    <CardTitle className="text-2xl md:text-3xl font-bold text-white">
                       {quizQuestions[currentQuestion].question}
                     </CardTitle>
                   </CardHeader>
@@ -193,7 +216,7 @@ export default function QuizPage() {
                       >
                         <Button
                           variant="outline"
-                          className="w-full text-left justify-start h-auto py-4 px-6 text-lg hover:bg-retro-teal/10 hover:border-retro-teal transition-all text-retro-dark"
+                          className="w-full text-left justify-start h-auto py-4 px-6 text-lg hover:bg-retro-teal/20 hover:border-retro-teal transition-all text-white border-white/20"
                           onClick={() => handleAnswer(option.memeIds)}
                         >
                           {option.text}
@@ -204,7 +227,7 @@ export default function QuizPage() {
                 </Card>
 
                 {/* Progress bar */}
-                <div className="mt-6 h-2 bg-retro-cream rounded-full overflow-hidden">
+                <div className="mt-6 h-2 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-retro-teal rounded-full"
                     initial={{ width: 0 }}
@@ -220,19 +243,19 @@ export default function QuizPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center"
               >
-                <Card className="shadow-xl overflow-hidden">
-                  <div className={`h-32 ${result?.color} flex items-center justify-center relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-gradient-to-r ${result?.color.replace('bg-', 'from-')}/30 to-transparent" />
+                <Card className="bg-black/50 border-white/20 shadow-xl overflow-hidden">
+                  <div className={`h-32 flex items-center justify-center relative overflow-hidden ${result?.color}`}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                     <span className="text-6xl">{result?.icon}</span>
                   </div>
                   <CardContent className="p-8">
                     <Badge variant="secondary" className="mb-4 bg-retro-teal/20 text-retro-teal">
                       Your 2016 Meme Persona
                     </Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold text-retro-dark mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                       {result?.title}
                     </h2>
-                    <p className="text-lg text-retro-gray mb-6">
+                    <p className="text-lg text-gray-400 mb-6">
                       {result?.description}
                     </p>
 
@@ -243,7 +266,7 @@ export default function QuizPage() {
                       >
                         Share Result 🐦
                       </Button>
-                      <Button variant="outline" onClick={resetQuiz} className="border-retro-purple text-retro-purple hover:bg-retro-purple/10">
+                      <Button variant="outline" onClick={resetQuiz} className="border-retro-purple text-retro-purple hover:bg-retro-purple/20">
                         Take Quiz Again 🔄
                       </Button>
                     </div>
@@ -251,8 +274,8 @@ export default function QuizPage() {
                 </Card>
 
                 {/* Explore more */}
-                <div className="mt-8 p-6 bg-retro-purple/10 rounded-xl border border-retro-purple/20">
-                  <h3 className="text-xl font-bold text-retro-dark mb-4">
+                <div className="mt-8 p-6 bg-black/50 border border-white/10 rounded-xl">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     Explore More 2016 Trends
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -263,9 +286,9 @@ export default function QuizPage() {
                         <a
                           key={item.id}
                           href={`/trend/${item.slug}`}
-                          className="block p-3 bg-white rounded-lg hover:shadow-md transition-shadow"
+                          className="block p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-all"
                         >
-                          <span className="text-sm font-medium text-black">
+                          <span className="text-sm font-medium text-white">
                             {item.title}
                           </span>
                         </a>
@@ -277,6 +300,8 @@ export default function QuizPage() {
           </AnimatePresence>
         </div>
       </div>
-    </NostalgiaBackground>
+
+      <Footer />
+    </div>
   );
 }

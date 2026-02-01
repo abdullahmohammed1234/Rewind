@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { NostalgiaBackground } from '@/components/features/nostalgia-background';
 import { AnimatedSection } from '@/components/features/animated-section';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getItemBySlug } from '@/data/seed';
 import { getCategoryById } from '@/data/seed';
 import { UnifiedEmbed } from '@/components/features/embeds';
+import Footer from '@/components/footer';
 
 export default function TrendPage() {
   const params = useParams();
@@ -18,33 +18,55 @@ export default function TrendPage() {
 
   if (!item) {
     return (
-      <NostalgiaBackground>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-retro-dark mb-4">Trend not found</h1>
-            <Link href="/years">
-              <Button>Explore Years</Button>
-            </Link>
-          </div>
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">🔍</div>
+          <h1 className="text-4xl font-bold text-white mb-4">Trend not found</h1>
+          <Link href="/years">
+            <Button className="bg-gradient-to-r from-[#FF6B9D] to-[#C44FFF]">Explore Years</Button>
+          </Link>
         </div>
-      </NostalgiaBackground>
+      </div>
     );
   }
 
   const category = getCategoryById(item.categoryId);
 
   return (
-    <NostalgiaBackground>
-      <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-white/10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 0.5, 0],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 min-h-screen py-8 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
           <AnimatedSection animation="fadeUp">
-            <div className="flex items-center gap-2 text-sm text-retro-gray mb-6">
-              <Link href="/" className="hover:text-retro-teal">Home</Link>
+            <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
+              <Link href="/" className="hover:text-retro-teal transition-colors">Home</Link>
               <span>/</span>
-              <Link href="/years" className="hover:text-retro-teal">Years</Link>
+              <Link href="/years" className="hover:text-retro-teal transition-colors">Years</Link>
               <span>/</span>
-              <span className="text-retro-dark">{item.title}</span>
+              <span className="text-white">{item.title}</span>
             </div>
           </AnimatedSection>
 
@@ -58,19 +80,25 @@ export default function TrendPage() {
               >
                 <span className="text-8xl">{category?.icon || '📈'}</span>
               </motion.div>
-              <h1 className="text-4xl md:text-5xl font-bold text-retro-dark mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 {item.title}
               </h1>
               <div className="flex items-center justify-center gap-4">
                 {category && (
-                  <span className="px-4 py-2 bg-retro-teal/10 text-retro-teal rounded-full text-sm font-medium">
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    className="px-4 py-2 bg-retro-teal/20 border border-retro-teal/50 text-retro-teal rounded-full text-sm font-medium"
+                  >
                     {category.name}
-                  </span>
+                  </motion.span>
                 )}
                 {item.popularityScore && (
-                  <span className="px-4 py-2 bg-retro-purple/10 text-retro-purple rounded-full text-sm font-medium">
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    className="px-4 py-2 bg-retro-purple/20 border border-retro-purple/50 text-retro-purple rounded-full text-sm font-medium"
+                  >
                     Popularity: {item.popularityScore}%
-                  </span>
+                  </motion.span>
                 )}
               </div>
             </div>
@@ -78,24 +106,28 @@ export default function TrendPage() {
 
           {/* Main Content */}
           <AnimatedSection animation="fadeUp" delay={0.2}>
-            <Card className="mb-8">
-              <CardContent className="p-8">
-                <h2 className="text-xl font-bold text-retro-dark mb-4">
-                  About This Trend
-                </h2>
-                <p className="text-lg text-retro-gray leading-relaxed">
-                  {item.description}
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              className="mb-8 bg-black/50 border border-white/10 rounded-2xl p-8"
+            >
+              <h2 className="text-xl font-bold text-white mb-4">
+                About This Trend
+              </h2>
+              <p className="text-lg text-gray-400 leading-relaxed">
+                {item.description}
+              </p>
+            </motion.div>
           </AnimatedSection>
 
           {/* Embed Section */}
           {item.embed && (
             <AnimatedSection animation="fadeUp" delay={0.25}>
-              <Card className="mb-8 overflow-hidden">
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-bold text-retro-dark mb-4">
+              <motion.div
+                whileHover={{ scale: 1.01 }}
+                className="mb-8 bg-black/50 border border-white/10 rounded-2xl overflow-hidden"
+              >
+                <div className="p-6">
+                  <h2 className="text-xl font-bold text-white mb-4">
                     📺 Media & Context
                   </h2>
                   <UnifiedEmbed
@@ -103,67 +135,78 @@ export default function TrendPage() {
                     id={item.embed.id}
                     title={item.embed.title}
                   />
-                </CardContent>
-              </Card>
+                </div>
+              </motion.div>
             </AnimatedSection>
           )}
 
           {/* Timeline */}
           {item.timeline && (
             <AnimatedSection animation="fadeUp" delay={0.3}>
-              <Card className="mb-8">
-                <CardContent className="p-8">
-                  <h2 className="text-xl font-bold text-retro-dark mb-6">
-                    📅 Timeline
-                  </h2>
-                  <div className="flex flex-col md:flex-row items-center gap-4">
-                    <div className="flex-1 text-center p-4 bg-retro-teal/10 rounded-lg">
-                      <div className="text-sm text-retro-gray mb-1">Started</div>
-                      <div className="text-lg font-bold text-retro-teal">
-                        {item.timeline.start}
-                      </div>
+              <motion.div
+                whileHover={{ scale: 1.01 }}
+                className="mb-8 bg-black/50 border border-white/10 rounded-2xl p-8"
+              >
+                <h2 className="text-xl font-bold text-white mb-6">
+                  📅 Timeline
+                </h2>
+                <div className="flex flex-col md:flex-row items-center gap-4">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="flex-1 text-center p-4 bg-white/5 rounded-xl"
+                  >
+                    <div className="text-sm text-gray-400 mb-1">Started</div>
+                    <div className="text-lg font-bold text-retro-teal">
+                      {item.timeline.start}
                     </div>
-                    {item.timeline.peak && (
-                      <>
-                        <div className="text-2xl text-retro-purple">→</div>
-                        <div className="flex-1 text-center p-4 bg-retro-purple/10 rounded-lg">
-                          <div className="text-sm text-retro-gray mb-1">Peak Popularity</div>
-                          <div className="text-lg font-bold text-retro-purple">
-                            {item.timeline.peak}
-                          </div>
+                  </motion.div>
+                  {item.timeline.peak && (
+                    <>
+                      <div className="text-2xl text-retro-purple">→</div>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        className="flex-1 text-center p-4 bg-white/5 rounded-xl"
+                      >
+                        <div className="text-sm text-gray-400 mb-1">Peak Popularity</div>
+                        <div className="text-lg font-bold text-retro-purple">
+                          {item.timeline.peak}
                         </div>
-                      </>
-                    )}
-                    {item.timeline.end && (
-                      <>
-                        <div className="text-2xl text-retro-pink">→</div>
-                        <div className="flex-1 text-center p-4 bg-retro-pink/10 rounded-lg">
-                          <div className="text-sm text-retro-gray mb-1">Ended</div>
-                          <div className="text-lg font-bold text-retro-pink">
-                            {item.timeline.end}
-                          </div>
+                      </motion.div>
+                    </>
+                  )}
+                  {item.timeline.end && (
+                    <>
+                      <div className="text-2xl text-retro-pink">→</div>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        className="flex-1 text-center p-4 bg-white/5 rounded-xl"
+                      >
+                        <div className="text-sm text-gray-400 mb-1">Ended</div>
+                        <div className="text-lg font-bold text-retro-pink">
+                          {item.timeline.end}
                         </div>
-                      </>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                      </motion.div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
             </AnimatedSection>
           )}
 
           {/* Impact */}
           {item.impact && (
             <AnimatedSection animation="fadeUp" delay={0.4}>
-              <Card className="mb-8 bg-gradient-to-r from-retro-purple/10 to-retro-pink/10 border-retro-purple/20">
-                <CardContent className="p-8">
-                  <h2 className="text-xl font-bold text-retro-dark mb-4">
-                    🎯 Cultural Impact
-                  </h2>
-                  <p className="text-lg text-retro-gray leading-relaxed">
-                    {item.impact}
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                whileHover={{ scale: 1.01 }}
+                className="mb-8 bg-gradient-to-r from-retro-purple/20 to-retro-pink/20 border border-retro-purple/30 rounded-2xl p-8"
+              >
+                <h2 className="text-xl font-bold text-white mb-4">
+                  🎯 Cultural Impact
+                </h2>
+                <p className="text-lg text-gray-400 leading-relaxed">
+                  {item.impact}
+                </p>
+              </motion.div>
             </AnimatedSection>
           )}
 
@@ -171,7 +214,7 @@ export default function TrendPage() {
           <AnimatedSection animation="fadeUp" delay={0.5}>
             <div className="flex justify-center gap-4">
               <Link href="/years">
-                <Button variant="outline">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
                   ← Explore More Years
                 </Button>
               </Link>
@@ -179,6 +222,8 @@ export default function TrendPage() {
           </AnimatedSection>
         </div>
       </div>
-    </NostalgiaBackground>
+
+      <Footer />
+    </div>
   );
 }

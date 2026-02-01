@@ -31,7 +31,7 @@ export function MonthTimeline({ months, currentMonth, year }: MonthTimelineProps
                   'relative px-6 py-4 rounded-xl cursor-pointer transition-all duration-300',
                   isActive
                     ? 'bg-retro-teal text-white shadow-lg'
-                    : 'bg-white/60 hover:bg-white/80 text-retro-dark'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
                 )}
               >
                 {/* Month number */}

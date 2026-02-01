@@ -23,10 +23,10 @@ export function CategorySection({ category, items }: CategorySectionProps) {
         className="flex items-center gap-3 mb-6"
       >
         <span className="text-3xl">{category.icon}</span>
-        <h2 className="text-2xl font-bold text-retro-dark">
+        <h2 className="text-2xl font-bold text-white">
           {category.name}
         </h2>
-        <div className="flex-1 h-px bg-retro-teal/20" />
+        <div className="flex-1 h-px bg-white/20" />
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -39,14 +39,14 @@ export function CategorySection({ category, items }: CategorySectionProps) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Card className="h-full hover:border-retro-teal/40 transition-colors">
+              <Card className="h-full bg-black/50 border-white/10 hover:border-retro-teal/50 transition-all">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1">
-                      <h3 className="font-bold text-retro-dark mb-1">
+                      <h3 className="font-bold text-white mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-retro-gray line-clamp-2">
+                      <p className="text-sm text-gray-400 line-clamp-2">
                         {item.description}
                       </p>
                     </div>

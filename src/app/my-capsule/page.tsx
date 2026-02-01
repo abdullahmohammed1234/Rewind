@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/components/providers';
 import { formatFileSize } from '@/lib/firebase/storage';
+import Footer from '@/components/footer';
 import { 
   collection, 
   doc, 
@@ -1331,6 +1332,8 @@ export default function MyCapsulePage() {
           </AnimatePresence>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

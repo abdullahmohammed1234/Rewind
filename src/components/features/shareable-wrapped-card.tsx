@@ -118,8 +118,11 @@ export function ShareableWrappedCard({
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
         break;
       case 'instagram':
-        // Instagram doesn't have a web share API, so we just copy the text
+        // Instagram doesn't have a web share API, but we can open the Instagram app/web
+        // Copy the text first, then open Instagram
         copyShareText();
+        // Open Instagram app or web
+        window.open('https://www.instagram.com/', '_blank');
         return;
     }
     
